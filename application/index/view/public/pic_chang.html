@@ -1,0 +1,114 @@
+{include file="./public/public/header.html" /}
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/basic.html" class="white">
+            <span>基础设置</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>图片回复</span>
+        </a>
+    </div>
+</div>
+{include file="public/basic_setup" /}
+<!---->
+<svg height="0" width="0" style="position: absolute; margin-left: -100%;">
+
+    <defs>
+
+        <filter id="shadow">
+            <fecomponenttransfer in="SourceGraphic">
+                <fefuncr type="discrete" tableValues="0"></fefuncr>
+                <fefuncg type="discrete" tableValues="0"></fefuncg>
+                <fefuncb type="discrete" tableValues="0"></fefuncb>
+            </fecomponenttransfer>
+            <fegaussianblur stdDeviation="1"></fegaussianblur>
+            <fecomponenttransfer><fefunca type="linear" slope="0.2"></fefunca></fecomponenttransfer>
+            <feoffset dx="5" dy="1" result="shadow"></feoffset>
+            <fecomposite in="SourceGraphic"></fecomposite>
+        </filter>
+
+        <lineargradient id="tab-1-bg" x1="0%" y1="0%" x2="0%" y2="65%">
+            <stop offset="0%" style="stop-color:#009e9f "></stop>
+            <!--<stop offset="100%" style="stop-color: rgba(118, 160, 192, 1.0);"></stop>-->
+        </lineargradient>
+
+        <lineargradient id="tab-2-bg" x1="0%" y1="0%" x2="0%" y2="65%">
+            <stop offset="0%" style="stop-color:#757575"></stop>
+            <!--<stop offset="100%" style="stop-color: gray;"></stop>-->
+        </lineargradient>
+    </defs>
+
+    <path id="tab-shape" class="tab-shape" d="M116.486,29.036c-23.582-8-14.821-29-42.018-29h-62.4C5.441,0.036,0,5.376,0,12.003v28.033h122v-11H116.486
+			z">
+
+    </path></svg>
+<!---->
+<div id="tab" class="col-md-12">
+    <div class="tab_menu main-navigation">
+        <ul>
+            <li class="tab-1 active" data-bg-color="rgba(118, 160, 192, 1.0)">
+                <a href="pic_lis.html?index='lis'">
+                    <span>管理基本图片回复</span>
+                    <svg viewBox="0 0 122 40">
+                        <use xlink:href="#tab-shape"></use>
+                    </svg>
+                </a>
+            </li>
+            <li class="tab-2" data-bg-color="rgba(112, 153, 213, 1.0)">
+                <a href="pic_add.html?index='add'">
+                    <span>添加基本图片回复</span>
+                    <svg viewBox="0 0 122 40">
+                        <use xlink:href="#tab-shape"></use>
+                    </svg>
+                </a>
+            </li>
+            <li class="tab-2" data-bg-color="rgba(43, 130, 197, 1.0)">
+                <a href="pic_chang.html?index='chang'">
+                    <span>编辑基本图片回复</span>
+                    <svg viewBox="0 0 122 40">
+                        <use xlink:href="#tab-shape"></use>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+        <div class="tab_box">
+            <script>
+                $('.gongneng_name>div:first-child').children().last().addClass('border_bottoms')
+                $('.gongneng_name>div:first-child').children().eq(1).children().eq(0).children().eq(2).children().addClass('bg_color');
+                function GetRequest() {
+                    var url = location.search;
+                    if (url.indexOf("?") != -1) {
+                        var str = url.substr(1);
+                        strs = str.split("=");
+                        strs = str.split("%27");
+                        var str;
+                        if (strs[1] == 'lis') {
+                            str = 0;
+                        } else if (strs[1] == 'add') {
+                            str = 1;
+                        } else if (strs[1] == 'chang') {
+                            str = 2;
+                        }
+                        $('.tab_menu>ul>li').removeClass('tab-2');
+                        $('.tab_menu>ul>li').removeClass('tab-1');
+                        $('.tab_menu>ul>li').removeClass('active');
+                        $('.tab_menu>ul>li').eq(str).addClass('active').addClass('tab-1').siblings().addClass('tab-2');
+                    }
+                }
+                GetRequest();
+            </script>

@@ -1,0 +1,202 @@
+{include file="./public/public/header.html"/}
+<!--头部-->
+<div class="col-md-12 name bg  main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+    </div>
+</div>
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main">
+        <!---->
+        <div class="row">
+            <a href="addsign.html" class="add white radius inline_block">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-jia"></use>
+                </svg>
+                普通模式添加公众号
+            </a>
+            <a href="addsign.html" class="add white radius inline_block">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-weixingongzhonghao"></use>
+                </svg>
+                授权登录公众号
+            </a>
+        </div>
+       <!---->
+        <div class="row add_menu">
+            <div class="col-md-3">
+                <label>接入状态</label>
+                <div class="btn-group state" role="group" aria-label="">
+                    <button type="button" class="btn btn-default {if condition='empty($type)'}state_active{/if}">全部</button>
+                    <button type="button" class="btn btn-default {if condition='$type=='}state_active{/if}">普通接入</button>
+                    <button type="button" class="btn btn-default {if condition='empty($type)'}state_active{/if}">登录授权</button>
+                </div>
+            </div>
+            <!--<div class="col-md-4">-->
+                <!--<label>过期时间</label>-->
+                <!--<div class="btn-group overdue" role="group" aria-label="">-->
+                    <!--<button type="button" class="btn btn-default overdue_active">不限</button>-->
+                    <!--<button type="button" class="btn btn-default">三天内</button>-->
+                    <!--<button type="button" class="btn btn-default">一周内</button>-->
+                    <!--<button type="button" class="btn btn-default">一月内</button>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="col-md-5">
+                <label>搜索</label>
+                <div class="input-group search">
+                    <input type="text" class="form-control" placeholder="根据公众号名称或者ID搜索">
+                  <span class="input-group-btn">
+                    <input href="" class="btn btn-default" type="button">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-sousuo"></use>
+                        </svg>
+                    </input>
+                  </span>
+                </div>
+            </div>
+        </div>
+        <!--列表-->
+        <div class="row state_lis_name">
+            <label>公众号列表</label>
+            <a class="gray" href="javascript:;" onclick="history.go(0)">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-zhongzhi"></use>
+            </svg>
+            </a>
+        </div>
+        <!--列表开始-->
+        <table class="state_lis margin_auto">
+            <tbody>
+            {volist name="wechats" id="vo"}
+            <tr>
+                <td>
+                    <img class="border_radius display_block" src="{$vo.head_img}">
+                </td>
+                <td>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-dui"></use>
+                    </svg>
+                </td>
+                <td width="55%">
+                    <a class="black" href="changsign.html">{$vo.name}</a>
+                </td>
+                <td class="gray">
+                    总人数：<span>0</span>
+                </td>
+                <td class="gray">
+                    今日新增：<span>0</span>
+                </td>
+                <td class="handle">
+                    <a class="gray inline_block" href="javascript:;">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-access_user"></use>
+                        </svg>
+                    </a>
+                    <a class="gray inline_block" href="javascript:;">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-caozuoyuan"></use>
+                        </svg>
+                    </a>
+                    <a class="gray inline_block" href="javascript:;">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-edit"></use>
+                        </svg>
+                    </a>
+                    <a class="gray inline_block" href="javascript:;">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-delete2"></use>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+            {/volist}
+            <!--<tr>-->
+                <!--<td>-->
+                    <!--<img class="border_radius display_block" src="__IMG__/logo.png">-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<svg class="icon" aria-hidden="true">-->
+                    <!--<use xlink:href="#icon-asmkticon0246"></use>-->
+                    <!--</svg>-->
+                <!--</td>-->
+                <!--<td width="55%">-->
+                    <!--<a class="black" href="changsign.html">公众号名称</a>-->
+                <!--</td>-->
+                <!--<td class="gray">-->
+                    <!--总人数：<span>0</span>-->
+                <!--</td>-->
+                <!--<td class="gray">-->
+                    <!--今日新增：<span>0</span>-->
+                <!--</td>-->
+                <!--<td class="handle">-->
+                    <!--<a class="gray inline_block" href="javascript:;">-->
+                        <!--<svg class="icon" aria-hidden="true">-->
+                            <!--<use xlink:href="#icon-access_user"></use>-->
+                        <!--</svg>-->
+                    <!--</a>-->
+                    <!--<a class="gray inline_block" href="javascript:;">-->
+                        <!--<svg class="icon" aria-hidden="true">-->
+                            <!--<use xlink:href="#icon-caozuoyuan"></use>-->
+                        <!--</svg>-->
+                    <!--</a>-->
+                    <!--<a class="gray inline_block" href="javascript:;">-->
+                        <!--<svg class="icon" aria-hidden="true">-->
+                            <!--<use xlink:href="#icon-edit"></use>-->
+                        <!--</svg>-->
+                    <!--</a>-->
+                    <!--<a class="gray inline_block" href="javascript:;">-->
+                        <!--<svg class="icon" aria-hidden="true">-->
+                            <!--<use xlink:href="#icon-delete2"></use>-->
+                        <!--</svg>-->
+                    <!--</a>-->
+                <!--</td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation" class="page">
+            <ul class=" pagination">
+                <li><a class="radius" href="#">&laquo;上一页</a></li>
+                <li>
+                    <a  class="radius margin_page" href="#" aria-label="Previous">
+                        <span aria-hidden="true"><</span>
+                    </a>
+                </li>
+                <li><a class="radius page_active" href="#">1</a></li>
+                <li><a class="radius" href="#">2</a></li>
+                <li><a class="radius" href="#">3</a></li>
+                <li><a class="radius" href="#">4</a></li>
+                <li><a class="radius" href="#">5</a></li>
+                <li>
+                    <a class="radius margin_page" href="#" aria-label="Next">
+                        <span aria-hidden="true">></span>
+                    </a>
+                </li>
+                <li><a class="radius" href="#">下一页&raquo;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</div>
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+$('.dropdown-menu-right>li').click(function(){
+    var str=$(this).children().html();
+    $('.form-control').attr('placeholder',str)
+});
+    $('.state>button').click(function(){
+        $(this).addClass('state_active').siblings().removeClass('state_active');
+    });
+    $('.overdue>button').click(function(){
+        $(this).addClass('overdue_active').siblings().removeClass('overdue_active');
+    });
+</script>
+</html>

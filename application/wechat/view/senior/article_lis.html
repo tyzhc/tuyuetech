@@ -1,0 +1,124 @@
+{include file="./public/public/article.html"/}
+<script src="_JS_/clipboard.min.js"></script>
+<div class="col-md-12 border">
+    <div class="col-md-12 rep_shai">
+        <label>筛选</label>
+    </div>
+    <div class="col-md-12 shai_lis display_block">
+        <div class="col-md-3">
+            <label>状态</label>
+            <div class="btn-group state" role="group" aria-label="">
+                <a href="javascript:;" type="button" class="btn btn-default state_active">所有</a>
+                <a href="javascript:;" type="button" class="btn btn-default ">启用</a>
+                <a href="javascript:;" type="button" class="btn btn-default ">禁用</a>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <label>关键字</label>
+            <div class="input-group search">
+                <input type="text" class="form-control" id="text" name="">
+                              <span class="input-group-btn">
+                                <button href="" class="btn btn-default" type="button" id="count">
+                                    <span class="glyphicon glyphicon-search bg_color"></span>
+                                </button>
+                              </span>
+            </div>
+        </div>
+        <!---->
+        <table class="col-md-12">
+            <tr>
+                <th>序号</th>
+                <th width="50%">文章标题</th>
+                <th>添加时间</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            {volist name="article" id="data" key="key"}
+            <tr>
+                <td>{$key}</td>
+                <td>{$data.title}</td>
+                <td>{$data.date}</td>
+                <td>
+                    {if condition="($data.state == '0')"}
+                    <span class="radius greens white">启用</span>
+                    {else}
+                    <span class="radius reds white">禁用</span>
+                    {/if}
+                </td>
+                <td>
+                    <a href="{:url('wechat/senior/article_add',array('id'=>$data.id))}" class="bg_color radius">编辑</a>
+                    <a href="{:url('wechat/senior/article_del',array('id'=>$data.id))}" class="red radius" onclick="return confirm('确认删除么?');return false;">删除</a>
+                    <!--<input type="text" id="urls_{$data.id}" >-->
+                    <!--&lt;!&ndash;<div class="hides" id="urls_{$data.id}"></div>&ndash;&gt;-->
+                    <!--<button class="bg radius white tongbu urls_{$data.id}" id="cs" onclick="ts({$data.id})">-->
+                        <!--复制链接-->
+                    <!--</button>-->
+
+                    <div class="hides" id="urls_{$data.id}"></div>
+                    <button  class="bg radius white tongbu urls_{$data.id}" id="cs" onclick="ts({$data.id})">复制链接</button>
+                </td>
+            </tr>
+            {/volist}
+               <tr>
+                <td colspan="5">{$page}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+<!---->
+</div>
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script language="javascript">
+    var btn = [];
+    var url = []
+    var len = $("[id^=urls_]").size();
+    for (var i = 0; i < len; i++) {
+        btn.push(".urls_" + (i + 1));
+        var urls = "http://"+window.location.host+"/wechat/mobile/article/uniacid/{$uniacid}/id/"+(i+1);
+        $('#urls_'+(i+1)).html(urls);
+        url.push("#urls_" + (i + 1));
+    }
+//    for (var j in btn) {
+//        (function(data_j) {
+//            console.log(data_j);
+//            $(btn[data_j]).bind("click", function() {
+//                $(url[data_j]).select();
+//                document.execCommand("Copy");
+//            });
+//        })(j);
+//    }
+    function ts(id){
+        var c = document.getElementById("urls_"+id).innerHTML;
+        var clipboard = new Clipboard('.urls_'+id, {
+            text: function() {
+                return c;
+            }
+        });
+        clipboard.on('success', function(e) {
+            alert("复制成功");
+        });
+        clipboard.on('error', function(e) {
+            console.log(e);
+        });
+    }
+
+//    function ts(id){
+////        var url = "http://"+window.location.host+"/wechat/mobile/article/uniacid/{$uniacid}/id/"+id;
+////        $('.urls_'+id).attr('value',url);
+////        var input = document.getElementById('cs'+id);
+////        console.log(input);
+////        input.select();
+////        document.execCommand("Copy");
+////        url.select();
+////        document.execCommand('Copy')
+////        $("#urls"+id).val().clone();
+////        alert("复制成功！");
+//    $('#urls_'+id).clone();
+//        console.log(str);
+//        str
+//    }
+</script>
+</html>

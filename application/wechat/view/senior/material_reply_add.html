@@ -1,0 +1,827 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<script src="_JS_/kindeditor-4.1.10/kindeditor.js"></script>
+<!--<script type="text/javascript" src="_JS_/jquery.min.js"></script>-->
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>粉丝营销</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+<div class="col-md-12">
+    <!--用户列表按钮-->
+    <div class="col-md-12 mes_sign users_name center basicing">
+        <a class='col-md-1 radius bg_color' href="">
+            定时群发
+        </a>
+        <a class='col-md-1 radius bg_color' href="">
+           发送记录
+        </a>
+        <a class='col-md-1 radius bg_color' href="material_pic.html">
+            图片
+        </a>
+        <a class='col-md-1 radius bg_color' href="material_speech.html">
+            语音
+        </a>
+        <a class='col-md-1 radius bg_color' href="material_video.html">
+            视频
+        </a>
+        <a class='col-md-1 radius bg white' href="material_reply.html">
+            图文
+        </a>
+    </div>
+    <div class="col-md-12  radius users_shai users_saw">
+        回复内容
+    </div>
+    <div class="col-md-12 border users_saw_tab ans_mes reply_saw">
+        <div class="col-xs-4 col-sm-3 col-md-3 reply_saw_left">
+            <div id="add_rep_zu_1" class="">
+                <sup class="border_radius white bg nums num_1">1</sup>
+                <svg class="icon border_radius white white del_1 dels" aria-hidden="true" onclick="del_zu(1)">
+                    <use xlink:href="#icon-shanchu"></use>
+                </svg>
+                <div class="rep_right_top">
+                    <div  class="rep_names rep rep_names_1">
+                        <img id="rep_names_pic1" class="reply_pic white" src="" width="100%" height="120px">
+                        <div class="rep_name white"></div>
+                        <div class="rep_hover" onclick="rep_rights_top(1)">
+                            <a class="rep_names_dao_1" href="javascript:;" data-toggle="modal" data-target="#myModals">
+                            <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-shu"></use>
+                            </svg>
+                            &nbsp;
+                            导入文章
+                            </a>
+                            <!--&nbsp; &nbsp; &nbsp;-->
+                            <!--<a class="rep_names_chang_1" href="javascript:;">-->
+                            <!--<svg class="icon " aria-hidden="true">-->
+                            <!--<use xlink:href="#icon-edit"></use>-->
+                            <!--</svg>-->
+                            <!--&nbsp;-->
+                            <!--编辑-->
+                            <!--</a>-->
+                            <!--&nbsp; &nbsp; &nbsp;-->
+                            <!--<a class="rep_names_del_1" href="javascript:;" onclick="del_img(1)">-->
+                            <!--<svg class="icon" aria-hidden="true">-->
+                            <!--<use xlink:href="#icon-delete2"></use>-->
+                            <!--</svg>-->
+                            <!--&nbsp;-->
+                            <!--删除-->
+                            <!--</a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="rep_adding reply-body rep_adding_1">
+                    <a class="add_rep_lis radius" href="javascript:;" onclick="rep_add(1)">
+                        <svg class="icon bg_color" aria-hidden="true">
+                            <use xlink:href="#icon-jia"></use>
+                        </svg>
+                        &nbsp;&nbsp;
+                        添加
+                    </a>
+                </div>
+
+            </div>
+            <!--<a href="javascript:;" class="bg_color radius add_huifu add_rep_zu inline_block" onclick="add()">添加回复条目</a>-->
+            <!--&nbsp;&nbsp;-->
+            <!--<span class="gray">添加多组回复内容时, 随机回复其中一组</span>-->
+        </div>
+        <!--右侧-->
+        <div id="rep_menu_names_1" class="col-xs-8 col-sm-9 col-md-9 reply_saw_rights">
+            <div class="arrow-left"></div>
+            <div class="rep-body radius row" style="">
+                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    <label class="col-xs-12 col-sm-2 col-md-1 control-label">标题</label>
+                    <div class="col-sm-10 col-xs-12 col-md-11">
+                        <input type="text" class="form-control rep_add_names1" placeholder="添加图文消息的标题" name="form[1][1][title]">
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    <label class="col-xs-12 col-sm-2 col-md-1 control-label">作者</label>
+                    <div class="col-sm-10 col-xs-12 col-md-11">
+                        <input type="text" class="form-control rep_add_names_act1" placeholder="添加图文消息的作者" name="form[1][1][zuozhe]">
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    <label class="col-xs-12 col-sm-2 col-md-1 control-label">封面</label>
+                    <div class="col-sm-10 col-xs-12 col-md-11">
+                        <div class="col-sm-12 col-xs-12 col-md-12 rep_pic form-group repic_pic1">
+                            <!-- Button trigger modal -->
+                            <div  class="li_H radius display_block rep_pic_upload" data-toggle="modal" data-target="#myModal">
+                                     <span>
+                                         <svg class="icon bg_color" aria-hidden="true">
+                                             <use xlink:href="#icon-jia1"></use>
+                                         </svg>
+                                        &nbsp;添加图片
+                                     </span>
+                                    <span class="hides">
+                                        <img src="" id="rep_pic_pic1" width="100%" height="100%">
+                                    </span>
+                                <input type="file" name="pic_1_1" class="rep_pic_up rep_pic_up1" onchange="rep_pic(1)">
+                            </div>
+                            <!-- Modal -->
+                            <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+                            <!--<div class="modal-dialog" role="document">-->
+                            <!--<div class="modal-content">-->
+                            <!--<div class="modal-header">-->
+                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                            <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+                            <!--</div>-->
+                            <!--<div class="modal-body">-->
+                            <!--...-->
+                            <!--</div>-->
+                            <!--<div class="modal-footer">-->
+                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <label class="col-sm-12 col-xs-12 col-md-12 rep_pic">
+                            封面（大图片建议尺寸：360像素 * 200像素）
+                        </label>
+                        <!--<br>-->
+                        <!--<input type="checkbox" value="1" class="" checked="checked"> 封面图片显示在正文中-->
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    <label class="col-xs-12 col-sm-2 col-md-1 control-label">描述</label>
+                    <div class="col-sm-10 col-xs-12 col-md-11">
+                        <textarea class="form-control rep_add_names_text1" placeholder="添加图文消息的简短描述" name="form[1][1][miaoshu]"></textarea>
+                        <!--<label class="checkbox-inline gray">-->
+                        <!--<input type="checkbox" value="1" class="rep_fuwenben rep_fuwenben_1" onchange="fuwenben(1)" > 是否编辑图文详情-->
+                        <!--</label>-->
+                        <span class="help-block">编辑详情可以展示这条图文的详细内容, 可以选择不编辑详情, 那么这条图文将直接链接至下方的原文地址中.</span>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12  rep_fuwenbens_1"  style="">
+                <label class="col-xs-12 col-sm-2 col-md-1 control-label">详情</label>
+                <div class="col-sm-10 col-xs-12 col-md-11" style="">
+                <textarea name="xiangqing_1" id="xiangqing_1" style="width:100%;max-width: 100%"></textarea>
+                </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    <label class="col-xs-12 col-sm-2 col-md-1 control-label">来源</label>
+                    <div class="col-sm-10 col-xs-12 col-md-11">
+                        <div class="input-group">
+                            <input type="text" class="form-control rep_add_names_url1" placeholder="图文消息的来源地址" name="form[1][1][url]">
+											<span class="input-group-btn" data-toggle="modal" data-target="#myModals">
+												<button class="btn btn-default" type="button" >
+                                                    <!--<i class="fa fa-external-link"></i>-->
+                                                    导入文章</button>
+											</span>
+                        </div>
+                    </div>
+                </div>
+                <input type="button" class="bg white tijiao radius" value="同步预览" name="" onclick="tongbu(1)">
+            </div>
+        </div>
+        <div class="col-md-12 mat_tj">
+            <input type="submit" class="bg white tijiao radius" value="提交" name="">
+            <br><br>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!---->
+
+</div>
+<div class="modal fade addbq " id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body row">
+                <div class="col-md-12 relative">
+                    <a href="javascript:;" class="radius bg white add_huifu">
+                        文章列表
+                    </a>
+                    <button type="button" class="close dels foll_del size_16" data-dismiss="modal" aria-label="Close">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete2"></use>
+                        </svg>
+                    </button>
+                </div>
+                <div class="col-md-12 xian mt"></div>
+                <div class="col-md-12  fol_saw ">
+                    <table class="col-md-12 users_tab mat_rep_add_tab">
+                        <tr>
+                            <th>标题</th>
+                            <th>创建时间</th>
+                            <th width="30%">
+                                <div class="input-group search mater_repadd">
+                                    <input type="text" class="form-control" id="text" name="">
+                              <span class="input-group-btn">
+                                <button href="" class="btn btn-default" type="button" id="count">
+                                    <span class="glyphicon glyphicon-search bg_color"></span>
+                                </button>
+                              </span>
+                                </div>
+                            </th>
+                        </tr>
+                        </table>
+                        <div class="col-md-12  fol_saw mat_rep_add_tabs">
+                            <table class="col-md-12 users_tab mat_rep_add_tab">
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>  <tr>
+                        <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                        <td>2018-01-03 13:16</td>
+                        <td class="rights">
+                            <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>  <tr>
+                        <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                        <td>2018-01-03 13:16</td>
+                        <td class="rights">
+                            <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                        </td>
+                    </tr>  <tr>
+                        <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                        <td>2018-01-03 13:16</td>
+                        <td class="rights">
+                            <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>  <tr>
+                        <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                        <td>2018-01-03 13:16</td>
+                        <td class="rights">
+                            <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                            <td>2018-01-03 13:16</td>
+                            <td class="rights">
+                                <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                            </td>
+                        </tr>  <tr>
+                        <td><a href="javascript" class="mat_padd">标题名称</a></td>
+                        <td>2018-01-03 13:16</td>
+                        <td class="rights">
+                            <a href="javascript:;" class="bg_color radius mat_padds">选取</a>
+                        </td>
+                    </tr>
+
+
+
+
+
+                    </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--<script src="_JS_/bootstrap.min.js"></script>-->
+<script>
+    //编辑器js
+        KindEditor.ready(function(K) {
+            var editor1 = K.create('textarea[name="xiangqing_1"]', {
+                allowFileManager: true,
+                afterCreate: function() {
+                    var self = this;
+                    K.ctrl(document, 13, function() {
+                        self.sync();
+                        K('form[name=example]')[0].submit();
+                    });
+                    K.ctrl(self.edit.doc, 13, function() {
+                        self.sync();
+                        K('form[name=example]')[0].submit();
+                    });
+                },
+                afterBlur: function(){this.sync();}
+            });
+        });
+    //    添加--组
+    var i=1;
+    function add(){
+        var array = [];
+        var arr = '';
+        $("[id^=add_rep_zu_]").each(function() {
+            var arr = $("[id^=add_rep_zu_]").map(function() { return $(this).attr('id').substring(11) }).get();
+            var arring = Math.max.apply(null, arr); //最大值
+            i = parseInt(arring) + 1;
+        });
+        var str='<div id="add_rep_zu_'+i+'" class="">'+
+                '<sup class="border_radius white bg nums num_'+i+'"></sup>'+
+                '<svg class="icon border_radius white white del_'+i+' dels" aria-hidden="true"  onclick="del_zu('+i+')"><use xlink:href="#icon-shanchu"></use></svg>'+
+                '<div class="reply_saw_right rep_right_top">'+
+                '<div  class="rep_names rep rep_names_'+i+'">'+
+                '<img id="rep_names_pic'+i+'" class="reply_pic white" src="" width="100%" height="120px">'+
+                '<div class="rep_name white"></div>'+
+                '<div class="rep_hover" onclick="rep_rights_top('+i+')">'+
+//                '<a class="rep_names_dao_'+i+'" href="javascript:;">'+
+//                '<svg class="icon" aria-hidden="true"><use xlink:href="#icon-shu"></use></svg>'+
+//                '&nbsp;导入文章'+
+//                '</a>'+
+//                '&nbsp; &nbsp; &nbsp;'+
+//                '<a class="rep_names_chang_'+i+'" href="javascript:;">'+
+//                '<svg class="icon " aria-hidden="true"><use xlink:href="#icon-edit"></use></svg>'+
+//                '&nbsp; 编辑'+
+//                '</a>'+
+//                '&nbsp; &nbsp; &nbsp;'+
+//                '<a class="rep_names_del_'+i+'" href="javascript:;" onclick="del_img('+i+')">'+
+//                '<svg class="icon" aria-hidden="true"><use xlink:href="#icon-delete2"></use></svg>'+
+//                '&nbsp; 删除'+
+//                '</a>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '<div class="rep_adding reply-body rep_adding_'+i+'">'+
+                '<a class="add_rep_lis radius" href="JavaScript:;" onclick="rep_add('+i+')">'+
+                '<svg class="icon bg_color" aria-hidden="true"><use xlink:href="#icon-jia"></use></svg>'+
+                '&nbsp;&nbsp;添加'+
+                '</a>'+
+                '</div>'+
+                '</div>';
+        var resings=' <div id="rep_menu_names_'+i+'" class="col-xs-8 col-sm-9 col-md-9 reply_saw_rights">'+
+                '<div class="arrow-left"></div>'+
+                '<div class="rep-body radius row" style="">'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">标题</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11">'+
+                '<input type="text" class="form-control rep_add_names'+i+'" placeholder="添加图文消息的标题" name="form['+i+'][1][title]">'+
+                '</div>'+
+                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">作者</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11">'+
+                '<input type="text" class="form-control rep_add_names_act'+i+'" placeholder="添加图文消息的作者" name="form['+i+'][1][zuozhe]">'+
+                '</div>'+
+                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">封面</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11">'+
+                '<div class="col-sm-12 col-xs-12 col-md-12 rep_pic form-group repic_pic'+i+'">'+
+                '<div class="li_H radius display_block rep_pic_upload" data-toggle="modal" data-target="#myModal">'+
+                '<span>'+
+                '<svg class="icon bg_color" aria-hidden="true">'+
+                '<use xlink:href="#icon-jia1"></use>'+
+                '</svg>'+
+                '&nbsp;添加图片'+
+                '</span>'+
+                '<span class="hides">'+
+                '<img src="" id="rep_pic_pic'+i+'" width="100%" height="100%">'+
+                '</span>'+
+                '<input type="file" name="pic_'+i+'_1" class="rep_pic_up rep_pic_up'+i+'" onchange="rep_pic('+i+')">'+
+                '</div>'+
+                '</div>'+
+                '<label class="col-sm-12 col-xs-12 col-md-12 rep_pic">'+
+                '封面（大图片建议尺寸：360像素 * 200像素）'+
+                '</label>'+
+//                '<br>'+
+//                '<input type="checkbox" value="1" class="" checked="checked"> 封面图片显示在正文中'+
+                '</div>'+
+                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">描述</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11">'+
+                '<textarea name="form['+i+'][1][miaoshu]" class="form-control rep_add_names_text'+i+'" placeholder="添加图文消息的简短描述"></textarea>'+
+//                '<label class="checkbox-inline gray">'+
+//                '<input type="checkbox" value="1" class="rep_fuwenben rep_fuwenben_'+i+'" onchange="fuwenben('+i+')"> 是否编辑图文详情'+
+//                '</label>'+
+                '<span class="help-block">编辑详情可以展示这条图文的详细内容, 可以选择不编辑详情, 那么这条图文将直接链接至下方的原文地址中.</span>'+
+                '</div>'+
+                '</div>'+
+//                '<div class="form-group col-xs-12 col-sm-12 col-md-12 rep_fuwenbens rep_fuwenbens_'+i+'"  style="">'+
+//                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">详情</label>'+
+//                '<div class="col-sm-10 col-xs-12 col-md-11" style="">'+
+//                '<textarea name="xiangqing" id="xiangqing" style="width:100%;max-width: 100%"></textarea>'+
+//                '</div>'+
+//                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">来源</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11">'+
+                '<div class="input-group">'+
+                '<input type="text" name="form['+i+'][1][url]" class="form-control rep_add_names_url'+i+'" placeholder="图文消息的来源地址">'+
+                '<span class="input-group-btn">'+
+                '<button class="btn btn-default" type="button" >'+
+//                '<i class="fa fa-external-link"></i>'+
+                '导入文章</button>'+
+                '</span>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '<input type="button" class="bg white tijiao radius" value="同步预览" name="" onclick="tongbu('+i+')">'+
+                '</div>'+
+                '</div>';
+        var res=$('.reply_saw_left>div').length;
+        var resing=$('.reply_saw_left').height();
+
+        if(res>2){
+            alert('添加多组回复内容最多只能添加三组');
+        }else{
+            $('.add_rep_zu').before(str);
+            for(var x=1;x<$('.nums').length;x++){
+                $('.nums').eq(x).html(x+1)
+            }
+            $('.reply_saw_rights').addClass('hides');
+            $('.mat_tj').before(resings);
+            $('#rep_menu_names_'+i+'').css('margin-top',(resing-90)+'px');
+        }
+
+    }
+    function del_zu(id){
+        var str=$("[id^=add_rep_zu_]").length;
+        if(str>1){
+            $('#add_rep_zu_'+id).remove();
+            for(var x=0;x<$('.nums').length+1;x++){
+                $('.nums').eq(x).html(x+1);
+            }
+            $('#rep_menu_names_'+id).remove();
+        }else{
+            alert('至少有一组回复内容')
+        }
+
+    }
+    //    组内添加
+    function rep_add(id){
+        var x=1;
+        var array = [];
+        var arr = '';
+        $("[id^=rep_add_]").each(function() {
+            var arr = $("[id^=rep_add_]").map(function() { return $(this).attr('id').substring(8) }).get();
+            var arring = Math.max.apply(null, arr); //最大值
+            x = parseInt(arring) + 1;
+        });
+        var tops=document.getElementsByClassName('reply_saw')[0].offsetTop;
+        var str='<div id="rep_add_'+x+'" class="reply-body rep rep_right_top" onclick="rep_right_top('+id+','+x+')">'+
+                '<div class="text">'+
+                '<h4 class=""></h4>'+
+                '</div>'+
+                '<div class="img">'+
+                '<img id="rep_names_zipic'+id+'_'+x+'" src="">'+
+                '</div>'+
+                '<div class="rep_hover">'+
+                '<a class="dao_'+x+'" href="javascript:;">'+
+                '<svg class="icon" aria-hidden="true"><use xlink:href="#icon-shu"></use></svg>'+
+                '&nbsp;导入文章'+
+                '</a>'+
+                '&nbsp; &nbsp; &nbsp;'+
+//                '<a class="chang_'+x+'" href="javascript:;">'+
+//                '<svg class="icon " aria-hidden="true"><use xlink:href="#icon-edit"></use></svg>'+
+//                '&nbsp; 编辑'+
+//                '</a>'+
+//                '&nbsp; &nbsp; &nbsp;'+
+                '<a class="dels_'+x+'" href="javascript:;" onclick="dels('+id+','+x+')">'+
+                '<svg class="icon" aria-hidden="true"><use xlink:href="#icon-delete2"></use></svg>'+
+                '&nbsp;删除'+
+                '</a>'+
+                '</div>'+
+                '</div>';
+        var res=' <div id="rep_zimenu_names_'+id+'_'+x+'" class="col-xs-8 col-sm-9 col-md-9 reply_saw_rights">'+
+                '<div class="arrow-left"></div>'+
+                '<div class="rep-body radius row" style="">'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">标题</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11">'+
+                '<input type="text" class="form-control rep_add_zinames_'+id+'_'+x+'" placeholder="添加图文消息的标题" name="form['+id+']['+(x+1)+'][title]">'+
+                '</div>'+
+                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">作者</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11">'+
+                '<input type="text" class="form-control rep_add_names_act_'+id+'_'+x+'" placeholder="添加图文消息的作者" name="form['+id+']['+(x+1)+'][zuozhe]">'+
+                '</div>'+
+                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">封面</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11">'+
+                '<div class="col-sm-12 col-xs-12 col-md-12 rep_pic form-group repic_zipic_'+id+'_'+x+'">'+
+                '<div class="li_H radius display_block rep_pic_upload" data-toggle="modal" data-target="#myModal">'+
+                '<span>'+
+                '<svg class="icon bg_color" aria-hidden="true">'+
+                '<use xlink:href="#icon-jia1"></use>'+
+                '</svg>'+
+                '&nbsp;添加图片'+
+                '</span>'+
+                '<span class="hides">'+
+                '<img src="" id="rep_pic_pic_'+id+'_'+x+'" width="100%" height="100%">'+
+                '</span>'+
+                '<input type="file" name="pic_'+id+'_'+(x+1)+'" class="rep_pic_up rep_pic_ziup_'+id+'_'+x+'" onchange="rep_pic('+id+','+x+')">'+
+                '</div>'+
+                '</div>'+
+                '<label class="col-sm-12 col-xs-12 col-md-12 rep_pic">'+
+                '封面（大图片建议尺寸：360像素 * 200像素）'+
+                '</label>'+
+//                '<br>'+
+//                '<input type="checkbox" value="1" class="" checked="checked"> 封面图片显示在正文中'+
+                '</div>'+
+                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">描述</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11">'+
+                '<textarea class="form-control rep_add_names_zitext_'+id+'_'+x+'" placeholder="添加图文消息的简短描述" name="form['+id+']['+(x+1)+'][miaoshu]"></textarea>'+
+//                '<label class="checkbox-inline gray">'+
+//                '<input type="checkbox" value="1" class="rep_fuwenben rep_fuwenben_'+id+'_'+x+'" onchange="fuwenben('+id+'_'+x+')"> 是否编辑图文详情'+
+//                '</label>'+
+                '<span class="help-block">编辑详情可以展示这条图文的详细内容, 可以选择不编辑详情, 那么这条图文将直接链接至下方的原文地址中.</span>'+
+                '</div>'+
+                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12 rep_fuwenbens_'+id+'_'+x+'"  style="">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">详情</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11" style="">'+
+                '<textarea name="xiangqing_'+id+'_'+x+'" id="xiangqing_'+id+'_'+x+'" style="width:100%;max-width: 100%"></textarea>'+
+                '</div>'+
+                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-1 control-label">来源</label>'+
+                '<div class="col-sm-10 col-xs-12 col-md-11">'+
+                '<div class="input-group">'+
+                '<input type="text" class="form-control " placeholder="图文消息的来源地址" name="form['+id+']['+(x+1)+'][url]">'+
+                '<span class="input-group-btn">'+
+                '<button class="btn btn-default" type="button" >'+
+//                '<i class="fa fa-external-link"></i>'+
+                '导入文章</button>'+
+                '</span>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '<input type="button" class="bg white tijiao radius" value="同步预览" name="" onclick="tongbu('+id+','+x+')">'+
+                '</div>'+
+                '</div>';
+        var strs=$('#add_rep_zu_'+id+'>.rep').length;
+        if(id!=1){
+            if(id!=2){
+                var resing=$('#add_rep_zu_'+id).height();
+                resing=resing+ $('#add_rep_zu_'+id).prev().height()+$('#add_rep_zu_'+id).prev().prev().height()+60;
+            }else{
+                var resing=$('#add_rep_zu_'+id).height();
+                resing=resing+ $('#add_rep_zu_'+id).prev().height()+30;
+            }
+        }else{
+            var resing=$('#add_rep_zu_'+id).height();
+        }
+        if(strs>5){
+            $('.rep_adding_'+id).before(str);
+            $('.rep_adding_'+id).hide();
+//            alert('添加回复内容列表最多只能添加七组');
+        }else{
+            $('.rep_adding_'+id).before(str);
+        }
+        $('.reply_saw_rights').addClass('hides');
+        $('.mat_tj').before(res);
+        $('#rep_zimenu_names_'+id+'_'+x+'').css('margin-top',(resing-90)+'px');
+//
+        KindEditor.ready(function(K) {
+            var editor1 = K.create('textarea[name="xiangqing_'+id+'_'+x+'"]', {
+                allowFileManager: true,
+                afterCreate: function() {
+                    var self = this;
+                    K.ctrl(document, 13, function() {
+                        self.sync();
+                        K('form[name=example]')[0].submit();
+                    });
+                    K.ctrl(self.edit.doc, 13, function() {
+                        self.sync();
+                        K('form[name=example]')[0].submit();
+                    });
+                },
+                afterBlur: function(){this.sync();}
+            });
+        });
+    }
+    function dels(id,x){
+        $('#rep_zimenu_names_'+id+'_'+x).prev().removeClass('hides');
+        if($('#add_rep_zu_'+id+'>reply-body').length<7){
+            $('.rep_adding_'+id).show();
+        }
+        $('#add_rep_zu_'+id+'>#rep_add_'+x).remove();
+
+        $('#rep_zimenu_names_'+id+'_'+x).remove();
+        if(id!=1){
+            if(id!=2){
+                var resing=$('#add_rep_zu_'+id).height();
+                resing=resing+ $('#add_rep_zu_'+id).prev().height()+$('#add_rep_zu_'+id).prev().prev().height()+60;
+            }else{
+                var resing=$('#add_rep_zu_'+id).height();
+                resing=resing+ $('#add_rep_zu_'+id).prev().height()+30;
+            }
+        }else{
+            var resing=$('#add_rep_zu_'+id).height();
+        }
+        $('#rep_zimenu_names_'+id+'_'+x+'').css('margin-top',(resing-90)+'px');
+    }
+    //    右侧top
+    function rep_rights_top(id){
+        $('.reply_saw_rights').addClass('hides');
+        $('#rep_menu_names_'+id).removeClass('hides');
+        if($('#rep_menu_names_'+id).length>0){
+            $('#rep_menu_names_'+id).css('margin-top',($('#add_rep_zu_'+id+'').offset().top-288)+'px');
+        }
+
+    }
+    function rep_right_top(id,x){
+        if($('#rep_zimenu_names_'+id+'_'+x+'').length>0){
+            $('#rep_zimenu_names_'+id+'_'+x+'').css('margin-top',($('#rep_add_'+x+'').offset().top-288)+'px');
+        }
+        $('.reply_saw_rights').addClass('hides');
+
+        $('#rep_zimenu_names_'+id+'_'+x).removeClass('hides');
+    }
+    //    图片预览
+    function rep_pic(id,x) {
+        console.log(id);console.log(x);
+        if(arguments.length==1){
+            console.log(123123123);
+            var fil = $('.rep_pic_up'+id).prop('files')[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(fil);
+            reader.onload = function() {
+                $('#rep_pic_pic'+id)[0].src= reader.result;
+            };
+            $('.repic_pic'+id+'>div>span').eq(0).addClass('hides');
+            $('.repic_pic'+id+'>div>span').eq(1).removeClass('hides');
+        }else{
+            var fil = $('.rep_pic_ziup_'+id+'_'+x).prop('files')[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(fil);
+            reader.onload = function() {
+                $('#rep_pic_pic_'+id+'_'+x)[0].src= reader.result;
+            };
+            $('.repic_zipic_'+id+'_'+x+'>div>span').eq(0).addClass('hides');
+            $('.repic_zipic_'+id+'_'+x+'>div>span').eq(1).removeClass('hides');
+        }
+
+    };
+    //    删除
+    function del_img(id){
+        $('#add_rep_zu_'+id+'').children('div').eq(0).remove();
+        $('#rep_menu_names_'+id).remove();
+    }
+    //    同步预览
+    function tongbu(id,x){
+        console.log(x);
+        if(arguments.length==1){
+            var str= $('.rep_add_names'+id+'').val();
+            $('.rep_names_'+id+'>.rep_name').html(str);
+            $('#rep_names_pic'+id)[0].src=$('#rep_pic_pic'+id)[0].src
+        }else{
+            var str=$('.rep_add_zinames_'+id+'_'+x).val();
+            $('#rep_add_'+x+'>div>h4').html(str);
+            $('#rep_names_zipic'+id+'_'+x)[0].src=$('#rep_pic_pic_'+id+'_'+x)[0].src
+        }
+
+    }
+</script>
+</html>

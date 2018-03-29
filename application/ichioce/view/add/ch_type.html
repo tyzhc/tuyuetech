@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择类型</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+</head>
+<body>
+    请选择发起的类型:<br>
+    <input type="radio" class="add_type" name="add_type" value="1">文字 <br>
+    <input type="radio" class="add_type" name="add_type" value="2">餐饮娱乐 <br>
+    <input type="radio" class="add_type" name="add_type" value="3">景点线路 <br>
+    <input type="radio" class="add_type" name="add_type" value="4">图片 <br>
+    <input type="radio" class="add_type" name="add_type" value="5">商品 <br>
+</body>
+<script>
+
+	$('input[name="add_type"]').click(function(){})
+	$('.add_type').click(function(){
+		var add_type = $('input[name="add_type"]:checked').val();
+		if(add_type=='1'){
+			var url = '{:url("add",array("create_type"=>$create_type,"add_type"=>1))}';
+		}else if(add_type=='2'){
+//			var url = '{:url("ch_type",array("create_type"=>"2"))}';
+		}else if(add_type=='3'){
+			var url = '{:url("add",array("create_type"=>$create_type,"add_type"=>"3"))}';
+		}else if(add_type=='4'){
+			var url = '{:url("add",array("create_type"=>$create_type,"add_type"=>"4"))}';
+		}else if(add_type=='5'){
+			var url = '{:url("add",array("create_type"=>$create_type,"add_type"=>"5"))}';
+		}
+		window.location.href = url;
+	})
+</script>
+</html>

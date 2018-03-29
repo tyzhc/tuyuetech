@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱选择ichoose</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+
+<h1>{$list.title}</h1>
+该投票为你的朋友{$create_user} 发起
+{if($list.open=='1')}
+<br>参与的小伙伴必须公开回答
+{else}
+<br>参与的小伙伴为匿名回答
+{/if}
+<br>投票描述:{$list.con}
+<br>结束时间:{$list.endtime}
+<br>
+<!--是否选择过  no为未选择过-->
+{if($ans_status=='no')}
+<!--该投票的状态 1为正常发布  2为征集选项内容-->
+{if($list.state=='1')}
+{if($list.ans_type=='1')}
+{foreach($option as $k=>$v)}
+<br><input type="radio" class="" name="{$list.id}" value="{$v.id}">{$v.option}
+{/foreach}
+<script>
+	$('input:radio[name="{$list.id}"]').click(function(){
+		var val = $(this).val();
+		var url = "{:url('insert_radio_ajax',array('id'=>$list.id,'uid'=>$reply_uid))}";
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data: {val:val},
+			async: false,
+			success: function(data) {
+				console.log(data);
+				if(data==1){
+
+				}else{
+					alert('回答失败');
+				}
+			}
+		})
+	})
+</script>
+{else}
+<form id="form_checkbox">
+    {foreach($option as $k=>$v)}
+    <br><input class="checkbox" type="checkbox" name="{$list.id}[]" value="{$v.id}"><a href="{:url('scenic_con',array('id'=>$v.id,'keyword'=>$v.keyword))}">{$v.option}</a>
+    {/foreach}
+    <br><input id="tijiao" type="button" value="提交">
+</form>
+<script>
+	//选择景点
+	function ch_scenic(num){
+		$('#key').val('');
+		$('#list_child').empty();
+		$('.scenic_search').attr('onclick','scenic_search('+num+')');
+		$('#scenic_search').show();
+	}
+	$('#tijiao').click(function(){
+		var url = "{:url('insert_check_ajax',array('id'=>$list.id,'uid'=>$reply_uid))}";
+		console.log(url);
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data: $('#form_checkbox').serialize(),
+			async: false,
+			success: function(data) {
+				console.log(data);
+
+			}
+		})
+	})
+</script>
+{/if}
+{else}
+该投票为你的朋友{$create_user} 发起,征集投票内容,每个人填写{$list.state_num}个,感谢参与!
+<br>已存在选项内容
+{foreach($option as $k=>$v)}
+<br><input  type="text"  value="{$v.option}" readonly><a href="javascript:;" onclick="scenic_con({$v.secenic_id})">查看详情</a>
+{/foreach}
+<!--是否为发起者 发起者不显示征集选项的form 显示 结束按钮-->
+{if($creator.status!=='yes')}
+<form id="form_zhengji" method="post" action="">
+    <!--是否已征集过选项内容,no是征集过-->
+    {if($option_state.status =='no')}
+    您已经表达过您的意见,感谢你的参与
+    {else}
+    选项内容:
+    {for start="0" end="$option_state.num"}
+    <br><input type="text" id="scenic_{$i+1}" name="opt[{$i+1}][option]" readonly> <input type="button" class="opt" onclick="ch_scenic({$i+1})" value="选择景点" >
+    {/for}
+    <br><input id="tijiao1" type="button" value="提交">
+    {/if}
+
+</form>
+{else}
+<br> 如果你觉得当前内容够了可结束内容征集
+
+<button id="end">结束</button>
+{/if}
+{/if}
+{else}
+{foreach($option as $k=>$v)}
+{if(is_array($self.reply))}
+<br>{$v.option}选中人数:{$ans_count[$v.id]}
+{foreach($self.reply as $k1=>$v1)}
+{if($v1==$v.id)}
+你选择的
+{/if}
+{/foreach}
+{else}
+{if($self.reply==$v.id)}
+<br>{$v.option}选中人数:{$ans_count[$v.id]} 逆选择的
+{else}
+<br>{$v.option}选中人数:{$ans_count[$v.id]}
+{/if}
+{/if}
+
+{/foreach}
+
+{/if}
+<!--open==1 公开 每个人选择了啥-->
+{if($list.open=='1')}
+<br>
+<div>
+    {if(is_array($ans_arr))}
+    {foreach $ans_arr as $ko=>$vo}
+    {if($vo.uid==$reply_uid)}
+    {else}
+    <br>{$vo.user}选择了{$vo.reply}
+    {/if}
+    {/foreach}
+    {/if}
+</div>
+{else}
+<div>
+
+</div>
+{/if}
+
+{if($attention=='no')}
+<div>
+    <h1>请关注公众号爱选择ichoose</h1>
+</div>
+{else}
+<div>
+
+</div>
+{/if}
+<div id="scenic_search" style="display: none">
+    <input type="text" id="key" name="keyword" placeholder="景点关键字搜索"> <input type="submit" onclick="scenic_search()" class="scenic_search" value="搜索">
+    <div id="list">
+    </div>
+
+
+</div>
+<div id="list_con">
+
+</div>
+</body>
+<script>
+
+
+	//景点后边的选择
+	function ch(id,num){
+		if($('#span_'+num).size()>0){
+			$('#span_'+num).remove();
+		}
+		var name = $('#'+id+'').text();
+		var keyword = $('#key').val();
+		$('#scenic_'+num).attr('value',name);
+		var str = '<span id="span_'+num+'"><input type="hidden" name="opt['+num+'][id]" value="'+id+'"><input type="hidden" name="opt['+num+'][keyword]" value="'+keyword+'"></span>'
+		$('#scenic_'+num).after(str);
+		$('#scenic_search').hide();
+	}
+	//关键词搜索景点
+	function scenic_search(num){
+		if($('#list_child').size()>0){
+			$('#list_child').remove();
+		}
+		if($('#con').size()>0){
+			$('#con').remove();
+		}
+		var keyword = $('#key').val();
+		var url = "{:url('scenic_search_ajax')}";
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data:{'keyword':keyword},
+			async: false,
+			success: function(data) {
+				var str = '<div id="list_child">';
+				var url1 = "{:url('scenic_con',array('id'=>'i_d','keyword'=>'k_y'))}";
+				var url2 = url1.replace('k_y',keyword);
+				$.each(data,function(i,item){
+					var url3 = url2.replace('i_d',item['id']);
+					str += '<p><a id="'+item['id']+'" href="javascript:;" onclick="scenic_con('+item['id']+')">'+item['name']+'</a> 城市:'+item['cityName']+'<button onclick="ch('+item['id']+','+num+')">选择</button></p>';
+				})
+				str += '</div>';
+				$('#list').append(str);
+			}
+		})
+	}
+
+	//点击景点进入详情查看页
+	function scenic_con(id){
+		if($('#con').size()>0){
+			$('#con').remove();
+		}
+		var keyword = $('#key').val();
+		var url = "{:url('scenic_con_ajax',array('id'=>'i_d','keyword'=>'k_w'))}";
+		var url = url.replace('i_d',id);
+		var url = url.replace('k_w',keyword);
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data:{'keyword':keyword},
+			async: false,
+			success: function(data) {
+				console.log(data);
+				var str = '<div id="con">';
+				str += '<h3>景点:'+data['name']+'</h3>';
+				if(data['star'] && data['star']!=''){ str += '<p>'+data['star']+'级景区</p>';}
+				if(data['summary'] && data['summary']!=''){	str += '<p>景点简介:'+data['summary']+'</p>';  }
+				if(data['content'] && data['content']!=''){	str += '<p>景点介绍:'+data['content']+'</p>';  }
+				if(data['address'] && data['address']!=''){	str += '<p>景点地址:'+data['address']+'</p>'; }
+				else{ str += '<p>景点地址:'+data['proName']+'<p>详细地址未收录,请自行查找</p></p>';  }
+				if(data['opentime'] && data['opentime']!=''){	str += '<p>开放时间:'+data['opentime']+'</p>';	}
+				if(data['coupon'] && data['coupon']!=''){ 	str += '<p>票劵相关:'+data['coupon']+'</p>';}
+				if(data['attention'] && data['attention']!=''){ str += '<p>注意事项:'+data['attention']+'</p>'; }
+				if(data['priceList'].length<1){
+					str += '<p> 票劵信息:暂无</p>';
+				}else{
+					$.each(data['priceList'],function(i,item){
+						str += '<p>'+item['type']+'</p>';
+						var len = item['entityList'].length;
+						if(len>1){
+							$.each(item['entityList'],function(k,v){
+								str += '<p>'+v['TicketName']+' 价格:'+v['Amount']+'</p>';
+							})
+						}else{
+							str += '<p>'+item['entityList'][0]['TicketName']+' 价格:'+item['entityList'][0]['Amount']+'</p>';
+						}
+					})
+				}
+				str += '<p>景点图片:</p>'
+				if(data['picList'].length>1){
+					$.each(data['picList'],function(i,item){
+						str += '<br><img width="90%" src="'+item['picUrl']+'" alt="">';
+					})
+				}else if(data['picList'].length=1){
+					str += '<br><img width="90%" src="'+data['picList'][0]['picUrl']+'" alt="">';
+				}else{
+					str += '暂无';
+				}
+				str += '<input type="button" onclick="guan()" id="guan" value="关闭"></div>';
+				$('#list_con').append(str);
+			}
+		})
+	}
+	function guan(){
+		$('#con').remove();
+	}
+	$('#tijiao1').click(function(){
+		var url = "{:url('zhengji_insert',array('id'=>$list.id,'uid'=>$reply_uid,'add_type'=>$list.add_type))}";
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data: $('#form_zhengji').serialize(),
+			async: false,
+			success: function(data) {
+				console.log(data);
+
+			}
+		})
+	})
+
+	//选择景点
+	function ch_scenic(num){
+
+		$('#key').val('');
+		$('#list_child').empty();
+		$('.scenic_search').attr('onclick','scenic_search('+num+')');
+		$('#scenic_search').show();
+	}
+
+	$('#end').click(function(){
+		var url = "{:url('end_zhengji',array('id'=>$list.id))}";
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data:{'id':url},
+			async: false,
+			success: function(data) {
+				console.log(data);
+			}
+		})
+	})
+</script>
+</html>

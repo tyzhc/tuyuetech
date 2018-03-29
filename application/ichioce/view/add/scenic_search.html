@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>景点搜索</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+</head>
+<body>
+<form action="{:url('scenic_search',array('num'=>$num))}" method="post">
+    {if(empty($keyword))}
+    <input type="text" id="key" name="keyword" placeholder="景点关键字搜索"> <input type="submit" value="搜索">
+    {else}
+    <input type="text" id="key" name="keyword" placeholder="景点关键字搜索" value="{$keyword}"> <input type="submit" value="搜索">
+    {/if}
+</form>
+<div>
+    {if(is_array($list))}
+        {foreach($list as $k=>$v)}
+            <p><a href="{:url('scenic_con',array('id'=>$v.id,'keyword'=>$keyword))}">{$v.name}</a> 城市:{$v.cityName} <button onclick="change({$v.id})">选择</button></p>
+        {/foreach}
+    {else}
+        {$list}
+    {/if}
+</div>
+</body>
+<script>
+    function change(id){
+        var keyword = $('#key').val();
+        var url = '';
+    }
+</script>
+</html>

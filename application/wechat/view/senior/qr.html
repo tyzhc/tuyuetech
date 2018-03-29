@@ -1,0 +1,95 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/custom_menu.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>长链接转二维码</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+<div class="col-md-12">
+    <!--用户列表按钮-->
+    <div class="col-md-12 mes_sign users_name center basicing">
+        <a class='col-md-1 radius bg white' href="{:url('wechat/reply/basic_lis')}">
+            长链接转二维码
+        </a>
+    </div>
+    <div class="col-md-12 border ">
+        <from action="">
+            <div class="col-md-12 rep_shai ans_mes">
+                <label class="col-md-2">请输入长链接</label>
+                <div class="col-md-7">
+                    <input type="text" class="li_H radius" placeholder="请输入长链接" name="" id="url">
+                    <span class="gray">请输入您要转换的长链接，支持http://、https://、weixin://wxpay 格式的url</span><br><br>
+                    <button class="bg white radius add_huifu" id="tj">立即转换
+                </div>
+            </div>
+            <div class="col-md-12 rep_shai ans_mes">
+                <label class="col-md-2">生成的短链接</label>
+                <div class="col-md-7">
+                    <input type="text" class="li_H radius" placeholder="" name="" readonly = "readonly" id="short">
+                </div>
+            </div>
+            <div class="col-md-12 rep_shai ans_mes">
+                <label class="col-md-2">生成的二维码</label>
+                <div class="col-md-7">
+                    <div class="radius chang_QR">
+                        <img src="__IMG__/qrcode.png" width="100%" id="qrcode">
+                    </div>
+                    <span class="gray">默认显示”http://platform.tuyuetech.com”的二维码</span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <br><br>
+            </div>
+        </from>
+    </div>
+</div>
+</div>
+</div>
+<!---->
+</div>
+</body>
+<!--<script src="_JS_/bootstrap.min.js"></script>-->
+<script>
+    $('#tj').click(function(){
+        var url  = $('#url').val();
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url  :'{:url('qr')}',
+            data: {uri:url},
+            async: false,
+            success: function(data) {
+                res = JSON.parse(data);
+                if(res['type']==1){
+                    $("#short").val(res['short']);
+                    $('#qrcode').attr('src', "__QR__" + res['code']);
+                }else{
+                    alert('转换出错，'+res['errcode'])
+                }
+
+            }
+        });
+    })
+</script>
+</html>

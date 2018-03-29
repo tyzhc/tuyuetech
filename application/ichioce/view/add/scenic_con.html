@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$list.name}详情页</title>
+</head>
+<body>
+<h3>景点:{$list.name}</h3>
+{if(isset($list.star) && !empty($list.star))}<p>{$list.star}级景区</p>{/if}
+{if(isset($list.summary) && !empty($list.summary))}<p>景点简介:{$list.summary}</p>{/if}
+{if(isset($list.content) && !empty($list.content))}<p>景点介绍:{$list.content}</p>{/if}
+{if(isset($list.address) && !empty($list.address))} <p>景点地址:{$list.address}</p>{else}<p>景点地址:{$list.proName} <p>详细地址未收录,请自行查找</p></p>{/if}
+{if(isset($list.opentime) && !empty($list.opentime))}<p>开放时间:{$list.opentime}</p>{/if}
+{if(isset($list.coupon) && !empty($list.coupon))}<p>票劵相关:{$list.coupon}</p>{/if}
+{if(isset($list.attention) && !empty($list.attention))}<p>注意事项:{$list.attention}</p>{/if}
+{if(count($list.priceList)<1)}
+<p> 票劵信息:暂无</p>
+{else}
+<p>
+    票劵信息:
+    {foreach $list.priceList as $key=>$val}
+    <div>
+    <p>{$val.type}:</p>
+        {if(count($val.entityList)>1)}
+            {foreach($val.entityList as $key1=>$val1)}
+            {$val1.TicketName} 价格:{$val1.Amount} <br>
+            {/foreach}
+        {else}
+
+        {/if}
+
+    </div>
+    {/foreach}
+</p>
+{/if}
+ {foreach $list.picList as $k=>$v}
+<div>
+    <br><img width="500px" src="{$v.picUrl}" alt="">
+</div>
+ {/foreach}
+</body>
+</html>

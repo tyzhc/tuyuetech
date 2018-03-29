@@ -1,0 +1,353 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<link href="_CSS_/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all" href="_CSS_/daterangepicker-bs3.css"/>
+<script type="text/javascript" src="_JS_/moment.js"></script>
+<script type="text/javascript" src="_JS_/daterangepicker.js"></script>
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>粉丝管理</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+<div class="col-md-12">
+    <!--用户列表按钮-->
+    <div class="col-md-12 mes_sign users_name center basicing">
+        <a class='col-md-1 radius bg_color' href="follower.html">
+            粉丝列表
+        </a>
+        <a class='col-md-1 radius bg white' href="grouping.html">
+            粉丝分组
+        </a>
+    </div>
+    <div class="col-md-12 border">
+        <div class="col-md-12 rep_shai">
+            <label>分组管理</label>
+        </div>
+        <!---->
+        <div class="col-md-12 shai_lis display_block foll_lis">
+            <!---->
+            <table class="col-md-12 foll_tab">
+                <tr>
+                    <th>粉丝组名称</th>
+                    <th>粉丝组ID</th>
+                    <th>组内粉丝数量</th>
+                    <th style="width:30%">操作</th>
+                </tr>
+                <tr>
+                    <td colspan="5" class="xian foll_zu"></td>
+                </tr>
+                {volist name="create" id="vo"}
+                <tr>
+                    <td>{$vo.name}</td>
+                    <td>{$vo.create_id}</td>
+                    <td>{$vo.count}</td>
+                    <td>
+                        <a href="javascript:;" class="bg_color radius" data-toggle="modal" data-target="#myModalchang" onclick="xg({$vo.create_id})">编&nbsp;&nbsp;辑</a>
+                        <a href="javascript:;" class="red radius" onclick="del({$vo.create_id})">删&nbsp;&nbsp;除</a>
+                    </td>
+                </tr>
+                {/volist}
+            </table>
+        </div>
+        <div class="col-md-12 rep_shai">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="javascript:;" class="bg_color" data-toggle="modal" data-target="#myModals">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-jia1"></use>
+                </svg>&nbsp;添加新分组
+            </a>
+            <a href="javascript:;" class="bg_color grou_tong radius" id="tb">
+                同步分组信息
+            </a>
+        </div>
+        <br><br><br><br><br>
+    </div>
+</div>
+</div>
+</div>
+<!---->
+</div>
+<!--弹框-->
+<!--弹框-->
+<div class="modal fade addbq" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg white">
+                创建新粉丝组
+                <button type="button" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body row grouping">
+                <div class="col-md-12 seven_size">
+                    <label class="col-md-4 center">标签组名称</label>
+                    <div class="col-md-7">
+                        <input type="text" class="li_H radius" placeholder="请输入粉丝组名称" id="count" style="border: 1px solid #898a8a !important;" value=""  name="create">
+                    </div>
+                </div>
+                <!--<div class="col-md-12 seven_size">-->
+                    <!--<label class="col-md-4 zhuangtai center">粉丝组标签</label>-->
+                    <!--<div class="col-md-7 zhuangtai">-->
+                        <!--<input type="text" class="li_H radius" placeholder="请输入粉丝组标签" name="" style="border: 1px solid #898a8a !important;">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-12 seven_size">-->
+                    <!--<label class="col-md-4 zhuangtai center">粉丝组描述</label>-->
+                    <!--<div class="col-md-7 zhuangtai">-->
+                        <!--<textarea class="li_H radius" placeholder="请输入粉丝组描述"></textarea>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="col-md-12 center">
+                    <input type="button" value="提交" class="bg white radius foll_tj" onclick="foll_tj()">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade addbq" id="myModalchang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg white">
+                编辑粉丝组
+                <input type="hidden" id="xg_id" value="">
+                <button type="button" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body row grouping">
+                <div class="col-md-12 seven_size">
+                    <label class="col-md-4 center">标签组名称</label>
+                    <div class="col-md-7">
+                        <input type="text" class="li_H radius" placeholder="请输入要更改的名称" id="xg_count" style="border: 1px solid #898a8a !important;" value="">
+                    </div>
+                </div>
+                <!--<div class="col-md-12 seven_size">-->
+                <!--<label class="col-md-4 zhuangtai center">粉丝组标签</label>-->
+                <!--<div class="col-md-7 zhuangtai">-->
+                <!--<input type="text" class="li_H radius" placeholder="请输入粉丝组标签" name="" style="border: 1px solid #898a8a !important;">-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-12 seven_size">-->
+                <!--<label class="col-md-4 zhuangtai center">粉丝组描述</label>-->
+                <!--<div class="col-md-7 zhuangtai">-->
+                <!--<textarea class="li_H radius" placeholder="请输入粉丝组描述"></textarea>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="col-md-12 center">
+                    <input type="button" value="提交" class="bg white radius foll_tj" onclick="xg_tj()">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script>
+    function add_zu(){
+        $('.rouping').show();
+        $('.add_zu').show();
+    }
+    function del_zu(){
+        $('.rouping').hide();
+        $('.add_zu').hide();
+    }
+    function foll_tj(){
+        var count = $('#count').val();
+        if(count!="")
+        {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url  :'{:url('create_add')}',
+                data: {type:1,count:count},
+                async: false,
+                success: function(data) {
+                    console.log(data);
+                    res = JSON.parse(data);
+                    if(res['type']==1){
+                        alert(res['success']);
+                        window.location.reload();
+                    }else{
+                        alert('添加出错，'+res['errcode'])
+                    }
+                }
+            })
+        }else{
+            alert('名称不能为空!')
+        }
+
+//        $('#myModals').hide();
+//        $('#myModals').removeClass('in');
+//        $('.in').remove();
+    }
+
+    //
+    $('.basicing>a').click(function(){
+        $('.border').addClass('hides')
+        var str=$(this).index()
+        $(this).addClass('bg white').removeClass('bg_color').siblings().addClass('bg_color').removeClass('bg white');
+        $('.border').eq(str).removeClass('hides')
+
+    });
+
+    $('#tb').click(function(){
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url  :'{:url('create_action')}',
+            data: {type:1},
+            async: false,
+            success: function(data) {
+                console.log(data);
+                res = JSON.parse(data);
+                if(res['type']==1){
+                    alert(res['success']);
+                    window.location.reload();
+                }else{
+                    alert('同步出错，'+res['errcode'])
+                }
+            }
+        })
+    })
+
+    function del(id){
+        var r=confirm("确定删除么?");
+        if (r==true)
+        {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url  :'{:url('create_del')}',
+                data: {id:id},
+                async: false,
+                success: function(data) {
+                    console.log(data);
+                    res = JSON.parse(data);
+                    if(res['type']==1){
+                        alert(res['success']);
+                        window.location.reload();
+                    }else{
+                        alert('删除出错，'+res['errcode'])
+                    }
+                }
+            })
+        }
+    }
+
+
+
+    $('#del').click(function() {
+        var r=confirm("确定删除么，此项删除只会删除系统中的数据！若删除，系统将不会显示此人的数据，请谨慎操作！")
+        if (r==true)
+        {
+            var obj=document.getElementsByName('checkbox[]');
+            var s='';
+            for(var i=0; i<obj.length; i++){
+                if(obj[i].checked){
+                    s+=obj[i].value+','; //如果选中，将value添加到变量s中
+                }
+            }
+            if(s!=''){
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url  :'{:url('user_del')}',
+                    data: {id:s},
+                    async: false,
+                    success: function(data) {
+                        if(data == 1){
+                            alert('删除成功！');
+                            window.location.reload();
+                        }else{
+                            alert('删除失败!')
+                        }
+                    }
+                });
+            }else{
+                alert('请选择要删除的粉丝!');
+            }
+        }
+    })
+    //    全选
+    $('.allcheck').click(function(){
+        var CheckBox=$('input[type=checkbox]');
+        if($(this).is(':checked') ){
+            for(i=0;i<CheckBox.length;i++){
+                CheckBox[i].checked=true;
+            };
+        }else{
+            for(i=0;i<CheckBox.length;i++){
+                CheckBox[i].checked=false;
+            };
+        }
+    });
+
+
+    function xg(id){
+        $('#xg_id').val(id);
+    }
+
+    function xg_tj(){
+        var id = $('#xg_id').val();
+        var xg_count = $('#xg_count').val();
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url  :'{:url('create_update')}',
+            data: {id:id,count:xg_count},
+            async: false,
+            success: function(data) {
+                console.log(data);
+                res = JSON.parse(data);
+                if(res['type']==1){
+                    alert(res['success']);
+                    window.location.reload();
+                }else{
+                    alert('删除出错，'+res['errcode'])
+                }
+            }
+        });
+    }
+    //    查看详情
+    function foll_saw() {
+        $('.rouping').show();
+        $('.addbq').show();
+    }
+    function del_qian(){
+        $('.rouping').hide();
+        $('.addbq').hide();
+    }
+    function foll_bq(){
+        $('.rouping').hide();
+        $('.addbq').hide();
+    }
+</script>
+</html>

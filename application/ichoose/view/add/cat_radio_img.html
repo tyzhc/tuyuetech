@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱选择ichoose</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+		wx.config({
+			debug: false,
+			appId: '{$signPackage.appId}',
+			timestamp: '{$signPackage.timestamp}',
+			nonceStr: '{$signPackage.nonceStr}',
+			signature: '{$signPackage.signature}',
+			jsApiList: [
+				'checkJsApi',
+				'onMenuShareAppMessage',
+				'hideMenuItems',
+				'closeWindow',
+				'onMenuShareAppMessage'
+			]
+		});
+		wx.ready(function () {
+			// 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+
+			wx.onMenuShareAppMessage({
+				title: '{$list.title}', // 分享标题
+				desc: '朋友发送了投票,请点击查看', // 分享描述
+				link: "http://{:$_SERVER['HTTP_HOST']}{:url('ichoose/add/cat',array('id'=>$list.id))}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				imgUrl: '', // 分享图标
+				type: '', // 分享类型,music、video或link，不填默认为link
+				dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				success: function () {
+					// 用户确认分享后执行的回调函数
+					mui.toast('分享成功!');
+				},
+				cancel: function () {
+					// 用户取消分享后执行的回调函数
+					mui.toast('您取消了分享!');
+				}
+			});
+		})
+    </script>
+</head>
+<body>
+
+<h1>{$list.title}</h1>
+该投票为你的朋友{$create_user} 发起,为{if($list.ans_type=='1')}单项选择{else}多项选择{/if}
+{if($list.open=='1')}
+<br>参与的小伙伴必须公开回答
+{else}
+<br>参与的小伙伴为匿名回答
+{/if}
+<br>投票描述:{$list.con}
+<br>结束时间:{$list.endtime}
+<br>
+<!--是否选择过  no为未选择过-->
+{if($ans_status=='no')}
+<!--该投票的状态 1为正常发布  2为征集选项内容-->
+{if($list.state=='1')}
+{if($list.ans_type=='1')}
+<form id="form_radio">
+    {foreach($option as $k=>$v)}
+        <br><img width="10%" src="/public/upload/ichoose_img/{$v.option}" alt=""><br><input type="radio" class="" name="{$list.id}" value="{$v.id}">{$v.con}
+    {/foreach}
+    <br><input id="tijiao" type="button" value="提交">
+</form>
+
+<script>
+	$('#tijiao').click(function(){
+		var url = "{:url('insert_radio_ajax',array('id'=>$list.id,'uid'=>$reply_uid))}";
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data: $('#form_radio').serialize(),
+			async: false,
+			success: function(data) {
+				if(data==1){
+					var back_url = '{:url("cat",array("id"=>$list.id))}';
+					alert('感谢您的参与');
+					window.location.href = back_url;
+				}else{
+					alert('回答失败');
+				}
+			}
+		})
+	})
+</script>
+{else}
+<form id="form_checkbox">
+    {foreach($option as $k=>$v)}
+    <br><img width="10%" src="/public/upload/ichoose_img/{$v.option}" alt=""><br><input class="checkbox" type="checkbox" name="{$list.id}[]" value="{$v.id}">{$v.con}
+    {/foreach}
+    <br><input id="tijiao" type="button" value="提交">
+</form>
+<script>
+	$('#tijiao').click(function(){
+		var url = "{:url('insert_check_ajax',array('id'=>$list.id,'uid'=>$reply_uid))}";
+		console.log(url);
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data: $('#form_checkbox').serialize(),
+			async: false,
+			success: function(data) {
+				console.log(data);
+				if(data==1){
+					alert('感谢您的参与');
+					var back_url = '{:url("cat",array("id"=>$list.id))}';
+					window.location.href = back_url;
+				}else{
+					alert('回答失败');
+				}
+			}
+		})
+	})
+</script>
+{/if}
+{else}
+该投票为你的朋友{$create_user} 发起,征集投票内容,每个人填写{$list.state_num}个,感谢参与!
+<br>已存在选项内容
+{foreach($option as $k=>$v)}
+<br><input  type="text"  value="{$v.option}">
+{/foreach}
+<!--是否为发起者 发起者不显示征集选项的form 显示 结束按钮-->
+{if($creator.status!=='yes')}
+<form id="form_zhengji" method="post" action="{:url('zhengji_insert',array('id'=>$list.id,'uid'=>$reply_uid,'add_type'=>$list.add_type))}">
+    <!--是否已征集过选项内容,no是征集过-->
+    {if($option_state.status =='no')}
+    您已经表达过您的意见,感谢你的参与
+    {else}
+    选项内容:
+    {for start="0" end="$option_state.num"}
+    <br><input type="text" name="option[]">
+    {/for}
+
+    <br><input id="tijiao1" type="button" value="提交">
+    {/if}
+</form>
+{else}
+如果你觉得当前内容够了可结束内容征集
+<button id="end">结束</button>
+{/if}
+{/if}
+{else}
+{foreach($option as $k=>$v)}
+{if(is_array($self.reply))}
+
+<br>{if($v.option=='other')}其他{else} <img width="10%" src="/public/upload/ichoose_img/{$v.option}" alt=""><br>{$v.con}  {/if}选中人数:{$ans_count[$v.id]}
+{foreach($self.reply as $k1=>$v1)}
+{if($v1==$v.id)}
+你选择的
+{/if}
+{/foreach}
+{else}
+{if($self.reply==$v.id)}
+<br>{if($v.option=='other')}其他{else} <img width="10%" src="/public/upload/ichoose_img/{$v.option}" alt=""><br>{$v.con} {/if} 选中人数:{$ans_count[$v.id]} 逆选择的
+{else}
+<br>{if($v.option=='other')}其他{else} <img width="10%" src="/public/upload/ichoose_img/{$v.option}" alt=""><br>{$v.con} {/if} 选中人数:{$ans_count[$v.id]}
+{/if}
+{/if}
+
+{/foreach}
+
+{/if}
+<!--open==1 公开 每个人选择了啥-->
+{if($list.open=='1')}
+<br>
+<div>
+    {if(is_array($ans_arr))}
+    {foreach $ans_arr as $ko=>$vo}
+    {if($vo.uid==$reply_uid)}
+    {else}
+    <br>{$vo.user}选择了{$vo.reply}
+    {/if}
+    {/foreach}
+    {/if}
+</div>
+{else}
+<div>
+
+</div>
+{/if}
+
+{if($attention=='no')}
+<div>
+    <h1>请关注公众号爱选择ichoose</h1>
+</div>
+{else}
+<div>
+
+</div>
+{/if}
+</body>
+<script>
+	$('.other').click(function(){
+		var str = '<input id="other_text" type="text" name="{$list.id}[text]">';
+		$('#other').after(str);
+	});
+
+	$('.radio').click(function(){
+		$('#other_text').remove();
+	})
+
+	$('#tijiao1').click(function(){
+		var url = "{:url('zhengji_insert',array('id'=>$list.id,'uid'=>$reply_uid,'add_type'=>$list.add_type))}";
+
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data: $('#form_zhengji').serialize(),
+			async: false,
+			success: function(data) {
+				console.log(data);
+				if(data=='1'){
+					alert('感谢您的参与');
+					wx.closeWindow();
+				}
+
+			}
+		})
+	})
+
+	$('#end').click(function(){
+		var url = "{:url('end_zhengji',array('id'=>$list.id))}";
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data:{'id':'12a'},
+			async: false,
+			success: function(data) {
+				if(data=='1'){
+					alert('已结束该投票征集');
+					wx.closeWindow();
+				}
+			}
+		})
+	})
+</script>
+</html>

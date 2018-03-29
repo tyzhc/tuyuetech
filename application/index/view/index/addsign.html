@@ -1,0 +1,160 @@
+{include file="./public/public/header.html"/}
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;">公众号列表</a>
+    <a href="/platform/index.php/index/index/index.html" class="white">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-home"></use>
+        </svg>
+        <span>首页</span>
+    </a>
+</div>
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <div class="col-md-12">
+            添加主公众号
+        </div>
+        <div class="col-md-12 addsign_menu">
+            <button class=" white radius addsign_menu_active">
+                <p class="inline_block">1</p>
+                <img class="inline_block" src="__IMG__/addsign.png" height="44px">
+                设置公众号信息
+            </button>
+            <button class=" white radius addsign_menu_lis">
+                <p class="inline_block">2</p>
+                <img class="inline_block" src="__IMG__/addsign.png" height="44px">
+                设置权限
+            </button>
+            <button class=" white radius addsign_menu_lis">
+                <p class="inline_block">3</p>
+                <img class="inline_block" src="__IMG__/addsign.png" height="44px">
+                引导页面
+            </button>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu addsign_menu_inpu_first">
+            <label class="col-md-1">公众号名称&nbsp;<span class="red">*</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius public">
+                <div class="prompt">填写公众号账号名称</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu">
+            <label class="col-md-1">描述&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <textarea class="li_H  radius description"></textarea>
+                <div class="prompt">用于说明此公众号的功能与用途</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu">
+            <label class="col-md-1">公众号账号&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius public_num">
+                <div class="prompt">填写公众号的帐号，一般为英文帐号</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu">
+            <label class="col-md-1">原始ID&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius originalID">
+                <div class="prompt">在给粉丝发送客服消息时，原始ID不能为空。建议您完善该选项</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu">
+            <label class="col-md-1">级别&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="radio" name="jibie" value="0">&nbsp;&nbsp;普通订阅号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="jibie" value="1">&nbsp;&nbsp;普通服务号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="jibie" value="2">&nbsp;&nbsp;认证订阅号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="jibie" value="3">&nbsp;&nbsp;认证服务号/认证媒体/政府订阅号
+                <div class="prompt">注意：即使公众平台显示为“未认证”， 但只要【公众号设置】/【账号详情】下【认证情况】显示资质审核通过， 即可认定为认证号</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu">
+            <label class="col-md-1">APPId&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius appid">
+                <div class="prompt">请填写微信公众平台后台的AppId</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu">
+            <label class="col-md-1">AppSecret&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius AppSecret">
+                <div class="prompt">请填写微信公众平台后台的AppSecret，只有填写这两项才能管理自定义菜单</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu">
+            <label class="col-md-1">Oauth 2.0&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11 Oauth">在微信公众号请求用户网页授权之前，开发者需要先到公众平台网站的<b>【开发者中心】网页服务</b>中配置授权回调域名</div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu">
+            <label class="col-md-1">二维码&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11 pic_up">
+                <input type="text" class="li_H  radius pic_up_lujing QR">
+                <button class="pic_upload bg">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-shangchuantupian"></use>
+                    </svg>图片上传
+                </button>
+                <input type="file" class="pic_file li_H radius">
+                <div class="prompt">仅支持JPG图片</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu">
+            <label class="col-md-1">头像&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11 pic_up">
+                <input type="text" class="li_H  radius pic_up_lujings IMG">
+                <button class="pic_upload bg">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-shangchuantupian"></use>
+                    </svg>图片上传
+                </button>
+                <input type="file" class="pic_file li_H radius pic_files">
+                <div class="prompt">仅支持JPG图片</div>
+            </div>
+        </div>
+        <!--下一步-->
+        <div class="col-md-12 addsign_menu_inpu next_menu">
+            <button class="radius white bg li_H next">下一步</button>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    $('.pic_file').change(function() {
+        $('.pic_up_lujing').val($(this).val());
+    });
+    $('.pic_files').change(function() {
+        $('.pic_up_lujings').val($(this).val());
+    });
+    $('.next').click(function(){
+        if($('.public').val()==''){
+            alert('请填写公众号名称');
+        }else if($('.description').val()==''){
+            alert('请填写描述');
+        }else if($('.public_num').val()==''){
+            alert('请填写公众号账号');
+        }else if($('.originalID').val()==''){
+            alert('请填写原始ID');
+        }else if($('input[name=jibie]:checked').val()==null){
+            alert('请选择级别')
+        }else if($('.appid').val()==''){
+            alert('请输入APPID')
+        }else if($('.AppSecret').val()==''){
+            alert('请输入AppSecret')
+        }else if($('.QR').val()==''){
+            alert('请上传二维码')
+        }else if($('.IMG').val()==''){
+            alert('请上传头像')
+        }else{
+           window.location.href='index.html'
+        }
+    });
+</script>
+
+</html>

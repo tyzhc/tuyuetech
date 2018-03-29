@@ -1,0 +1,124 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/users.html" class="white">
+            <span>用户管理</span>
+        </a>
+    </div>
+</div>
+<!--用户列表-->
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <!--用户列表按钮-->
+        <div class="col-md-12 mes_sign users_name center">
+            <a class="col-md-1 bg_color" href="users.html">
+                用户管理
+            </a>
+            <a class="col-md-1 bg white radius " href="add_users.html">
+                添加用户
+            </a>
+        </div>
+        <!--添加新用户-->
+        <div class="col-md-12  addusers_name">
+            添加新用户
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">用户名</label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius add_user_name" placeholder="" name="" maxlength="15">
+                <span class="gray">请输入用户名，用户名为 3 到 15 个字符组成，包括汉字，大小写字母（不区分大小写）</span>
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">密码</label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius pass_one" placeholder="" name="" maxlength="8">
+                <span class="gray">请填写密码，长度为 8 个字符</span>
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">确认密码</label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius pass_two" placeholder="" name="" onblur="true_pass()">
+                <span class="gray">重复输入密码，确认正确输入</span>
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">所属用户组</label>
+            <div class="col-md-9">
+                <select class="li_H radius add_user_chang">
+                    <option value="">请选择所属用户组</option>
+                    <option value="1">体验用户组</option>
+                    <option value="2">白金用户组</option>
+                    <option value="3">黄金用户组</option>
+                </select>
+                <span class="gray">分配用户所属用户组后，该用户会自动拥有此用户组内的模块操作权限</span><br>
+                <span class="red weight">设置用户组后，系统会根据对应用户组的服务期限对用户的服务开始时间和结束时间进行初始化</span>
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">备注</label>
+            <div class="col-md-9">
+                <textarea class="li_H radius cun_huifus_1" placeholder="" name=""></textarea>
+                <span class="gray">方便注明此用户的身份</span>
+            </div>
+        </div>
+        <div class="col-md-2 add_use_lis rights">
+            <input type="button" class="radius bg white true" value="确认注册">
+        </div>
+
+    </div>
+</div>
+<!---->
+</div>
+</div>
+</body>
+</html>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    $('.true').click(function(){
+        console.log($('.add_user_chang').val());
+        if($('.add_user_name').val()==''){
+            alert('请输入用户名');
+        }else if($('.pass_one').val()==''){
+            alert('请输入密码');
+        }else if($('.pass_two').val()==''){
+            alert('请输入确认密码');
+        }else if($('.add_user_chang').val()==''){
+            alert('请选择所属用户组');
+        }else{
+            if($('.add_user_name').val().length<3){
+                alert('用户名需3 到 15 个字符组成');
+                $('.add_user_name').val('')
+            }else if($('.pass_one').val().length<8){
+                alert('密码长度需8个字符');
+                $('.pass_one').val('');
+            }else if($('.pass_two').val().length<8){
+                alert('确认密码长度需8个字符');
+                $('.pass_two').val('');
+            }else{
+                $('.true').attr('type','submit');
+            }
+        }
+    });
+    function true_pass(){
+        if($('.pass_one').val()!=$('.pass_two').val()){
+            alert('两次密码输入不一致，请再次输入');
+            $('.pass_one').val('');
+            $('.pass_two').val('')
+        }
+    }
+</script>

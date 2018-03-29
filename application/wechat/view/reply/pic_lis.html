@@ -1,0 +1,68 @@
+{include file="./public/public/basic_chang.html"/}
+<div class="col-md-12 border">
+    <div class="col-md-12 rep_shai">
+        <label>筛选</label>
+    </div>
+    <div class="col-md-12 shai_lis display_block">
+        <div class="col-md-3">
+            <label>状态</label>
+            <div class="btn-group state" role="group" aria-label="">
+                <a href="{:url('wechat/reply/pic_lis',array('state'=>''))}" type="button" class="btn btn-default {if condition='empty($state)'}state_active{/if}">所有</a>
+                <a href="{:url('wechat/reply/pic_lis',array('state'=>'1'))}" type="button" class="btn btn-default {if condition='$state==1'}state_active{/if}">启用</a>
+                <a href="{:url('wechat/reply/pic_lis',array('state'=>'2'))}" type="button" class="btn btn-default {if condition='$state==2'}state_active{/if}">禁用</a>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <label>关键字</label>
+            <div class="input-group search">
+                <input type="text" class="form-control" id="text" name="">
+                              <span class="input-group-btn">
+                                <button href="" class="btn btn-default" type="button" id="count">
+                                    <span class="glyphicon glyphicon-search bg_color"></span>
+                                </button>
+                              </span>
+            </div>
+        </div>
+        <!---->
+        <table class="col-md-12">
+            <tr>
+                <th>序号</th>
+                <th>回复规则</th>
+                <th>关键词</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            {volist name="reply" id="vo" key="key"}
+            <tr>
+                <td>{$key}</td>
+                <td >{$vo.title}</td>
+                <td>{$vo.keywords}</td>
+                <td>
+                    {if condition='($vo.type==1)'}启用{else}禁用{/if}
+                </td>
+                <td>
+                    <a href="{:url('reply/pic_add',array('id'=>$vo.id))}" class="bg_color radius">编辑</a>
+                    <a href="{:url('reply/is_del',array('id'=>$vo.id))}" class="red radius" onclick="return confirm('确认删除么?');return false;">删除</a>
+                    <a href="{:url('statistics/data_chart',array('id'=>$vo.id,'menu'=>$menu,'action'=>$action))}" class="bg_color radius">使用率走势</a>
+                </td>
+            </tr>
+            {/volist}
+        </table>
+        <div style="text-align: center">{$page}</div>
+    </div>
+</div>
+</div>
+<!---->
+</div>
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    $('#count').click(function(){
+        var count = $('#text').val();
+        url = "{:url('wechat/reply/pic_lis',array('state'=>$state,'count'=>'ss'))}";
+        url1 = url.replace("ss",count);
+        window.location.href = url1;
+    })
+</script>
+</html>

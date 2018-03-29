@@ -1,0 +1,71 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/basic.html" class="white">
+            <span>基础设置</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/system.html" class="white">
+            <span>系统回复</span>
+        </a>
+    </div>
+</div>
+<!---->
+{include file="./public/public/basic_setup.html" /}
+<div class="col-md-12">
+    <!--用户列表按钮-->
+    <div class="col-md-12 mes_sign users_name center basicing">
+        <a class='col-md-1 radius bg white' href="javascript:;">
+           系统回复
+        </a>
+    </div>
+    <div class="col-md-12 border">
+        <from action="">
+            <div class="col-md-12 rep_shai ans_mes">
+                <label class="col-md-2">欢迎信息关键字</label>
+                <div class="col-md-7">
+                    <input type="text" class="li_H radius" placeholder="可根据关键字直接关联指定的回复规则" name="">
+                    <span class="gray">设置用户添加公众帐号好友时，发送的欢迎信息。</span><br>
+                    <span class="gray">指定用户添加公众帐号好友时，发送的欢迎信息，你可以在这里输入关键字，那么用户添加公众号好友时就相当于发送这个内容至系统。</span><br>
+                    <span class="gray">这个过程是程序模拟的，比如这里添加关键字：欢迎关注，那么用户添加公众号好友时，系统相当于接受了粉丝用户的消息，内容为“欢迎关注”。</span>
+                </div>
+            </div>
+            <div class="col-md-12 rep_shai ans_mes">
+                <label class="col-md-2">默认回复关键字</label>
+                <div class="col-md-7">
+                    <input type="text" class="li_H radius" placeholder="可根据关键字直接关联指定的回复规则" name="">
+                    <span class="gray">当系统不知道该如何回复粉丝的消息时，默认发送的内容。</span><br>
+                    <span class="gray">指定系统不知道该如何回复粉丝的消息时，发送的默认信息，你可以在这里输入关键字，那么系统不知道该如何回复粉丝的消息时就相当于发送这个内容至系统。</span>
+                    <span class="gray">这个过程是程序模拟的，比如这里添加关键字：￥@%&%#@*，系统不知道该如何回复粉丝的消息，系统相当于接受了粉丝用户的消息，内容为“￥@%&%#@*”。 </span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <input type="submit" class="bg white tijiao radius" value="提交" name="">
+                <br><br>
+            </div>
+        </from>
+    </div>
+</div>
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    $('.gongneng_name>div:first-child').children().last().addClass('border_bottoms')
+    $('.gongneng_name>div:first-child').children().eq(1).children().eq(0).children().eq(5).children().addClass('bg_color');
+</script>
+</html>

@@ -1,0 +1,506 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--<script src="_JS_/angular.min.js"></script>-->
+<!--拖拽-->
+<link rel="stylesheet" href="_CSS_/jquery-ui.min.css">
+<script src="_JS_/jquery.min.js"></script>
+<script src="_JS_/jquery-ui.min.js"></script>
+<!---->
+<!--<script src="_JS_/angular.min.js"></script>-->
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>自定义菜单</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+<div class="col-md-12" ng-app="">
+    <from action="">
+        <!--用户列表按钮-->
+        <div class="col-md-12 mes_sign users_name center basicing">
+            <a class='col-md-1 radius bg white' href="{:url('wechat/reply/basic_lis')}">
+                自定义菜单
+            </a>
+        </div>
+        <div class="col-md-12 ans_mes reply_saw border cus_menu" >
+            <div class="col-xs-6 col-sm-4 col-md-4 cus_menus">
+                <img src="__IMG__/phone_gong.png" width="100%">
+                <div class="cus_menu_lis">
+                    <svg class="icon bg_color" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jianpan"></use>
+                    </svg>
+                    <div class="cus_menusing">
+                        <ul id="cus_menu_"></ul>
+                        <a class="cus_menu_active cue_menu_bg cu_menu_1" href="javascript:;" onclick="cus_menu_add(1)">
+                            <svg class="icon bg_color" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia"></use>
+                            </svg>&nbsp;添加菜单
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--右侧-->
+            <div class="col-xs-6 col-sm-8 col-md-8 reply_saw_right hides">
+                <div class="arrow-left arrow-lefts"></div>
+                <div class="cus_menuLis"></div>
+                <div class="cus_zimenuLis"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-xs-6 col-sm-4 col-md-4 cus_menu_paixu">
+                    <br>
+                    <button href="javascript:;" class="radius white grays cus_menu_paixus" onclick="menu_sort()" disabled>菜单排序</button>
+                    <button href="javascript:;" class="radius white grays hides cus_menu_paixuing" onclick="menu_sorts()">完成</button>
+                </div>
+                <div class="col-xs-6 col-sm-8 col-md-8">
+                    <input type="submit" class="bg white  radius cus_fa" value="保存并发布" name="">
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </from>
+</div>
+<script>
+</script>
+</div>
+</div>
+<!---->
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    //拖拽
+    function menu_sort(){
+        $('.cus_fa').addClass('hides');
+        $('.reply_saw_right').addClass('hide');
+        $('.cus_menusing>ul>li').removeClass(' cus_menu_active');
+        $('.cus_menu_paixu>button').addClass('hides');
+        if($('#cus_menu_>.cue_menu_bg').length<3){
+            var str=$('#cus_menu_add').attr('class').substring('8');
+            $('.cus_menusing>ul>li').removeClass('cu_menu_'+str).addClass('cu_menu_'+(str-1));
+        }
+        $('#cus_menu_add').hide();
+        var res=$('#cus_menu_>li').length;
+        for(var i=0;i<res;i++){
+            if($('.zi_menu').eq(i).children('ul').children().length==0){
+                $('.zi_menu').eq(i).hide();
+            }
+        }
+        $('.cus_menu_paixuing').show();
+        $('.cus_menusing>a').hide();
+        $("[id^=sortable_]").each(function() {
+            $(this).sortable({
+                revert: true
+            });
+            var str=$(this).attr('id').substring(9);
+            $('.zi_menu_add_'+str).hide();
+        });
+        $( "ul, li" ).disableSelection();
+        $( "#cus_menu_" ).sortable({
+            revert: true
+        });
+    }
+    function menu_sorts(){
+        $('.cus_fa').removeClass('hides');
+        $('.reply_saw_right').removeClass('hide');
+        $('.cus_menu_paixu>button').removeClass('hides');
+        if($('#cus_menu_>.cue_menu_bg').length<3){
+            var str=$('#cus_menu_add').attr('class').substring('8');
+            $('.cus_menusing>ul>li').removeClass('cu_menu_'+(str-1)).addClass('cu_menu_'+str);
+        }
+        $('#cus_menu_add').show();
+        var res=$('#cus_menu_>li').length;
+        for(var i=0;i<res;i++){
+            if($('.zi_menu').eq(i).children('ul').children().length==0){
+                $('.zi_menu').eq(i).removeAttr('style','display:none');
+            }
+        }
+        $('.cus_menu_paixuing').hide();
+        $('.cus_menusing>a').show();
+        $("[id^=sortable_]").each(function() {
+//            销毁
+            $(this).sortable('destroy');
+            var ing=$(this).children().length;
+            if(ing==5){
+                $(this).next('.zi_menu_add').hide();
+            }else{
+                $(this).next('.zi_menu_add').show();
+            }
+
+        });
+        $( "ul, li" ).disableSelection();
+        $( "#cus_menu_" ).sortable('destroy');
+    }
+
+    var res=$('.cus_menus').height();
+    $('.rep-body').height(res-30);
+    $('.cus_menu_chang>input').bind('click',function(){
+        if ($(this).is(":checked")) {
+            $(this).attr("checked", true);
+            $(this).siblings().removeAttr('checked');
+            if($(this).val()==1){
+                $('.cus_menu_changs').show();
+                $('.cus_menu_changing').hide();
+            }else{
+                $('.cus_menu_changing').show();
+                $('.cus_menu_changs').hide();
+            }
+        }
+    })
+    function cus_menu_add(id){
+        $('.cus_menusing>a').remove();
+        $('.cus_menusing>ul').children().removeClass('cus_menu_active');
+        $('.reply_saw_right>.cus_menuLis').children('.rep-body').addClass('hides');
+        $('.reply_saw_right>.cus_zimenuLis>div').addClass('hides');
+        var s=id+1;
+        var sing='';
+        var str='<li id="dian_'+id+'" class=" ui-state-default cue_menu_bg cu_menu_'+s+' ">'+
+                '<a href="javascript:;" onclick="dian('+id+')"><span>菜单名称</span></a>'+
+                '<div class="zi_menu zi_menu_'+id+'">' +
+                '<ul id="sortable_'+id+'" >'+
+                '</ul>'+
+                '<a class="zi_menu_add zi_menu_add_'+id+'" href="javascript:;" onclick="cus_zimenu_add('+id+',1)">'+
+                '<svg class="icon bg_color" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia"></use></svg>'+
+                '</a>'+
+                '<div class="arrow_bott"></div></div>'+
+                '</li>'
+        //右侧
+        var res='<div class="rep-body radius row dians_'+id+'" style="">'+
+                '<label class="col-xs-12 col-sm-12 col-md-12 cus_menu_ing cus_right_menu_name_'+id+'">'+
+                '<div>菜单名称</div>'+
+                '<span class="bg_color cus_right_menu_del_'+id+'" onclick="del('+id+')">删除菜单</span>'+
+                '</label>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-2 control-label">菜单名称</label>'+
+                '<div class="col-sm-10 col-xs-6 col-md-6">'+
+                '<input type="text" class="form-control cus_right_menu_names_'+id+'" placeholder="添加图文消息的标题" onblur="caidan_name('+id+')" onkeyup="WidthCheck(this,8);">'+
+                '<span class="gray">字数不超过4个汉字或者8个字母</span>'+
+                '</div>'+
+                '</div>'+
+//                '<div class="form-group col-xs-12 col-sm-12 col-md-12 cus_right_menu_mes_'+id+'">'+
+//                '<label class="col-xs-12 col-sm-2 col-md-2 control-label">菜单内容</label>'+
+//                '<div class="col-sm-10 col-xs-6 col-md-6 cus_menu_chang">'+
+//                '<input type="radio" name="radio'+id+'" value="1" checked>&nbsp;发送消息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+//                '<input type="radio" name="radio'+id+'" value="2">&nbsp;跳转网页'+
+//                '</div>'+
+//                '<div class="col-xs-12 col-sm-12 col-md-12 cus_menu_changs cus_right_menu_lis_'+id+'">'+
+//                '<label class="control-label cus_menu_chang_active">文字<span></span></label>'+
+//                '<label class="control-label">图片<span></span></label>'+
+//                '<label class="control-label">图文消息<span></span></label>'+
+//                '<label class="control-label">语音<span></span></label>'+
+//                '<label class="control-label">视频<span></span></label>'+
+//                '<textarea class="radius" name="" style="width:80% ;margin:0 auto;display:block" rows="10"></textarea>'+
+//                '</div>'+
+//                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12 cus_menu_changing ">'+
+                '<label class="col-xs-12 col-sm-2 col-md-2 control-label">页面地址</label>'+
+                '<div class="col-sm-12 col-xs-6 col-md-6">'+
+                '<input type="text" class="form-control cus_right_menu_url_'+id+'" placeholder="添加图文消息的标题" onblur="cus_menu_urls('+id+')">'+
+                '<span class="gray">订阅者点击该子菜单会跳到以上链接</span>'+
+                '</div>'+
+                '<div class="col-sm-12 col-xs-4 col-md-4 bg_color cus_menu_changs_tishi">'+
+                '从公众号图文消息中选择'+
+                '</div>'+
+                '</div>'+
+                '</div>';
+        $('.cus_menusing>ul').append(str);
+        $('.reply_saw_right>.cus_menuLis').append(res);
+        $('.reply_saw_right').removeClass('hides');
+//        $('.cus_right_menu_names_'+id).attr('onKeyDown',"this.value=this.value.replace(/[^\u4E00-\u9FA5/D]/g,'')");
+        if(id>=3){
+            for(var i=0;i<id;i++){
+                $('.cus_menusing>ul>li').attr('');
+            }
+            $('.cus_menusing>ul>li').removeClass('cu_menu_'+s).addClass('cu_menu_'+id);
+            $('#cus_menu_add').remove();
+        }else{
+            $('#cus_menu_add').remove();
+            $('.cus_menusing>ul>li').removeClass('cu_menu_'+id).addClass('cu_menu_'+s);
+            var strs='<a id="cus_menu_add" class="cu_menu_'+s+'" href="javascript:;" onclick="cus_menu_add('+s+')">'+
+                    '<svg class="icon bg_color" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia"></use></svg>'+
+                    '</a>';
+            $('.cus_menusing>ul').append(strs);
+        }
+        $('.cus_menusing>ul').children().eq(s-2).addClass('cus_menu_active');
+        $('.reply_saw_right>.cus_menuLis').children().eq(s-1).addClass('cus_menus_active');
+        if($('#cus_menu_>.cue_menu_bg').length>1){
+            $('.cus_menu_paixus').removeAttr('disabled','disabled');
+        }else{
+            if($('.zi_menu>ul').children().length>1){
+                $('.cus_menu_paixus').removeAttr('disabled','disabled');
+            }else{
+                $('.cus_menu_paixus').attr('disabled','disabled');
+            }
+        }
+//        验证
+    }
+    function dian(id){
+        $('.reply_saw_right').removeClass('hides');
+        $('.reply_saw_right>.cus_zimenuLis>div').addClass('hides');
+        $('.cue_menu_bg').removeClass('cus_menu_active');
+        $('#dian_'+id).addClass('cus_menu_active');
+        //右侧
+        $('.reply_saw_right>.cus_menuLis').children('.rep-body').addClass('hides');
+        $('.reply_saw_right>.cus_menuLis').children('.rep-body').eq(id-1).removeClass('hides');
+
+    }
+    function del(id){
+        $('#numzu'+id+'').remove();
+        var str=$('#cus_menu_>li').length;
+        $('#cus_menu_add').remove();
+        var strs='<a id="cus_menu_add" class="cu_menu_'+str+'" href="javascript:;" onclick="cus_menu_add('+str+')">'+
+                '<svg class="icon bg_color" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia"></use></svg>'+
+                '</a>';
+        $('.cus_menusing>ul').append(strs);
+        if(str==2){
+            $('#cus_menu_>li').removeClass('cu_menu_'+(str+1)).addClass('cu_menu_'+str);
+        }else if(str==1){
+            $('#cus_menu_add').remove();
+            var ing='<a class="cus_menu_active cue_menu_bg cu_menu_1" href="javascript:;" onclick="cus_menu_add(1)"> <svg class="icon bg_color" aria-hidden="true"> <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia"></use></svg>&nbsp;添加菜单 </a>'
+            $('.cus_menusing').append(ing);
+            $('.reply_saw_right').addClass('hides');
+        }
+        $('.cus_menuLis>.dians_'+id).remove();
+        $('#cus_menu_>#dian_'+id).remove();
+        $("[id^=dians_]").each(function() {
+            $("[id^=dians_"+id+"_]").remove();
+        });
+//        $('.cus_zimenuLis>.dians_'+id+'_').remove();
+        $('#cus_menu_add').prev().addClass('cus_menu_active');
+        var strs= $('.reply_saw_right>.cus_menuLis').children('.rep-body').length;
+
+        if($('#cus_menu_>.cue_menu_bg').length>1){
+            $('.cus_menu_paixus').removeAttr('disabled','disabled');
+        }else{
+            if($('.zi_menu>ul').children().length>1){
+                $('.cus_menu_paixus').removeAttr('disabled','disabled');
+            }else{
+                $('.cus_menu_paixus').attr('disabled','disabled');
+            }
+        }
+        var ings=$('#cus_menu_>li').length;
+        for(var i=0;i<ings;i++){
+            $('#cus_menu_>li').eq(i).attr('id','dian_'+(i+1));
+            $('.cus_menuLis>div').eq(i).attr('class','rep-body radius row hides dians_'+(i+1))
+        }
+        $('.reply_saw_right>.cus_menuLis').children('.rep-body').eq(strs-1).removeClass('hides');
+    }
+//    菜单名称
+    function caidan_name(id){
+        if($('.cus_right_menu_names_'+id).val()!=''){
+            $('.dian_sys'+id+'').remove();
+            var str=$('.cus_right_menu_names_'+id).val();
+            $('.cus_right_menu_name_'+id+'>div').html(str);
+            $('#cus_menu_>#dian_'+id+'>a>span').html(str);
+//
+            $('.numzu'+id+'').remove();
+            var strs=$('.cus_right_menu_url_'+id+'').val();
+            var res='<input type="hidden" name="" id="numzu'+id+'" value="'+[str,strs]+'">';
+            $('#cus_menu_>#dian_'+id+'>a').append(res);
+        }
+    }
+    function cus_menu_urls(id){
+        $('#numzu'+id+'').remove();
+        var str=$('.cus_right_menu_url_'+id+'').val();
+        var strs=$('.cus_right_menu_names_'+id).val();
+        var res='<input type="hidden" name="" id="numzu'+id+'" value="'+[strs,str]+'">';
+        $('#cus_menu_>#dian_'+id+'>a>span').after(res);
+    }
+    function cus_menu_url(id,x){
+        $('#numzu'+id+'_'+x+'').remove();
+        var str=$('.cus_right_menu_url_'+id+'_'+x+'').val();
+        var arrzimenu=new Array();
+        arrzimenu[0]=$('.cus_right_menu_names_'+id+'_'+x+'').val();
+        arrzimenu[1]=str;
+        var res='<input type="hidden" name="" id="numzu'+id+'_'+x+'" value="'+arrzimenu+'">';
+        $('#cus_menu_>#dian_'+id+'>a').append(res);
+    }
+    //子菜單
+    function cus_zimenu_add(id,x){
+        $('.cus_menuLis>.dians_'+id+'>.cus_menu_changing').addClass('hides');
+        var x;
+        var array = [];
+        var arr = '';
+        $("[id^=zidian_]").each(function() {
+            var arr = $("[id^=zidian_]").map(function() { return $(this).attr('id').substring(7) }).get();
+            var arring = Math.max.apply(null, arr); //最大值
+            x = parseInt(arring) + 1;
+        });
+        var str=$('.zi_menu_'+id+'>ul>.cue_menu_bg').length;
+        //右侧
+        var res='<div id="dians_'+id+'_'+x+'" class="rep-body radius row hides dians_'+id+'_'+x+'" style="">'+
+                '<label class="col-xs-12 col-sm-12 col-md-12 cus_menu_ing cus_right_menu_name_'+id+'_'+x+'">'+
+                '<div>子菜单名称</div>'+
+                '<span class="bg_color cus_right_menu_del_'+id+'_'+x+'" onclick="dels('+id+','+x+')">删除子菜单</span>'+
+                '</label>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12">'+
+                '<label class="col-xs-12 col-sm-2 col-md-2 control-label">子菜单名称</label>'+
+                '<div class="col-sm-10 col-xs-6 col-md-6">'+
+                '<input type="text" class="form-control cus_right_menu_names_'+id+'_'+x+'" placeholder="添加图文消息的标题" onblur="caidan_zi_name('+id+','+x+')" onkeyup="WidthCheck(this,8);">'+
+                '<span class="gray">字数不超过4个汉字或者8个字母</span>'+
+                '</div>'+
+                '</div>'+
+//                '<div class="form-group col-xs-12 col-sm-12 col-md-12 cus_right_menu_mes_'+id+'_'+x+'">'+
+//                '<label class="col-xs-12 col-sm-2 col-md-2 control-label">菜单内容</label>'+
+//                '<div class="col-sm-10 col-xs-6 col-md-6 cus_menu_chang">'+
+//                '<input type="radio" name="radio'+id+'_'+x+'" value="1" checked>&nbsp;发送消息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+//                '<input type="radio" name="radio'+id+'_'+x+'" value="2">&nbsp;跳转网页'+
+//                '</div>'+
+//                '<div class="col-xs-12 col-sm-12 col-md-12 cus_menu_changs cus_right_menu_lis_'+id+'">'+
+//                '<label class="control-label cus_menu_chang_active">文字<span></span></label>'+
+//                '<label class="control-label">图片<span></span></label>'+
+//                '<label class="control-label">图文消息<span></span></label>'+
+//                '<label class="control-label">语音<span></span></label>'+
+//                '<label class="control-label">视频<span></span></label>'+
+//                '<textarea class="radius" name="" style="width:80% ;margin:0 auto;display:block" rows="10"></textarea>'+
+//                '</div>'+
+//                '</div>'+
+                '<div class="form-group col-xs-12 col-sm-12 col-md-12 cus_menu_changing">'+
+                '<label class="col-xs-12 col-sm-2 col-md-2 control-label">页面地址</label>'+
+                '<div class="col-sm-12 col-xs-6 col-md-6">'+
+                '<input type="text" class="form-control cus_right_menu_url_'+id+'_'+x+'" placeholder="添加图文消息的标题" onblur="cus_menu_url('+id+','+x+')">'+
+                '<span class="gray">订阅者点击该子菜单会跳到以上链接</span>'+
+                '</div>'+
+                '<div class="col-sm-12 col-xs-4 col-md-4 bg_color cus_menu_changs_tishi">'+
+                '从公众号图文消息中选择'+
+                '</div>'+
+                '</div>'+
+                '</div>';
+        $('.reply_saw_right>.cus_zimenuLis').append(res);
+        $('#sortable_'+id+'>li').removeClass('cus_zimenu_active');
+        $('.cus_menuLis>div').addClass('hides');
+        $('.cus_zimenuLis>.dians_'+id+'_'+x).removeClass('hides').siblings().addClass('hides');;
+        if(str>=4){
+            $('#sortable_'+id+'>li').removeClass('cus_zimenu_active');
+            $('.zi_menu_'+id+'>.zi_menu_add').hide();
+            var str='<li id="zidian_'+x+'" class=" cue_menu_bg ui-state-default cus_zimenu_active">'+
+                    '<a href="javascript:;" onclick="zi_menus('+id+','+x+')"><span>子菜单名称</span></a>'+
+                    '</li>';
+            $('.zi_menu_'+id+'>ul').append(str);
+        }else{
+            $('#sortable_'+id+'>li').removeClass('cus_zimenu_active');
+            var str='<li id="zidian_'+x+'" class=" cue_menu_bg ui-state-default cus_zimenu_active">'+
+                    '<a href="javascript:;" onclick="zi_menus('+id+','+x+')"><span>子菜单名称</span></a>'+
+                    '</li>';
+            $('.zi_menu_'+id+'>ul').append(str);
+//          x=x;
+            $('.zi_menu_'+id+'>.zi_menu_add').attr('onclick','cus_zimenu_add('+id+','+x+')');
+        }
+        //
+        if($('#cus_menu_>.cue_menu_bg').length>1){
+            $('.cus_menu_paixus').removeAttr('disabled','disabled');
+        }else{
+            if($('.zi_menu>ul').children().length>1){
+                $('.cus_menu_paixus').removeAttr('disabled','disabled');
+            }else{
+                $('.cus_menu_paixus').attr('disabled','disabled');
+            }
+        }
+
+    }
+    function zi_menus(id,x){
+        $('.cus_menuLis>div').addClass('hides');
+        $('.cus_zimenuLis>div').addClass('hides');
+        $('.cus_zimenuLis>.dians_'+id+'_'+x+'').removeClass('hides');
+        $('#sortable_'+id+'>li').removeClass('cus_zimenu_active');
+        $('#sortable_'+id+'>#zidian_'+x).addClass('cus_zimenu_active');
+    }
+    function caidan_zi_name(id,x){
+        if($('.cus_right_menu_names_'+id+'_'+x).val()!=''){
+            var str=$('.cus_right_menu_names_'+id+'_'+x).val();
+            $('.cus_right_menu_name_'+id+'_'+x+'>div').html(str);
+            $('#zidian_'+x+'>a>span').html(str);
+        }
+    }
+    function dels(id,x){
+        $('#sortable_'+id+'>#zidian_'+x).remove();
+        $('.cus_zimenuLis>.dians_'+id+'_'+x).remove();
+        $('.cus_menuLis>.dians_'+id).removeClass('hides');
+        $('#numzu'+id+'_'+x+'').remove();
+        var res=$('.dian_'+id+'>.zi_menu_'+id+'>ul>li').length;
+        $('.dian_'+id+'>.zi_menu_'+id+'>ul>li').eq(res-2).addClass('cus_zimenu_active')
+        if($('.dian_'+id+'>.zi_menu_'+id+'>ul>li').length<5){
+            $('#dian_'+id+'>.zi_menu_'+id+'>.zi_menu_add_'+id).show();
+            if($('.dian_'+id+'>.zi_menu_'+id+'>ul>li').length==0){
+                $('.cus_menuLis>.dians_'+id+'>.cus_menu_changing').removeClass('hides');
+            }
+        }
+        if($('#cus_menu_>.cue_menu_bg').length>1){
+            $('.cus_menu_paixus').removeAttr('disabled','disabled');
+        }else{
+            if($('.zi_menu>ul').children().length>1){
+                $('.cus_menu_paixus').removeAttr('disabled','disabled');
+            }else{
+                $('.cus_menu_paixus').attr('disabled','disabled');
+            }
+        }
+    }
+//    验证
+    function WidthCheck(str, maxLen){
+        var w = 0;
+        var tempCount = 0;
+        //length 获取字数数，不区分汉子和英文
+        for (var i=0; i<str.value.length; i++) {
+            //charCodeAt()获取字符串中某一个字符的编码
+            var c = str.value.charCodeAt(i);
+//单字节加1
+            if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) {
+                w++;
+            }
+            else {
+                w+=2;
+            }
+            if (w > maxLen) {
+                str.value = str.value.substr(0,i);
+                break;
+            }
+        }
+    }
+//
+    $('.cus_fa').click(function(){
+//        cus_menu_url(id,x);
+        var array = [];
+        var arr = '';
+        var arring='';
+        var arrings='';
+        var arringss='';
+        $("[id^=zidian_]").each(function() {
+            var arring = $("[id^=numzu1_]").map(function() { return $(this).val();}).get();
+            var arrings = $("[id^=numzu2_]").map(function() { return $(this).val();}).get();
+            var arringss = $("[id^=numzu3_]").map(function() { return $(this).val();}).get();
+            var arr=[[$('#numzu1').val()],arring,[$('#numzu2').val()],arrings,$('#numzu3').val(),arringss];
+            console.log(arr);
+        });
+//
+//        $("[id^=dian_]").each(function() {
+//            var arr = $("[id^=dian_]").map(function() {
+//                return $(this).children('a').children('span').text();
+//            }).get();
+//           console.log(arr);
+////            var arrs = $("[id^=dian_]").map(function() {
+////                return $(this).children('zi_menu').children('ul').children('li').children('a').children('span').text();
+////            }).get();
+////            var res=$("[id^=dian_]").children('zi_menu').children('ul').children();
+////            console.log(arrs);
+//        });
+    });
+</script>
+</html>

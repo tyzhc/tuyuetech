@@ -1,0 +1,125 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<script src="_JS_/laydate.js"></script>
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/users.html" class="white">
+            <span>用户管理</span>
+        </a>
+    </div>
+</div>
+<!--用户列表-->
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <!--用户列表按钮-->
+        <div class="col-md-12 mes_sign users_name center">
+            <a class="col-md-1 bg_color" href="users.html">
+                用户管理
+            </a>
+            <a class="col-md-1 bg_color" href="add_users.html">
+                添加用户
+            </a>
+            <a class="col-md-1  bg_color" href="users_chang.html">
+                编辑用户
+            </a>
+            <a class="col-md-1  bg white radius" href="users_saw.html">
+                查看用户权限
+            </a>
+        </div>
+        <!--查看用户权限-->
+        <div class="col-md-12 tab_box radius users_shai users_saw">
+            用户组基本权限
+        </div>
+        <div class="col-md-12 border users_saw_tab">
+            <table class="users_tab users_saw_tabs">
+                <tr>
+                    <td width="20%">用户组名</td>
+                    <td>
+                        体验用户组
+                        <span></span>
+                        <a href="users_changs.html">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-edit"></use>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>最多公众号数量</td>
+                    <td>1</td>
+                </tr>
+            </table>
+        </div>
+        <!--可使用公众号-->
+        <div class="col-md-12 tab_box radius users_shai users_saw">
+            可使用公众号
+        </div>
+        <div class="col-md-12 border users_saw_tab">
+            <table class="users_tab">
+                <tr>
+                    <th width="20%">公众号</th>
+                    <th>
+                        角色
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <!---->
+        <div class="col-md-12 tab_box radius users_shai users_saw">
+            当前用户所在用户组可使用的公众号权限
+        </div>
+        <div class="col-md-12 border users_saw_tab">
+            <table class="users_tab">
+                <tr>
+                    <th width="20%">公众服务套餐</th>
+                    <th>
+                        模块权限
+                    </th>
+                    <th>
+                        模板权限
+                    </th>
+                </tr>
+                <tr>
+                    <td>体验套餐服务</td>
+                    <td>
+                        <span class="greens white radius">系统模块</span>
+                    </td>
+                    <td>
+                        <span class="greens white radius">系统默认模板</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <a class="btn bg white users_saw_anniu" href="">编辑当前用户资料</a>
+    </div>
+</div>
+<!---->
+</div>
+</div>
+</body>
+</html>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    function  date_dao(){
+        if($('.date_dao>input:checked').val()=='1'){
+            $('.date_daos').show();
+        }else{
+            $('.date_daos').hide();
+        }
+    }
+</script>

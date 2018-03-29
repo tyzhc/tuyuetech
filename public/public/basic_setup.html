@@ -1,0 +1,106 @@
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <!--<div class="col-md-12">-->
+            <!--<svg class="icon" aria-hidden="true">-->
+                <!--<use xlink:href="#icon-shezhi"></use>-->
+            <!--</svg>&nbsp;&nbsp;-->
+            <!--基础设备-->
+        <!--</div>-->
+        <!---->
+        <div class="col-md-12 border_bottom gongneng_name">
+            <div class="col-md-2 {if condition="($menu == 'Reply')"}border_bottoms{/if}">
+                <a class="display_block" href="javascript:;">
+                    <span>基本功能</span>
+                    <svg class="icon bg_color" aria-hidden="true">
+                        <use xlink:href="#icon-shangxiasanjiaoxing1"></use>
+                    </svg>
+                </a>
+                <div>
+                    <div class="li_H radius col-md-12">
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/reply/basic_lis')}">
+                            <p class="{if condition="($action == 'basic_lis' || $action == 'basic_add')"}bg_color{/if}">文字回复</p>
+                        </a>
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/reply/music_lis')}">
+                            <p class="{if condition="($action == 'music_lis' || $action == 'music_add')"}bg_color{/if}">音乐回复</p>
+                        </a>
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/reply/pic_lis')}">
+                            <p class="{if condition="($action == 'pic_lis' || $action == 'pic_add')"}bg_color{/if}">图片回复</p>
+                        </a>
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/reply/video_lis')}">
+                            <p class="{if condition="($action == 'video_lis' || $action == 'video_add')"}bg_color{/if}">视频回复</p>
+                        </a>
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/reply/speech_lis')}">
+                            <p class="{if condition="($action == 'speech_lis' || $action == 'speech_add')"}bg_color{/if}">语音回复</p>
+                        </a>
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/reply/system')}">
+                            <p class="{if condition="($action == 'system')"}bg_color{/if}">系统回复</p>
+                        </a>
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/reply/reply_lis')}">
+                            <p class="{if condition="($action == 'reply_lis' || $action == 'reply_add')"}bg_color{/if}">图文回复</p>
+                        </a>
+                    </div>
+                </div>
+                <span class=""></span>
+            </div>
+            <div class="col-md-2 {if condition="($menu == 'Senior')"}border_bottoms{/if}">
+                <a class="display_block" href="javascript:;">
+                    <span>高级功能</span>
+                    <svg class="icon bg_color" aria-hidden="true">
+                        <use xlink:href="#icon-shangxiasanjiaoxing1"></use>
+                    </svg>
+                </a>
+                <div>
+                    <div class="li_H radius col-md-12">
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/senior/custom_menus_lis')}">
+                            <p class="{if condition="($action == 'custom_menus' || $action == 'custom_menus_lis')"}bg_color{/if}">自定义菜单</p>
+                        </a>
+                        <!--<a class="col-md-6 gongneng_lis" href="javascript:;">-->
+                            <!--<p>二维码管理</p>-->
+                        <!--</a>-->
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/senior/QR')}">
+                            <p class="{if condition="($action == 'qr')"}bg_color{/if}">长链接转二维码</p>
+                        </a>
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/senior/article_lis')}">
+                            <p class="{if condition="($action == 'article_lis' || $action == 'article_add')"}bg_color{/if}">文章管理</p>
+                        </a>
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/senior/follower')}">
+                            <p class="{if condition="($action == 'follower')"}bg_color{/if}">粉丝管理</p>
+                        </a>
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/senior/material_pic')}">
+                            <p class="{if condition="($action == 'material')"}bg_color{/if}">粉丝营销</p>
+                        </a>
+                    </div>
+                </div>
+                <span class=""></span>
+            </div>
+            <div class="col-md-2 {if condition="($menu == 'Statistics')"}border_bottoms{/if}">
+                <a class="display_block" href="javascript:;">
+                    <span>数据统计</span>
+                    <svg class="icon bg_color" aria-hidden="true">
+                        <use xlink:href="#icon-shangxiasanjiaoxing1"></use>
+                    </svg>
+                </a>
+                <div>
+                    <div class="li_H radius col-md-12">
+                        <!--<a class="col-md-6 gongneng_lis" href="javascript:;">-->
+                            <!--<p>聊天记录</p>-->
+                        <!--</a>-->
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/statistics/keyword')}">
+                            <p class="{if condition="($action == 'keyword')"}bg_color{/if}">关键字命中情况</p>
+                        </a>
+                        <a class="col-md-6 gongneng_lis" href="{:url('wechat/statistics/rule')}">
+                            <p class="{if condition="($action == 'rule')"}bg_color{/if}">回复规则使用情况</p>
+                        </a>
+                    </div>
+                </div>
+                <span class=""></span>
+            </div>
+        </div>
+        <script>
+            $('.gongneng_name>div').mouseover(function(){
+                $('.gongneng_name>div>div').hide();
+                $(this).children().eq(1).show();
+            }).mouseout(function(){
+                $('.gongneng_name>div>div').hide();
+            });
+        </script>

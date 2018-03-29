@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱选择 ichoose</title>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+		wx.config({
+			debug: false,
+			appId: '{$signPackage.appId}',
+			timestamp: '{$signPackage.timestamp}',
+			nonceStr: '{$signPackage.nonceStr}',
+			signature: '{$signPackage.signature}',
+			jsApiList: [
+				'checkJsApi',
+				'onMenuShareAppMessage',
+				'hideMenuItems',
+				'closeWindow'
+			]
+		});
+		alert('{$tishi}');
+		wx.ready(function () {
+			wx.closeWindow();
+		});
+
+    </script>
+</head>
+<body>
+    <center>页面即将关闭</center>
+</body>
+</html>

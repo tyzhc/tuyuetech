@@ -1,0 +1,71 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/basic.html" class="white">
+            <span>基础设置</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>图片回复</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html" /}
+<!---->
+<div class="col-md-12">
+    <!--用户列表按钮-->
+    <div class="col-md-12 mes_sign users_name center basicing">
+        <a class='col-md-1 radius {if condition="($type == 1)"}bg white{else}bg_color{/if}' href="{:url('wechat/reply/pic_lis')}">
+            管理基本图片回复
+        </a>
+        <a class='col-md-1 radius {if condition="($type == 2)"}bg white{else}bg_color{/if}' href="{:url('wechat/reply/pic_add')}">
+            添加基本图片回复
+        </a>
+        {if condition="($type == 3)"}
+        <a class="col-md-1 bg white radius" href="{:url('wechat/reply/pic_add')}">
+            编辑基本图片回复
+        </a>
+        {/if}
+    </div>
+            <script>
+                $('.gongneng_name>div:first-child').children().last().addClass('border_bottoms')
+                $('.gongneng_name>div:first-child').children().eq(1).children().eq(0).children().eq(2).children().addClass('bg_color');
+                function GetRequest() {
+                    var url = location.search;
+                    if (url.indexOf("?") != -1) {
+                        var str = url.substr(1);
+                        strs = str.split("=");
+                        strs = str.split("%27");
+                        var str;
+                        if (strs[1] == 'lis') {
+                            str = 0;
+                        } else if (strs[1] == 'add') {
+                            str = 1;
+                        } else if (strs[1] == 'chang') {
+                            str = 2;
+                        }
+                        console.log(str);
+                        $('.basicing>a').removeClass('bg ');
+                        $('.basicing>a').removeClass('white');
+                        $('.basicing>a').removeClass(' radius');
+                        $('.basicing>a').removeClass(' bg_color');
+                        $('.basicing>a').eq(str).addClass('bg white radius').siblings().addClass('bg_color');
+                    }
+                }
+                GetRequest();
+            </script>

@@ -1,0 +1,147 @@
+{include file="./public/public/header.html"/}
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <div>
+    <a href="/platform/index.php/index/index/index.html" class="white">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-home"></use>
+        </svg>
+        <span>首页</span>
+    </a>
+        </div>
+</div>
+        <!--天气，图表-->
+        <div class="col-md-12 main-padding wea_echart">
+            <div class="col-md-8 widget-container weather radius">
+                    <div class="col-md-12 widget-content padded">
+                            <!--<div class="col-sm-6 col-md-6 col-lg-4 today">-->
+                                <!--<p>-->
+                                    <!--今天-->
+                                <!--</p>-->
+                                <!--<canvas class="skycons-element" data-skycons="RAIN" height="100" id="rain" width="100"></canvas>-->
+                                <!--<div class="number">-->
+                                    <!--12/15<small>&#8451;</small>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-sm-2 hidden-xs">-->
+                                <!--<p>-->
+                                    <!--周一-->
+                                <!--</p>-->
+                                <!--<canvas class="skycons-element" data-skycons="CLEAR_DAY" height="60" id="clear-day" width="60"></canvas>-->
+                                <!--<div class="number">-->
+                                    <!--12/15<small>&#8451;</small>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-sm-2 hidden-xs">-->
+                                <!--<p>-->
+                                    <!--周二-->
+                                <!--</p>-->
+                                <!--<canvas class="skycons-element" data-skycons="RAIN" height="60" id="cloudy" width="60"></canvas>-->
+                                <!--<div class="number">-->
+                                    <!--12/13<small>&#8451;</small>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-sm-2 hidden-xs">-->
+                                <!--<p>-->
+                                    <!--周三-->
+                                <!--</p>-->
+                                <!--<canvas class="skycons-element" data-skycons="PARTLY_CLOUDY_DAY" height="60" id="partly-cloudy-day" width="60"></canvas>-->
+                                <!--<div class="number">-->
+                                    <!--12/12<small>&#8451;</small>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-sm-2 hidden-md hidden-sm hidden-xs">-->
+                                <!--<p>-->
+                                    <!--周四-->
+                                <!--</p>-->
+                                <!--<canvas class="skycons-element" data-skycons="SLEET" height="60" id="sleet" width="60"></canvas>-->
+                                <!--<div class="number">-->
+                                    <!-- -12/-11<small>&#8451;</small>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+            </div>
+            <div class="col-md-4 echart">
+                <div class="radius white_bg">
+                    <div>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-signal"></use>
+                        </svg>&nbsp;新发布
+                    </div>
+                    <div id="main">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-12 main-padding lis">
+                <div class="col-md-3 radius lis-menu">
+                    <a class="display_block" href="javasrcipt:;">
+                        <svg class="icon white col-md-5" aria-hidden="true">
+                            <use xlink:href="#icon-tuandui1"></use>
+                        </svg>
+                        <p class="col-md-7">公众号托管</p>
+                    </a>
+                </div>
+            <div class="col-md-3 radius lis-menu">
+                <a class="display_block" href="javasrcipt:;">
+                    <svg class="icon white col-md-5" aria-hidden="true">
+                        <use xlink:href="#icon-tuandui1"></use>
+                    </svg>
+                    <p class="col-md-7">公众号托管</p>
+                </a>
+            </div>
+            <div class="col-md-3 radius lis-menu">
+                <a class="display_block" href="{:url('wechat/index/sign')}">
+                    <svg class="icon white col-md-5" aria-hidden="true">
+                        <use xlink:href="#icon-weixingongzhonghao"></use>
+                    </svg>
+                    <p class="col-md-7">公众号托管</p>
+                </a>
+            </div>
+            <div class="col-md-3 radius lis-menu">
+                <a class="display_block" href="javasrcipt:;">
+                    <svg class="icon white col-md-5" aria-hidden="true">
+                        <use xlink:href="#icon-tuandui1"></use>
+                    </svg>
+                    <p class="col-md-7">公众号托管</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="_JS_/jquery-1.11.2.min.js"></script>
+<!--图表-->
+<script src="_JS_/echarts.js"></script>
+<script>
+    var str=$('.weather').height();
+    $('.echart>div>#main').height(str-36);
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+//            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+//            data:['']
+        },
+        xAxis: {
+            data: ["1","2","3","4","5","6"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 90, 36, 10, 10, 20]
+        }]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</html>

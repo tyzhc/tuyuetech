@@ -1,0 +1,328 @@
+{include file="./public/public/header.html"/}
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+    <a href="/platform/index.php/index/index/index.html" class="white">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-home"></use>
+        </svg>
+        <span>首页</span>
+    </a>
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-arrRight-fill"></use>
+    </svg>
+    <a href="/platform/index.php/index/index/basic.html" class="white">
+        <span>基础设置</span>
+    </a>
+</div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+        <!---->
+        <div class="row">
+            <!--公众号信息-->
+            <div class="col-md-12 mes_sign">
+                <svg class="icon bg_color mes" aria-hidden="true">
+                    <use xlink:href="#icon-weixingongzhonghao"></use>
+                </svg>&nbsp;&nbsp;
+                公众号信息
+            </div>
+            <div class="col-md-9 mes-signs">
+              <div class="col-md-12 ">
+                  <b>{$wechat.name}</b>
+                <span class="bg white radius num_type">{if condition="($wechat.level == 0)"}订阅号{elseif condition="($wechat.level == 1)"}老账号升级的订阅号{else}服务号{/if}</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                  {if condition="($wechat.state == 0)"}
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-asmkticon0246"></use>
+                </svg>
+                &nbsp;<span class="red">未接入</span>
+                  {else}
+                  <svg class="icon" aria-hidden="true">
+                      <use xlink:href="#icon-dui"></use>
+                  </svg>
+                  &nbsp;<span class="green">已接入</span>
+                  {/if}
+              </div>
+                {if condition="($wechat.type == 2)"}
+                <div class="col-md-12">
+                    <label class="col-md-1 next_menu mes-signs-lis">接口地址：</label>
+                    <div class="col-md-11">http://127.0.0.1/platform/index/index/basic.html</div>
+                </div>
+                <div class="col-md-12">
+                    <label class="col-md-1 next_menu mes-signs-lis">Token：</label>
+                    <div class="col-md-11">http://127.0.0.1/platform/index/index/basic.html</div>
+                </div>
+                {/if}
+            </div>
+            <div class="col-md-3 mes-signs-pic">
+                <img class="radius" src="{$wechat.head_img}" width="50px">
+                <img class="radius" src="{$wechat.qrcode_url}" width="50px">
+            </div>
+            <!---->
+            <!--今日关键指标-->
+            <div class="col-md-6 today-target radius">
+                <label class="col-md-12">今日关键指标</label>
+                <div class="col-md-12 ">
+                    <div class="col-md-3 right">
+                        <p>今日新关注</p>
+                        <b>{$today_follow.follow}</b>
+                    </div>
+                    <div class="col-md-3 right">
+                        <p>今日取消关注</p>
+                        <b>{$today_follow.cancel}</b>
+                    </div>
+                    <div class="col-md-3 right">
+                        <p>今日净增关注</p>
+                        <b>{$today_follow.growth}</b>
+                    </div>
+                    <div class="col-md-3">
+                        <p>累计关注</p>
+                        <b>{$today_follow.total}</b>
+                    </div>
+                </div>
+            </div>
+            <!--昨日关键指标-->
+            <div class="col-md-6 today-target radius yesterday-target">
+                <label class="col-md-12">昨日关键指标</label>
+                <div class="col-md-12 ">
+                    <div class="col-md-3 right">
+                        <p>昨日新关注</p>
+                        <b>{$lase_follow.follow}</b>
+                    </div>
+                    <div class="col-md-3 right">
+                        <p>昨日取消关注</p>
+                        <b>{$lase_follow.cancel}</b>
+                    </div>
+                    <div class="col-md-3 right">
+                        <p>昨日净增关注</p>
+                        <b>{$lase_follow.growth}</b>
+                    </div>
+                    <div class="col-md-3">
+                        <p>累计关注</p>
+                        <b>{$lase_follow.total}</b>
+                    </div>
+            </div>
+        </div>
+            <!--关键指标详解-->
+            <div class="col-md-12 echar radius">
+                <label class="col-md-8">关键指标详解</label>
+                <div class="col-md-4">
+                    <!--<span class="col-md-3">-->
+                        <!--<input type="checkbox" name="">&nbsp;新关注人数-->
+                    <!--</span>-->
+                    <!--<span class="col-md-3">-->
+                        <!--<input type="checkbox" name="">&nbsp;取消关注人数-->
+                    <!--</span>-->
+                    <!--<span class="col-md-3">-->
+                        <!--<input type="checkbox" name="">&nbsp;新关注人数-->
+                    <!--</span>-->
+                    <!--<span class="col-md-3">-->
+                        <!--<input type="checkbox" name="">&nbsp;新关注人数-->
+                    <!--</span>-->
+                </div>
+                <div id="main" class="col-md-12" style="height:400px;">
+
+                </div>
+            </div>
+            <!--基本回复情况统计-->
+            <div class="col-md-12 mes_sign">
+                <svg class="icon bg_color mes tongji_color" aria-hidden="true">
+                    <use xlink:href="#icon-huifu"></use>
+                </svg>&nbsp;&nbsp;
+                基本回复情况统计
+            </div>
+            <div class="col-md-12 chart">
+               模块命中次数趋势图
+                <span class="chart_active radius" onclick="cleck(1)"><a href="javascript:;" >文字回复</a></span>
+                <span class="radius"  onclick="cleck(2)"><a href="javascript:;">图文回复</a></span>
+                <span class="radius"  onclick="cleck(3)"><a href="javascript:;" >图片回复</a></span>
+                <span class="radius"  onclick="cleck(4)"><a href="javascript:;">语音回复</a></span>
+                <span class="radius"  onclick="cleck(5)"><a href="javascript:;">音乐回复</a></span>
+                <span class="radius"  onclick="cleck(6)"><a href="javascript:;">视频回复</a></span>
+            </div>
+            <div class="col-md-12 charts">
+                <div class="col-md-3 right">
+                    <p>总回复规则数</p>
+                    <b id="rule">{$reply_num.num}</b>
+                </div>
+                <div class="col-md-3 right">
+                    <p>今日命中次数</p>
+                    <b id="today">{$reply_num.today}</b>
+                </div>
+                <div class="col-md-3 right">
+                    <p>本月命中次数</p>
+                    <b id="month">{$reply_num.month}</b>
+                </div>
+                <div class="col-md-3 chart_chang">
+                    <a class="display_block" href="javascript:;">
+                        <svg class="icon bg_color mes tongji_color" aria-hidden="true">
+                            <use xlink:href="#icon-sousuo1"></use>
+                        </svg>&nbsp;&nbsp;
+                        查看回复规则
+                    </a>
+                    <a class="display_block" href="basic_chang.html">
+                        <svg class="icon bg_color mes tongji_color" aria-hidden="true">
+                            <use xlink:href="#icon-jia"></use>
+                        </svg>&nbsp;&nbsp;
+                        新增回复规则
+                    </a>
+                </div>
+                <div id="mains" class="col-md-12" style="height:400px;">
+            </div>
+</div>
+</div>
+        </div>
+    </div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+//关键指标详解
+    var myChart = echarts.init(document.getElementById('main'));
+option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['新关注人数','取消关注人数','净增人数','累积关注人数']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: {$follow_num['name']},
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'新关注人数',
+            type:'line',
+            data:{$follow_num['follow']}
+        },
+        {
+            name:'取消关注人数',
+            type:'line',
+            data:{$follow_num['cancel']}
+        },
+        {
+            name:'净增人数',
+            type:'line',
+            data:{$follow_num['growth']}
+        },
+        {
+            name:'累积关注人数',
+            type:'line',
+            data:{$follow_num['total']}
+        },
+    ]
+};
+
+myChart.setOption(option);
+//
+replay();
+
+function cleck(type){
+    $('.chart>span').removeClass('chart_active');
+    $('.chart>span').eq(type-1).addClass('chart_active');
+    var uniacid = '{$uniacid}';
+    $.ajax({
+        cache: true,
+        type: "POST",
+        url  :'{:url('ajax_tj')}',
+        data: {type:type,uniacid:uniacid},
+        async: false,
+        success: function(data) {
+            var name = JSON.parse(data.name);
+            var count = JSON.parse(data.count);
+            console.log(count);
+            var a = echarts.init(document.getElementById('mains'));
+            $('#rule').text(data.num);
+            $('#month').text(data.month);
+            $('#today').text(data.today);
+            b = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data:name
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name:'命中数',
+                        type:'line',
+                        data:count
+                    },
+                ]
+            };
+            a.setOption(b);
+        }
+    });
+}
+
+
+function replay(){
+    var a = echarts.init(document.getElementById('mains'));
+    b = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data:{$reply_num['name']}
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'命中数',
+                type:'line',
+                data:{$reply_num['count']}
+            },
+        ]
+    };
+    a.setOption(b);
+}
+</script>
+</html>

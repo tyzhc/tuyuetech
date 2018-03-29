@@ -1,0 +1,118 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>操作人员权限</span>
+        </a>
+    </div>
+</div>
+<div class="col-md-12 sign  main-padding">
+    <form action="{:url('authority')}" method="post">
+    <div class="white_bg radius sign-main row">
+        <!--<div class="">-->
+        <div class="col-md-12 tab_box radius users_shai bg_color radius size_16">
+            未指定权限公众号默认拥有全部权限
+        </div>
+        <div class="col-md-12" style="height:20px;"></div>
+                {volist name="menus" id="vo"}
+                <div class="col-md-12 checkbox aut">
+                    <input class="basic_lis" type="checkbox" value="{$vo.id}" {if condition="(in_array($vo.id,$authority))"}checked{/if}>&nbsp;{$vo.name}
+                </div>
+                <div class="basics row chec">
+                    {volist name="$vo.count" id="vo1"}
+
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="{$vo1.id}"  {if condition="(in_array($vo1.id,$authority))"}checked{/if}>&nbsp;{$vo1.name}
+                    </div>
+                    {/volist}
+                </div>
+                {/volist}
+                <div class="col-md-12">
+                    <input type="hidden" id="id" value="{$id}">
+                    <input type="button" class="bg white tijiao radius" value="提交" name="" onclick="sub()">
+                    <br><br>
+                </div>
+        <!--</div>-->
+    </div>
+    </form>
+</div>
+<!---->
+</div>
+<!--弹框-->
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    $('.basic_lis').bind('click',function(){
+        if ($(this).is(":checked")) {
+            $(this).attr('checked','checked');
+           $(this).parent('div').next().children().children('input').prop('checked','checked');
+        }else{
+            $(this).removeAttr('checked');
+            $(this).parent('div').next().children().children('input').removeAttr('checked');
+        }
+    })
+    function sub(){
+        var array = new Array();
+        var y = 0;
+        for(var x=0;x<$('.aut').length;x++){
+            if($('.chec').eq(x).children().children('input').is(':checked')){
+                var arring='';
+                var arr='';
+                var str=$('.chec').eq(x).children().children('input:checked');
+                $('.aut>input').eq(x).val();
+                for(var i=0;i<str.length;i++){
+                   arr = str.map(function() { return $(this).attr('value')}).get();
+                    arring=[ $('.aut>input').eq(x).val(),arr];
+                }
+                array[y] = arring;
+                y++;
+            }
+        }
+        var count = JSON.stringify(array);
+        var uniacid = $('#id').val();
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: '{:url('authority')}',
+            data: {uniacid:uniacid,count:count},
+            async: false,
+            success: function (data) {
+                res = JSON.parse(data);
+                console.log(data);
+                if(res['type']==1){
+                    alert(res['success']);
+                    window.location.href = "{:url('wechat/index/sign')}";
+                }else{
+                    alert(res['errcode']);
+                }
+            }
+        });
+        console.log(array);
+//        var arr='';
+//        for(var i=0;i<inpu.length;i++){
+////            console.log(inpu.eq(i).val());
+//            arr+=inpu.eq(i).val()+',';
+//        }
+//        console.log(arr);
+    }
+</script>
+</html>

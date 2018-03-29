@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="_CSS_/login.css">
+</head>
+<body>
+  <div class="login-top"></div>
+  <div class="login-center">
+    <div class="login-left">
+        <img src="__IMG__/login.png">
+    </div>
+      <form action="{:url('login')}" method="post" enctype="multipart/form-data">
+      <div class="login-right">
+          <h1>途阅综合管理平台</h1>
+          <!---->
+          <div class="denglv radius">
+
+          </div>
+          <div class="denglu">
+                <div class="radius">
+                    <img src="__IMG__/login (1).png">
+                    <input type="text" placeholder="请输入用户名" name="user_name">
+                </div>
+              <p></p>
+              <div class="radius">
+                  <img src="__IMG__/login (2).png">
+                  <input type="password" placeholder="请输入密码" name="user_passwd">
+              </div>
+              <p class="forget">
+                  <a href="javascript:;">
+                      忘记密码？
+                  </a>
+              </p>
+              <input type="submit" value="登录" class="radius">
+          </div>
+      </div>
+      </form>
+  </div>
+  <div class="login-bottom"></div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<script src="_JS_/laydate.js"></script>
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/users.html" class="white">
+            <span>用户管理</span>
+        </a>
+    </div>
+</div>
+<!--用户列表-->
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <!--用户列表按钮-->
+        <div class="col-md-12 mes_sign users_name center">
+            <a class="col-md-1 bg_color" href="users.html">
+                用户管理
+            </a>
+            <a class="col-md-1 bg_color" href="add_users.html">
+                添加用户
+            </a>
+            <a class="col-md-1 bg white radius " href="users_chang.html">
+                编辑用户
+            </a>
+            <a class="col-md-1 bg_color" href="users_saw.html">
+               查看用户权限
+            </a>
+        </div>
+        <!--添加新用户-->
+        <div class="col-md-12  addusers_name">
+            编辑用户基本材料
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">用户名</label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius add_user_name" placeholder="admin" name="" maxlength="15">
+                <span class="gray">当前编辑的用户名</span>
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">密码</label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius pass_one" placeholder="" name="" maxlength="8">
+                <span class="gray">请填写密码，长度为 8 个字符。如果不更改密码此处请留空</span>
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">确认密码</label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius pass_two" placeholder="" name="" onblur="true_pass()">
+                <span class="gray">重复输入密码，确认正确输入。如果不更改密码此处请留空</span>
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">服务时间</label>
+            <div class="col-md-9">
+                <span class="red weight">开始时间：1970-01-01	~~ 到期时间：永久有效</span><br>
+                <span class="gray">重复输入密码，确认正确输入。如果不更改密码此处请留空</span>
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">设置到期时间</label>
+            <div class="col-md-9 date_dao" onchange="date_dao()">
+                <input type="radio" name="date" value="1">设置期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="date" value="2" checked>永久<br>
+            </div>
+            <div class="col-md-9 date_daos">
+                <input type="text" class="li_H radius pass_two" placeholder="" name=""  onclick="laydate()">
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">所属用户组</label>
+            <div class="col-md-9">
+                <select class="li_H radius add_user_chang">
+                    <option value="">请选择所属用户组</option>
+                    <option value="1">体验用户组</option>
+                    <option value="2">白金用户组</option>
+                    <option value="3">黄金用户组</option>
+                </select>
+                <span class="gray">分配用户所属用户组后，该用户会自动拥有此用户组内的模块操作权限</span><br>
+                <span class="red weight">设置用户组后，系统会根据对应用户组的服务期限对用户的服务开始时间和结束时间进行初始化</span>
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">备注</label>
+            <div class="col-md-9">
+                <textarea class="li_H radius cun_huifus_1" placeholder="" name=""></textarea>
+                <span class="gray">方便注明此用户的身份</span>
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">上次登陆时间</label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius" placeholder="" name="">
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">上次登陆IP</label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius" placeholder="" name="">
+            </div>
+        </div>
+        <div class="col-md-12  addusers_name">
+            编辑用户基本材料
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">真实姓名:<span class="red">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius"  name="">
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">昵称:<span class="red">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius"  name="">
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">QQ号:</label>
+            <div class="col-md-9">
+                <input type="text" class="li_H radius"  name="">
+            </div>
+        </div>
+        <div class="col-md-12 add_use_lis">
+            <label class="col-md-2 rights">&nbsp;</label>
+            <div class="col-md-9">
+                <input type="button" class="radius bg white true" value="保存用户资料">
+                <input type="button" class="radius true li_H" value="查看当前用户操作权限">
+            </div>
+        </div>
+
+    </div>
+</div>
+<!---->
+</div>
+</div>
+</body>
+</html>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    function  date_dao(){
+        if($('.date_dao>input:checked').val()=='1'){
+            $('.date_daos').show();
+        }else{
+            $('.date_daos').hide();
+        }
+    }
+</script>

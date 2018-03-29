@@ -1,0 +1,96 @@
+{include file="./public/public/video_chang.html" /}
+<div class="col-md-12 border">
+    <from>
+        <div class="col-md-12 rep_shai">
+            <label>修改回复规则</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="gray">删除，修改规则、关键字以及回复后，请提交以保存操作！</span>
+        </div>
+        <div class="col-md-12 ans_mes">
+            <label class="col-md-2">回复规则名称</label>
+            <div class="col-md-6">
+                <input type="text" class="li_H radius" placeholder="请输入回复规则的名称" name="">
+                <span class="gray">您可以给这条规则起一个名字，方便下次修改和查看。</span><br>
+                <span class="red">选择高级设置：将会提供一系列的高级选项供专业用户使用。</span>
+            </div>
+            <div class="col-md-4 shezhi">
+                <input type="checkbox" class="advanced" name="">&nbsp;&nbsp;高级设置
+            </div>
+        </div>
+        <div class="col-md-12 ans_mes zhuangtai">
+            <label class="col-md-2 chang_hide">状态</label>
+            <div class="col-md-10 chang_hide">
+                <input type="radio" name="zhuangtai" checked>&nbsp;&nbsp;启用
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="zhuangtai">&nbsp;&nbsp;禁用
+            </div>
+            <label class="col-md-2 chang_hide">置顶回复</label>
+            <div class="col-md-10 chang_hide">
+                <input type="radio" name="radio">&nbsp;&nbsp;置顶
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="radio">&nbsp;&nbsp;普通
+            </div>
+            <label class="col-md-2">触发关键字</label>
+            <div class="col-md-6">
+                <input type="text" class="li_H radius" placeholder="请输入触发关键字">
+                <span class="gray">当用户的对话内容符合以上的关键字定义时，会触发这个回复定义。多个关键字请使用逗号隔开。</span>
+            </div>
+        </div>
+        <!---->
+        <div class="col-md-12">
+            <label>回复内容</label>
+        </div>
+        <div class="col-md-12 ans_mes zhuangtai pic_ans">
+            <label class="col-md-2">视频标题</label>
+            <div class="col-md-6">
+                <input type="text" class="li_H radius pic_biaoti" placeholder="添加视频消息的标题" name="">
+            </div>
+            <label class="col-md-4">&nbsp;</label>
+            <!---->
+            <label class="col-md-2">视频链接</label>
+            <div class="col-md-6 pic_aning">
+                <div class="input-group">
+                    <input type="text" class="form-control li_H radius " id="text" name="" >
+                    <span class="input-group-btn">
+                        <button href="" class="btn btn-default" type="button" id="count">
+                            选择媒体文件
+                        </button>
+                    </span>
+                </div>
+                <span class="gray">请上传触发关键字时所要回复的视频，上传视频必须是MP4类型</span>
+                <input type="file" id="" class="pic_an speech_an" name="" accept="video/mp4">
+            </div>
+            <label class="col-md-4"><br><br></label>
+            <!---->
+            <label class="col-md-2">视频描述</label>
+            <div class="col-md-8 pic_aning">
+                <textarea class="li_H radius music_miaoshu_1" placeholder="添加视频音乐消息的简短描述" name=""></textarea>
+                <span class="gray">描述内容将出现在视频名称下方，建议控制在20个汉字以内最佳</span>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <input type="submit" class="bg white tijiao radius" value="提交" name="">
+            <br><br>
+        </div>
+    </from>
+</div>
+</div>
+</div>
+</div>
+<!---->
+</div>
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    $('.advanced').bind('click',function(){
+        if ($(this).is(":checked")) {
+            $('.chang_hide').show();
+            $(this).attr("checked", true);
+        }else{
+            $('.chang_hide').hide();
+            $(this).attr("checked", false);
+        }
+    });
+</script>
+</html>

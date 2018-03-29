@@ -1,0 +1,558 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<link href="_CSS_/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all" href="_CSS_/daterangepicker-bs3.css"/>
+<script type="text/javascript" src="_JS_/moment.js"></script>
+<script type="text/javascript" src="_JS_/daterangepicker.js"></script>
+<!--<script type="text/javascript" src="_JS_/jquery.min.js"></script>-->
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>粉丝管理</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+<div class="col-md-12">
+    <!--用户列表按钮-->
+    <div class="col-md-12 mes_sign users_name center basicing">
+        <a class='col-md-1 radius bg white' href="follower.html">
+           粉丝列表
+        </a>
+        <a class='col-md-1 radius bg_color' href="grouping.html">
+            粉丝分组
+        </a>
+    </div>
+    <div class="col-md-12 border">
+        <div class="col-md-12 rep_shai">
+            <label>筛选</label>
+        </div>
+        <form action="{:url('follower')}" method="post" enctype="multipart/form-data" id="form1">
+        <div class="col-md-12 ans_mes">
+            <label class="col-md-2">昵称/OpenId</label>
+            <div class="col-md-6">
+                <input type="text" class="li_H radius" name="openid" value="{if condition="(!empty($form) && !empty($form.openid))"}{$form.openid}{/if}">
+            </div>
+        </div>
+        <div class="col-md-12 ans_mes zhuangtai">
+            <label class="col-md-2">是否关注</label>
+            <div class="col-md-10">
+                <input type="radio" name="type" value="1" {if condition="(!empty($form.type))"}{if condition="($form.type==1)"}checked{/if}{else}checked{/if}>&nbsp;&nbsp;已关注
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="type" value="0" {if condition="(!empty($form.type) && $form.type==2)"}checked{/if}>&nbsp;&nbsp;取消关注
+            </div>
+        </div>
+        <div class="col-md-12 ans_mes zhuangtai">
+            <label class="col-md-2">标签</label>
+            <div class="col-md-2">
+               <select class="li_H radius sel" name="create">
+                   <option value="">请选择</option>
+                   {volist name="create" id="data"}
+                   <option value="{$data.create_id}" {if condition="(!empty($form) && !empty($form.create) && $data.create_id == $form.create)"} selected {/if}>{$data.name}</option>
+                   {/volist}
+               </select>
+            </div>
+        </div>
+        <div class="col-md-12 ans_mes zhuangtai">
+            <label class="col-md-2">关注/取消关注时间</label>
+            <div class="col-md-2">
+                <div id="reportrange2" class="radius li_H rep_names" style="display: inline-block; background: #fff; cursor: pointer; padding: 0px 10px; border: 1px solid #ccc">
+                    <span></span> <b class="caret"></b>
+                </div>
+                <input type="hidden" name="time">
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var str=new Date();
+                    {if condition="(!empty($form) && !empty($form.time))"}
+                    $('#reportrange2 span').html('{$form.time}');
+                    {else}
+                    $('#reportrange2 span').html(str.getFullYear()+'-'+(str.getMonth()+1)+'-'+str.getDate()+'&nbsp;至&nbsp;'+str.getFullYear()+'-'+(str.getMonth()+1)+'-'+str.getDate());
+                    {/if}
+                    $('#reportrange2').daterangepicker();
+                    $('.applyBtn').attr('onclick','date()');
+                });
+                function date(){
+                    $('#reportrange2 span').html($('input[name="daterangepicker_start"]').val()+'&nbsp;至&nbsp;'+$('input[name="daterangepicker_end"]').val());
+                    $('input[name=time]').val($('input[name="daterangepicker_start"]').val()+'~'+$('input[name="daterangepicker_end"]').val());
+                };
+            </script>
+            <div class="col-md-8 foll_sear">
+                <input type="submit" class="radius white bg" value="&nbsp;搜索&nbsp;">
+                <br><br>
+            </div>
+
+        </div>
+        </form>
+        <!---->
+        <div class="col-md-12 xian"></div>
+        <div class="col-md-12 shai_lis display_block foll_lis">
+            <!---->
+        <table class="col-md-12 foll_tab">
+            <tr>
+                <th style="width:2%"><input type="checkbox" name="" class="allcheck"></th>
+                <th>头像</th>
+                <th>昵称</th>
+                <!--<th>对应用户</th>-->
+                <th>用户标签</th>
+                <th>是否关注</th>
+                <th>关注/取消时间</th>
+                <th style="width:25%">操作</th>
+            </tr>
+            {volist name="user" id="vo"}
+            <tr>
+                <td><input type="checkbox" name="checkbox[]" value="{$vo.id}"></td>
+                <td><img src="{$vo.headimgurl}" class="radius" width="50px" height="50px"></td>
+                <td>{$vo.nickname}</td>
+                <!--<td>对应用户名称1</td>-->
+                <td>
+                    {if condition="(empty($vo.create))"}
+                    无标签
+                    {else}
+                    {volist name="vo.create" id="vo1"}
+                        {$vo1.name}
+                    {/volist}
+                    {/if}
+                </td>
+                <td>
+                    {if condition="$vo.subscribe eq 1"}
+                    <span class="white greens radius">已关注 </span>
+                    {else /}
+                    <span class="white reds radius">未关注 </span>
+                    {/if}
+                </td>
+                <td>{:date('Y-m-d H:i:s',$vo.subscribe_time)}</td>
+                <td>
+                    <!--<a href="javascript:;" class="bg_color radius">发送消息</a>-->
+                    <a href="javascript:;" class="black radius" data-toggle="modal" data-target="#myModalSaw" onclick="user({$vo.id})">查看详情</a>
+                    <a href="javascript:;" class="yellow radius" data-toggle="modal" data-target="#myModals" onclick="create({$vo.id})">添加标签</a>
+                </td>
+            </tr>
+            {/volist}
+            <!---->
+            <tr class="rights">
+                <td colspan="7" class="foll_pi">
+                    <a href="javascript:;" class="bg_color radius" data-toggle="modal" data-target="#AllmyModals">批量添加标签</a>
+                    <a href="javascript:;" class="black radius" id="user_select">同步选中粉丝信息</a>
+                    <a href="javascript:;" class="black radius" id="whole">同步全部粉丝信息</a>
+                    <a href="javascript:;" class="red radius deling" id="del">删&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7" >
+                    {$page}
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div class="col-md-12 xian"></div>
+        <span class="gray">同步粉丝信息： 选定粉丝后，访问公众平台获取特定粉丝的相关资料，如果已对应用户，那么将会把未登记的资料填充至关联用户，需要为认证微信服务号。</span>
+        <br><br><br><br><br>
+    </div>
+</div>
+</div>
+</div>
+<!---->
+</div>
+<!--弹框-->
+<div class="modal fade addbq"  id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg white">
+                添加标签
+                <button type="button" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-12 seven_size">
+                    <label class="col-md-4 center">标签名称</label>
+                    <div class="col-md-7">
+                        <input type="hidden" id="ids" value="">
+                        <select class="radius li_H sel" style="border: 1px solid #898a8a !important;" id="select">
+                            <option value="">请选择</option>
+                            {volist name="create" id="data"}
+                            <option value="{$data.create_id}">{$data.name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12 center">
+                    <input type="button" value="保 &nbsp; &nbsp;存" class="bg white radius foll_tj" onclick="user_tj()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--查看详情-->
+<div class="modal fade addbq folsaw_Saw" id="myModalSaw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg white">
+                添加标签
+                <button type="button" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-12 rights">
+                    公众号：{$wechat.name}
+                </div>
+                <div class="col-md-12  fol_saw">
+                    <img class="col-md-3" src="__IMG__/QR.jpg" id="pic">
+                    <div class="col-md-9 seven_size zhuangtai">
+                        <label class="col-md-2 center">对应会员</label>
+                        <div class="col-md-5" id="user_name">
+                           会员名称
+                        </div>
+                        <div class="col-md-4" id="gz">
+                            <label>是否关注</label>&nbsp;&nbsp;<span class="white greens radius">已订阅</span>
+                        </div>
+                        <label class="col-md-2 center">粉丝编号</label>
+                        <div class="col-md-10" id="openid">
+                            11111111111111111
+                        </div>
+                        <label class="col-md-2 center">关注时间</label>
+                        <div class="col-md-8" id="time">
+                            2017-12-13 12:12:12
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 center">
+                    <input type="button" value="返 &nbsp; &nbsp;回" class="bg white radius foll_tj" data-dismiss="modal" aria-label="Close">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--批量添加标签-->
+<div class="modal fade addbq" id="AllmyModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg white">
+                批量添加标签
+                <button type="button" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-12 seven_size">
+                    <label class="col-md-4 center">标签名称</label>
+                    <div class="col-md-7">
+                        <input type="hidden" id="ids" value="">
+                        <select class="radius li_H sel" style="border: 1px solid #898a8a !important;" id="select1">
+                            <option value="">请选择</option>
+                            {volist name="create" id="data1"}
+                            <option value="{$data1.create_id}">{$data1.name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12 center">
+                    <input type="button" value="保 &nbsp; &nbsp;存" class="bg white radius foll_tj" onclick="add_users()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--<script src="_JS_/bootstrap.min.js"></script>-->
+<script>
+    function add_zu(){
+        $('.rouping').show();
+        $('.add_zu').show();
+    }
+    function del_zu(){
+        $('.rouping').hide();
+        $('.add_zu').hide();
+    }
+    function foll_tj(){
+        $('.rouping').hide();
+        $('.add_zu').hide();
+    }
+//
+    $('#user_select').click(function(){
+        var obj=document.getElementsByName('checkbox[]');
+        var s='';
+        for(var i=0; i<obj.length; i++){
+            if(obj[i].checked){
+                s+=obj[i].value+','; //如果选中，将value添加到变量s中
+            }
+        }
+        if(s!=''){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url  :'{:url('follower_action')}',
+                data: {type:1,id:s},
+                async: false,
+                success: function(data) {
+                    console.log(data);
+                    res = JSON.parse(data);
+                    if(res['type']==1){
+                        alert(res['success']);
+                        window.location.reload();
+                    }else{
+                        alert('同步出错，'+res['errcode'])
+                    }
+                }
+            });
+        }else{
+            alert('请选择同步的粉丝!');
+        }
+    })
+
+     function user(id){
+         $.ajax({
+             cache: true,
+             type: "POST",
+             url  :'{:url('users')}',
+             data: {id:id},
+             async: false,
+             success: function(data) {
+                 console.log(data);
+                 res = JSON.parse(data);
+                 if(res['type']==1){
+                    $('#pic').attr('src',res['count']['headimgurl']);
+                    $('#user_name').text(res['count']['nickname']);
+                    $('#openid').text(res['count']['openid']);
+//                    $('#time').text(res['count']['subscribe_time']);
+                     if(res['count']['subscribe']==1){
+                         $('#gz').html('<label>是否关注</label>&nbsp;&nbsp;<span class="white greens radius">已关注</span>');
+                     }else{
+                         $('#gz').html('<label>是否关注</label>&nbsp;&nbsp;<span class="white reds radius">未关注 </span>');
+                     }
+                    $('#time').text(new Date(parseInt(res['count']['subscribe_time']) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '));
+                 }else{
+                     alert('添加出错，'+res['errcode'])
+                 }
+             }
+         });
+    }
+
+
+    function add_users(){
+        var obj=document.getElementsByName('checkbox[]');
+        var s='';
+        var select1 = $('#select1').val();
+        for(var i=0; i<obj.length; i++){
+            if(obj[i].checked){
+                s+=obj[i].value+','; //如果选中，将value添加到变量s中
+            }
+        }
+        if(s!='' && select1!=""){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url  :'{:url('create_users')}',
+                data: {count:select1,id:s},
+                async: false,
+                success: function(data) {
+                    console.log(data);
+                    res = JSON.parse(data);
+                    if(res['type']==1){
+                        alert(res['success']);
+                        window.location.reload();
+                    }else{
+                        alert('添加出错，'+res['errcode'])
+                    }
+                }
+            });
+        }else{
+            alert('请选择添加标签的粉丝!');
+        }
+    }
+
+    function create(id){
+        $('#ids').val(id);
+    }
+
+    function user_tj(){
+        var id = $('#ids').val();
+        var select = $('#select').val();
+        if(id!='' && select!=""){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url  :'{:url('create_user')}',
+                data: {id:id,select:select},
+                async: false,
+                success: function(data) {
+                    console.log(data);
+                    res = JSON.parse(data);
+                    if(res['type']==1){
+                        alert(res['success']);
+                        window.location.reload();
+                    }else{
+                        alert('同步出错，'+res['errcode'])
+                    }
+                }
+            });
+        }
+    }
+    
+
+    $('#whole').click(function(){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url  :'{:url('follower_action')}',
+                data: {type:2},
+                async: false,
+                success: function(data) {
+                    console.log(data);
+                    res = JSON.parse(data);
+                    if(res['type']==1){
+                        alert(res['success']);
+                        window.location.reload();
+                    }else{
+                        alert('同步出错，'+res['errcode'])
+                    }
+                }
+            });
+    })
+
+    $('#del').click(function() {
+        var r=confirm("确定删除么，此项删除只会删除系统中的数据！若删除，系统将不会显示此人的数据，请谨慎操作！")
+        if (r==true)
+        {
+            var obj=document.getElementsByName('checkbox[]');
+            var s='';
+            for(var i=0; i<obj.length; i++){
+                if(obj[i].checked){
+                    s+=obj[i].value+','; //如果选中，将value添加到变量s中
+                }
+            }
+            if(s!=''){
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url  :'{:url('user_del')}',
+                    data: {id:s},
+                    async: false,
+                    success: function(data) {
+                       if(data == 1){
+                            alert('删除成功！');
+                            window.location.reload();
+                       }else{
+                            alert('删除失败!')
+                       }
+                    }
+                });
+            }else{
+                alert('请选择要删除的粉丝!');
+            }
+        }
+    })
+//    全选
+    $('.allcheck').click(function(){
+        var CheckBox=$('input[type=checkbox]');
+        if($(this).is(':checked') ){
+            for(i=0;i<CheckBox.length;i++){
+                CheckBox[i].checked=true;
+            };
+        }else{
+            for(i=0;i<CheckBox.length;i++){
+                CheckBox[i].checked=false;
+            };
+        }
+    });
+//    查看详情
+    function foll_saw() {
+        $('.rouping').show();
+        $('.addbq').show();
+    }
+    function del_qian(){
+        $('.rouping').hide();
+        $('.addbq').hide();
+    }
+    function foll_bq(){
+        $('#myModals').hide();
+        $('#myModals').removeClass('in');
+        $('.in').remove();
+    }
+</script>
+</html>
+<div class="rouping hides">
+</div>
+<div class="roupings radius add_zu hides">
+    <h3 class="bg white">
+        创建新粉丝组
+        <svg class="icon border_radius white white dels foll_del" aria-hidden="true" onclick="del_zu()">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete2"></use>
+        </svg>
+    </h3>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="col-md-3">粉丝组名称</label>
+            <div class="col-md-8">
+                <input type="text" class="li_H radius" placeholder="请输入粉丝组名称" name="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-3 zhuangtai">粉丝组标签</label>
+            <div class="col-md-8 zhuangtai">
+                <input type="text" class="li_H radius" placeholder="请输入粉丝组标签" name="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-3 zhuangtai">粉丝组描述</label>
+            <div class="col-md-8 zhuangtai">
+                <textarea class="li_H radius" placeholder="请输入粉丝组描述"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12 center">
+            <input type="button" value="提交" class="bg white radius foll_tj" onclick="foll_tj()">
+        </div>
+
+    </div>
+</div>
+<!--查看详情-->
+<div class="roupings addbq hides">
+    <h3 class="bg white">
+        添加标签
+        <svg class="icon dels foll_del" aria-hidden="true" onclick="del_qian()">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+        </svg>
+    </h3>
+    <div class="row">
+        <div class="col-md-12 seven_size">
+            <label class="col-md-4">标签名称</label>
+            <div class="col-md-7">
+                <select class="radius li_H sel">
+                    <option value="">请选择</option>
+                    <option value="1">标签</option>
+                    <option value="1">标签</option>
+                    <option value="1">标签</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12 center">
+            <input type="button" value="提交" class="bg white radius foll_tj" onclick="foll_bq()">
+        </div>
+    </div>
+</div>

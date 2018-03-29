@@ -1,0 +1,270 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<link href="_CSS_/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all" href="_CSS_/daterangepicker-bs3.css"/>
+<script type="text/javascript" src="_JS_/moment.js"></script>
+<script type="text/javascript" src="_JS_/daterangepicker.js"></script>
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>粉丝管理</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+<div class="col-md-12">
+    <!--用户列表按钮-->
+    <div class="col-md-12 mes_sign users_name center basicing">
+        <a class='col-md-1 radius bg white' href="javascript:;">
+           粉丝列表
+        </a>
+        <a class='col-md-1 radius bg_color' href="javascript:;">
+            粉丝分组
+        </a>
+    </div>
+    <div class="col-md-12 border">
+        <div class="col-md-12 rep_shai">
+            <label>筛选</label>
+        </div>
+        <div class="col-md-12 ans_mes">
+            <label class="col-md-2">昵称/OpenId</label>
+            <div class="col-md-6">
+                <input type="text" class="li_H radius"" name="">
+            </div>
+        </div>
+        <div class="col-md-12 ans_mes zhuangtai">
+            <label class="col-md-2">是否关注</label>
+            <div class="col-md-10">
+                <input type="radio" name="guanzhu" checked>&nbsp;&nbsp;已关注
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="guanzhu" >&nbsp;&nbsp;取消关注
+            </div>
+        </div>
+        <div class="col-md-12 ans_mes zhuangtai">
+            <label class="col-md-2">标签</label>
+            <div class="col-md-2">
+               <select class="li_H radius sel">
+                   <option value="">请选择</option>
+                   <option value="1">标签</option>
+               </select>
+            </div>
+        </div>
+        <div class="col-md-12 ans_mes zhuangtai">
+            <label class="col-md-2">关注/取消关注时间</label>
+            <div class="col-md-2">
+                <div id="reportrange2" class="radius li_H rep_names" style="display: inline-block; background: #fff; cursor: pointer; padding: 0px 10px; border: 1px solid #ccc">
+                    <span></span> <b class="caret"></b>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var str=new Date();
+                    $('#reportrange2 span').html(str.getFullYear()+'-'+(str.getMonth()+1)+'-'+str.getDate()+'&nbsp;至&nbsp;'+str.getFullYear()+'-'+(str.getMonth()+1)+'-'+str.getDate());
+                    $('#reportrange2').daterangepicker();
+                    $('.applyBtn').attr('onclick','date()');
+                });
+                function date(){
+                    $('#reportrange2 span').html($('input[name="daterangepicker_start"]').val()+'&nbsp;至&nbsp;'+$('input[name="daterangepicker_end"]').val());
+                };
+            </script>
+            <div class="col-md-8 foll_sear">
+                <a href="javascript:;" class="radius white bg">搜索</a>
+                <br><br>
+            </div>
+
+        </div>
+        <!---->
+        <div class="col-md-12 xian"></div>
+        <div class="col-md-12 shai_lis display_block foll_lis">
+            <!---->
+        <table class="col-md-12 foll_tab">
+            <tr>
+                <th style="width:2%"><input type="checkbox" name=""></th>
+                <th>头像</th>
+                <th>昵称</th>
+                <th>对应用户</th>
+                <th>用户标签</th>
+                <th>是否关注</th>
+                <th>关注/取消时间</th>
+                <th style="width:18%">操作</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name=""></td>
+                <td><img src="__IMG__/QR.jpg" class="radius" width="60px" height="60px"></td>
+                <td>昵称1</td>
+                <td>对应用户名称1</td>
+                <td>无标签</td>
+                <td><span class="white reds radius">未关注 </span></td>
+                <td>2017-12-07 12:12:12</td>
+                <td>
+                    <a href="javascript:;" class="bg_color radius">发送消息</a>
+                    <a href="javascript:;" class="black radius">查看详情</a>
+                    <a href="javascript:;" class="yellow radius">添加标签</a>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name=""></td>
+                <td><img src="__IMG__/QR.jpg" class="radius" width="60px" height="60px"></td>
+                <td>昵称1</td>
+                <td>对应用户名称1</td>
+                <td>无标签</td>
+                <td><span class="white greens radius">已关注 </span></td>
+                <td>2017-12-07 12:12:12</td>
+                <td>
+                    <a href="javascript:;" class="bg_color radius">发送消息</a>
+                    <a href="javascript:;" class="black radius">查看详情</a>
+                    <a href="javascript:;" class="yellow radius">添加标签</a>
+                </td>
+            </tr>
+            <!---->
+            <tr class="rights">
+                <td colspan="8" class="foll_pi">
+                    <a href="javascript:;" class="bg_color radius">批量添加标签</a>
+                    <a href="javascript:;" class="black radius">同步选中粉丝信息</a>
+                    <a href="javascript:;" class="black radius">同步全部粉丝信息</a>
+                    <a href="javascript:;" class="red radius deling">删&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除</a>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div class="col-md-12 xian"></div>
+        <span class="gray">同步粉丝信息： 选定粉丝后，访问公众平台获取特定粉丝的相关资料，如果已对应用户，那么将会把未登记的资料填充至关联用户，需要为认证微信服务号。</span>
+        <br><br><br><br><br>
+    </div>
+    <div class="col-md-12 border hides">
+        <div class="col-md-12 rep_shai">
+            <label>分组管理</label>
+        </div>
+        <!---->
+        <div class="col-md-12 shai_lis display_block foll_lis">
+            <!---->
+            <table class="col-md-12 foll_tab">
+                <tr>
+                    <th>粉丝组名称</th>
+                    <th>粉丝组ID</th>
+                    <th>粉丝组标签</th>
+                    <th>组内粉丝数量</th>
+                    <th style="width:30%">操作</th>
+                </tr>
+                <tr>
+                    <td colspan="5" class="xian foll_zu"></td>
+                </tr>
+                <tr>
+                    <td>粉丝组名称</td>
+                    <td>SCJLDKJLDKJLDKJ</td>
+                    <td>无标签</td>
+                    <td>2342342342</td>
+                    <td>
+                        <a href="javascript:;" class="bg_color radius">编&nbsp;&nbsp;辑</a>
+                        <a href="javascript:;" class="yellow radius">添加标签</a>
+                        <a href="javascript:;" class="black radius">查看详情</a>
+                        <a href="javascript:;" class="red radius">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>粉丝组名称</td>
+                    <td>SCJLDKJLDKJLDKJ</td>
+                    <td>无标签</td>
+                    <td>2342342342</td>
+                    <td>
+                        <a href="javascript:;" class="bg_color radius">编&nbsp;&nbsp;辑</a>
+                        <a href="javascript:;" class="yellow radius">添加标签</a>
+                        <a href="javascript:;" class="black radius">查看详情</a>
+                        <a href="javascript:;" class="red radius">删除</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-12 rep_shai">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="javascript:;" class="bg_color" onclick="add_zu()">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-jia1"></use>
+                </svg>&nbsp;添加新分组
+            </a>
+        </div>
+        <br><br><br><br><br>
+    </div>
+</div>
+</div>
+</div>
+<!---->
+</div>
+<!--弹框-->
+<div class="rouping hides">
+</div>
+<div class="roupings hides">
+    <h3 class="bg white">
+        创建新粉丝组
+        <svg class="icon border_radius white dels foll_del" aria-hidden="true" onclick="del_zu()">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete2"></use>
+        </svg>
+    </h3>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="col-md-3">粉丝组名称</label>
+            <div class="col-md-8">
+                <input type="text" class="li_H radius" placeholder="请输入粉丝组名称" name="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-3 zhuangtai">粉丝组标签</label>
+            <div class="col-md-8 zhuangtai">
+                <input type="text" class="li_H radius" placeholder="请输入粉丝组标签" name="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-3 zhuangtai">粉丝组描述</label>
+            <div class="col-md-8 zhuangtai">
+                <textarea class="li_H radius" placeholder="请输入粉丝组描述"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12 center">
+          <input type="button" value="提交" class="bg white radius foll_tj" onclick="foll_tj()">
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    function add_zu(){
+        $('.rouping').show();
+        $('.roupings').show();
+    }
+    function del_zu(){
+        $('.rouping').hide();
+        $('.roupings').hide();
+    }
+    function foll_tj(){
+        $('.rouping').hide();
+        $('.roupings').hide();
+    }
+//
+    $('.basicing>a').click(function(){
+        $('.border').addClass('hides')
+        var str=$(this).index()
+        $(this).addClass('bg white').removeClass('bg_color').siblings().addClass('bg_color').removeClass('bg white');
+        $('.border').eq(str).removeClass('hides')
+
+    });
+</script>
+</html>

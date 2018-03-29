@@ -1,0 +1,312 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>操作人员权限</span>
+        </a>
+    </div>
+</div>
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <div class="col-md-12 mes_sign users_name center">
+            <a class="col-md-1 bg white radius" href="users.html">
+                账号操作员列表
+            </a>
+        </div>
+        <div class="col-md-12  addusers_name">
+            设置可操作用户
+        </div>
+        <div class="col-md-12 tab_box radius users_shai bg_color radius size_16">
+            操作员不允许删除公众号和编辑公众号资料，管理员无此限制
+        </div>
+        <div class="col-md-12 radius tab_box users_tabs">
+            <from action="">
+                <table class="users_tab oper_tab">
+                    <tbody>
+                    <tr>
+                        <th>选择</th>
+                        <th>用户ID</th>
+                        <th>用户名</th>
+                        <th>角色</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>admin</td>
+                        <td><span class="greens white radius">创始人</span></td>
+                        <td>创始人拥有系统最高权限</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name=""></td>
+                        <td> 2 </td>
+                        <td>12312312312332123</td>
+                        <td>
+                            <input type="radio" name="jiaose" value="1"> &nbsp;操作员
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="jiaose" value="2"> &nbsp;管理员
+                        </td>
+                        <td>
+                            <a href="users_chang.html" class="radius">编辑用户</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="users_saw.html" class="radius">设置权限</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="javascript:;" class="radius">查看操作权限</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name=""></td>
+                        <td> 2 </td>
+                        <td>12312312312332123</td>
+                        <td>
+                            <input type="radio" name="jiaose" value="1"> &nbsp;操作员
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="jiaose" value="2"> &nbsp;管理员
+                        </td>
+                        <td>
+                            <a href="users_chang.html" class="radius">编辑用户</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="users_saw.html" class="radius">设置权限</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="javascript:;" class="radius">查看操作权限</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="center">分页</td>
+                    </tr>
+                    <tr class="left">
+                        <td colspan="5" class="foll_pi">
+                            <a href="javascript:;" class="bg_color radius" data-toggle="modal" data-target="#myModals">选择账号操作员</a>
+                            <a href="javascript:;" class="black radius" data-toggle="modal" data-target="#add_opera">添加账号操作员</a>
+                            <a href="javascript:;" class="red radius deling opera_" onclick="disp_confirm()">删除选定操作</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </from>
+        </div>
+    </div>
+</div>
+<!---->
+</div>
+<!--弹框-->
+<!--选择用户-->
+<div class="modal fade addbq" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg white">
+                请选择用户
+                <button type="button" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-12">
+                    <label class="col-md-2 center">用户名</label>
+                    <div class="search col-md-10">
+                        <input type="text" class="form-control" id="text" name="" placeholder="根据回复规则搜索" style="border:1px solid #888888 !important">
+                              <span class="input-group-btn">
+                                <button href="" class="btn btn-default" type="button" id="count">
+                                    <span class="glyphicon glyphicon-search bg_color"></span>
+                                </button>
+                              </span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <table class="users_tab oper_tab">
+                        <tbody>
+                        <tr>
+                            <th width="30%">用户名</th>
+                            <th>用户组</th>
+                            <th>说明</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>234</td>
+                            <td><span class="greens white radius">体验用户组</span></td>
+                            <td>123</td>
+                            <td class="rights"><a class="bg_color radius border opera_xuanqv">选取</a></td>
+                        </tr>
+                        <tr>
+                            <td>234</td>
+                            <td><span class="greens white radius">黄金用户组</span></td>
+                            <td>123123</td>
+                            <td class="rights"><a class="bg_color radius border opera_xuanqv">选取</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12 center">
+                    <input type="button" value="保&nbsp; &nbsp;存" class="bg white radius foll_tj" onclick="myM_chang()">
+                    <input type="button" value="取&nbsp; &nbsp;消" class=" white radius foll_tj" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加账号操作员-->
+<div class="modal fade addbq" id="add_opera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg white">
+               添加账号操作员
+                <button type="button" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-12">
+                    <label class="col-md-2 center">用户名</label>
+                    <div class="search col-md-10">
+                        <input type="text" class="form-control" style="border:1px solid #888888 !important">
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label class="col-md-2 center">&nbsp;</label>
+                    <div class="col-md-10 gray">请输入完整的用户名。你需要让新管理员先去注册一个”新账号“，再把他添加进来。</div>
+                </div>
+                <div class="col-md-12 center">
+                    <input type="button" value="确&nbsp; &nbsp;认" class="bg white radius foll_tj" data-toggle="modal" data-target="#add_opera_true_" onclick="add_opera_true_()">
+                    <input type="button" value="取&nbsp; &nbsp;消" class=" white radius foll_tj" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--确认失败-->
+<div class="modal fade addbq" id="add_opera_true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg white">
+               系统提示
+                <button type="button" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-12 seven_size">
+                    <label class="col-md-2 center">
+                        <svg class="icon size_56" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+                        </svg>
+                    </label>
+                    <div class="search col-md-10">
+                        <span class="size_56_H">
+                            用户不存在或已删除
+                        </span>
+                         <span class="hides size_56_H">
+                            123 已经是该公众号的操作员或管理员，请勿重复添加
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-12 center">
+                    <input type="button" value="确&nbsp; &nbsp;认" class="bg white radius foll_tj" onclick="add_opera_true()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--确认成功-->
+<div class="modal fade addbq in" id="add_opera_true_" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg white">
+                系统提示
+                <button type="button" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shanchu"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-12">
+                    <label class="col-md-2 center">
+                        <svg class="icon size_56" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chenggong"></use>
+                        </svg>
+                    </label>
+                    <div class="search col-md-10">
+                        <div class="col-md-12">
+                            <div class="col-md-12 green">添加账号操作员成功</div>
+                            <div class="col-md-12">
+                                <a href="javascript:;" onclick="history.go(0) ">如果你的浏览器在
+                                    <span id="timeout">3</span> 秒后没有自动跳转，请点击此链接
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 center">
+                    <input type="button" value="确&nbsp; &nbsp;认" class="bg white radius foll_tj" class="close dels foll_del" data-dismiss="modal" aria-label="Close">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--<script src="_JS_/bootstrap.min.js"></script>-->
+<script>
+    function myM_chang(){
+        $('.modal-backdrop').css({'transition':'opacity .15s linear','opacity':'0'});
+        setTimeout("$('.modal-backdrop').remove()",150);
+        $('#myModals').hide()
+    }
+    function add_opera_true(){
+        $('.modal-backdrop').css({'transition':'opacity .15s linear','opacity':'0'});
+        setTimeout("$('.modal-backdrop').remove()",150);
+        $('#add_opera_true').hide()
+    }
+    function add_opera_true_(){
+        if($('#add_opera_true_').hasClass('in')==true){
+            var str=$("#timeout").html();
+            console.log(str);
+            var time=setInterval(function(){
+                str--;
+                $("#timeout").html(str)
+                console.log(str);
+                if(str<=0){
+                    clearInterval(time);
+                    $('.modal-backdrop').css({'transition':'opacity .15s linear','opacity':'0'});
+                    setTimeout("$('.modal-backdrop').remove()",150);
+                    $('#add_opera_true_').hide();
+                    $('#add_opera').hide();
+                    history.go(0)
+                }
+            },1000);
+        }
+    }
+
+    function disp_confirm() {
+        if( $('input[type=checkbox]:checked').length>0){
+            var r=confirm("确认删除当前选择的用户?")
+            if (r==true) {
+                $('input[type=checkbox]:checked').parents('tr').remove();
+            }
+        }
+    }
+
+    $('#timeout')
+</script>
+</html>

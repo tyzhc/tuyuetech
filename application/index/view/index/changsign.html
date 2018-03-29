@@ -1,0 +1,210 @@
+{include file="./public/public/header.html"/}
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <a href="/platform/index.php/index/index/index.html" class="white">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-home"></use>
+        </svg>
+        <span>首页</span>
+    </a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+    </div>
+</div>
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <div class="col-md-12">
+            编辑主公众号
+        </div>
+        <div class="col-md-12 changsign_mes bg white">
+            账号基本信息
+            <span></span>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+           <label class="col-md-1">公众平台登录用户&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius">
+                <div class="prompt">请输入你的公众平台用户名</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">公众平台登录密码&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius">
+                <div class="prompt">请输入你的公众平台密码</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">公众号名称&nbsp;<span class="red">*</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius">
+                <div class="prompt">填写公众号的帐号名称</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">描述&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <textarea class="li_H radius"></textarea>
+                <div class="prompt">用于说明此公众号的功能及用途</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">公众号账号&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius">
+                <div class="prompt">填写公众号的帐号，一般为英文帐号</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">原始ID&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius">
+                <div class="prompt">在给粉丝发送客服消息时，原始ID不能为空。建议您完善该选项</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">引导关注素材&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius">
+                <div class="prompt">建议设置一条引导关注的素材链接，为空则跳转回测试起始界面</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">级别&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="radio" name="jibie" value="0">&nbsp;&nbsp;普通订阅号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="jibie" value="1">&nbsp;&nbsp;普通服务号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="jibie" value="2">&nbsp;&nbsp;认证订阅号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="jibie" value="3">&nbsp;&nbsp;认证服务号/认证媒体/政府订阅号
+                <div class="prompt">注意：即使公众平台显示为“未认证”， 但只要【公众号设置】/【账号详情】下【认证情况】显示资质审核通过, 即可认定为认证号</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">公众号接入方式&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="radio" name="jieru" value="0">&nbsp;&nbsp;普通接入&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="jieru" value="1">&nbsp;&nbsp;登录授权
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">APPId&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius appid">
+                <div class="prompt">请填写微信公众平台后台的AppId</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">AppSecret&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius AppSecret">
+                <div class="prompt">请填写微信公众平台后台的AppSecret，只有填写这两项才能管理自定义菜单</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">Oauth 2.0&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11 Oauth">在微信公众号请求用户网页授权之前，开发者需要先到公众平台网站的<b>【开发者中心】网页服务</b>中配置授权回调域名</div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">接口地址&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11">
+                <input type="text" class="li_H  radius" disabled>
+                <div class="prompt">设置“公众平台接口”配置信息中的接口地址</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1 red">Token&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11 pic_up">
+                <input type="text" class="li_H  radius token" disabled>
+                <div class="prompt">与公众平台接入设置值一致，必须为英文或者数字，长度为3到32个字符。 请妥善保管, Token 泄露将可能被窃取或篡改平台的操作数据</div>
+                <button class="pic_upload bg token_chang">
+                    生成新的
+                </button>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1 red">EncodingAESKey&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11 pic_up">
+                <input type="text" class="li_H  radius">
+                <button class="pic_upload bg">
+                    生成新的
+                </button>
+                <div class="prompt">与公众平台接入设置值一致，必须为英文或者数字，长度为43个字符。 请妥善保管， EncodingAESKey 泄露将可能被窃取或篡改平台的操作数据</div>
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">二维码&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11 pic_up">
+                <input type="text" class="li_H  radius QR" disabled>
+                <button class="pic_upload bg">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-shangchuantupian"></use>
+                    </svg>图片上传
+                </button>
+                <input type="file" class="pic_file li_H radius pic_QR" accept="image/jpeg">
+                <div class="prompt">仅支持JPG图片</div>
+                <img id="pic_QR_see" class="display_block radius" src="__IMG__/logo (2).png" width="50px" height="50px">
+            </div>
+        </div>
+        <div class="col-md-12 addsign_menu_inpu changsign_menu_inpu">
+            <label class="col-md-1">头像&nbsp;<span class="red">&nbsp;</span></label>
+            <div class="col-md-11 pic_up">
+                <input type="text" class="li_H  radius IMG" disabled>
+                <button class="pic_upload bg ">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-shangchuantupian"></use>
+                    </svg>图片上传
+                </button>
+                <input type="file" class="pic_file li_H radius pic_files pic_IMG" accept="image/jpeg">
+                <div class="prompt">仅支持JPG图片</div>
+                <img id="pic_IMG_see" class="display_block radius" src="__IMG__/logo (2).png" width="50px" height="50px">
+            </div>
+        </div>
+        <!--下一步-->
+        <div class="col-md-12 changsign_menu_inpu next_menu">
+            <input type="submit" value="提交" class="tijiao next radius white bg">
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    $('.pic_file').change(function(){
+        $('.pic_up_lujing').val($(this).val());
+    });
+    $('.pic_files').change(function(){
+        $('.pic_up_lujings').val($(this).val());
+    });
+    $('.token_chang').click(function(){
+        alert('更改中');
+    });
+//    图片预览
+    $(document).ready(function() {
+        $(".pic_QR").change(function() {
+            var fil = this.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(fil);
+            reader.onload = function() {
+                document.getElementById("pic_QR_see").src= reader.result;
+            };
+        });
+        $(".pic_IMG").change(function() {
+            var fil = this.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(fil);
+            reader.onload = function() {
+                document.getElementById("pic_IMG_see").src= reader.result;
+            };
+        });
+    });
+</script>
+</html>

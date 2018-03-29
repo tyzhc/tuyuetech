@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Titleaa</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+</head>
+<body>
+<div class="huodong" >
+    <br>聚会活动:<input type="radio" name="huodong_type"  class="party" value="party" >
+    <br>会议通知:<input type="radio" name="huodong_type"  class="metting" value="metting">
+</div>
+</body>
+<script>
+	$('input:radio[name="huodong_type"]').click(function(){
+	    	var val = $(this).val();
+			var url = '{:url("add/activity",array("create_type"=>"2","add_type"=>"aas"))}';
+			var url = url.replace('aas',val);
+			window.location.href = url;
+	 })
+</script>
+</html>

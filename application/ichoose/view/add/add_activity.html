@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>活动添加页</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+    <script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=1.4.2&key=040ec7d698956fc77b60eafbe03c976e"></script>
+
+</head>
+<body>
+<form action="{:url('activity_insert',array('create_type'=>$create_type))}" method="post" enctype="multipart/form-data">
+    <br>聚会主题: <input type="text" name="title">
+    <br>聚会内容: <input type="file" name="con_img" ><input type="text" name="con">
+    <br>时间: <input type="text" name="time">
+    <br>地点: <input type="text" name="address" id="dizhi" onchange="addre()">
+    <br>拟邀请好友: <input type="text" name="friend">
+    <br>允许带人: <input type="radio" name="bring" value="yes">是 <input type="radio" name="bring" value="no" checked="checked"> 否
+    <br>聚会参加人数: <input type="text" name="party_num">
+    <br>公开: <input type="radio" name="open" value="yes">是 <input type="radio" name="open" value="no" checked="checked"> 否
+    <br>费用形式: <input type="text" name="cost_form">
+    <!--<br>是否参加: -->
+    <!--<br>是否有风俗习惯:-->
+    <!--<br>留言:-->
+    <br><input type="submit" value="提交">
+</form>
+</body>
+<script>
+
+var map = new AMap.Map("mapContainer", {
+    resizeEnable: true,
+    center: [116.397428, 39.90923],//地图中心点
+    zoom: 13,//地图显示的缩放级别
+    keyboardEnable: false
+});
+AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+    var autoOptions = {
+        city: "北京", //城市，默认全国
+        input: "dizhi"//使用联想输入的input的id
+    };
+    autocomplete= new AMap.Autocomplete(autoOptions);
+    var placeSearch = new AMap.PlaceSearch({
+        city:'北京',
+        map:map
+    })
+    AMap.event.addListener(autocomplete, "select", function(e){
+        //TODO 针对选中的poi实现自己的功能
+        var kk = e.poi.location.L;
+        kk += ','+e.poi.location.N;
+		$('#location').remove();
+        var str = '<input id="location" type="hidden" name="location" value="'+kk+'">';
+		$('#dizhi').after(str);
+		console.log($('#location').size());
+
+		if($('#location').size()!=0){
+			$('#dizhi').after('<span id="ts">√</span>');
+		}else{
+			$('#dizhi').after('<span id="ts">X</span>');
+		}
+    });
+});
+function addre(){
+//	console.log($('#location').size());.
+    $('#ts').remove();
+	if($('#location').size()!=0){
+		$('#dizhi').after('<span id="ts">√</span>');
+	}else{
+		$('#dizhi').after('<span id="ts">X</span>');
+	}
+}
+
+</script>
+<script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+</html>

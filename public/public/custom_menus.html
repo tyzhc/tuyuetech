@@ -1,0 +1,42 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--<script src="_JS_/angular.min.js"></script>-->
+<!--拖拽-->
+<link rel="stylesheet" href="_CSS_/jquery-ui.min.css">
+<script src="_JS_/jquery.min.js"></script>
+<script src="_JS_/jquery-ui.min.js"></script>
+<!---->
+<!--<script src="_JS_/angular.min.js"></script>-->
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>自定义菜单</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+<div class="col-md-12" ng-app="">
+        <!--用户列表按钮-->
+        <div class="col-md-12 mes_sign users_name center basicing">
+            <a class='col-md-1 radius bg white' href="{:url('wechat/reply/basic_lis')}">
+                自定义菜单
+            </a>
+        </div>

@@ -1,0 +1,141 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>操作人员权限</span>
+        </a>
+    </div>
+</div>
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <!--<div class="">-->
+                <div class="col-md-12 checkbox aut">
+                    <input class="basic_lis" type="checkbox" value="basic_lis" name="">&nbsp;基本功能
+                </div>
+                <div class="basics row chec">
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="characters"  name="">&nbsp;文字回复
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="picture"  name="">&nbsp;图片回复
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="speech" name="">&nbsp;语音回复
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="reply" name="">&nbsp;图文回复
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="music" name="">&nbsp;音乐回复
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="video" name="">&nbsp;视频回复
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="system" name="">&nbsp;系统回复
+                    </div>
+                </div>
+                <div class="col-md-12 checkbox aut">
+                    <input class="senior_lis" type="checkbox" value="senior_lis" name="">&nbsp;高级功能
+                </div>
+                <div class="seniors col-md-12 chec">
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="custom_menu" name="">&nbsp;自定义菜单
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="QR_url" name="">&nbsp;长链接转二维码
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="follower" name="">&nbsp;粉丝管理
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="QR" name="">&nbsp;二维码管理
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="article" name="">&nbsp;文章管理
+                    </div>
+                </div>
+                <div class="col-md-12 checkbox aut">
+                    <input class="data_lis" type="checkbox" value="data_lis" name="">&nbsp;数据统计
+                </div>
+                <div class="datas col-md-12 chec">
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="chat" name="">&nbsp;聊天记录
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="rule" name="">&nbsp;关键字命中情况
+                    </div>
+                    <div class="checkbox col-md-2">
+                        <input type="checkbox" value="keyword" name="">&nbsp;回复规则使用情况
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <input type="submit" class="bg white tijiao radius" value="提交" name="" onclick="sub()">
+                    <br><br>
+                </div>
+        <!--</div>-->
+    </div>
+</div>
+<!---->
+</div>
+<!--弹框-->
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    $('.basic_lis').bind('click',function(){
+        if ($(this).is(":checked")) {
+            $(this).attr('checked','checked');
+            $('.basics input').prop('checked','checked');
+        }else{
+            $(this).removeAttr('checked')
+            $('.basics input').removeAttr('checked');
+        }
+    })
+    $('.senior_lis').bind('click',function(){
+        if ($(this).is(":checked")) {
+            $(this).attr('checked','checked');
+            $('.seniors input').prop('checked','checked');
+        }else{
+            $(this).removeAttr('checked')
+            $('.seniors input').removeAttr('checked');
+        }
+    })
+    $('.data_lis').bind('click',function(){
+        if ($(this).is(":checked")) {
+            $(this).attr('checked','checked');
+           $('.datas input').prop('checked','checked');
+        }else{
+            $(this).removeAttr('checked')
+            $('.datas input').removeAttr('checked');
+        }
+    })
+    function sub(){
+        var inpu=$('.chec input[type=checkbox]:checked');
+        var arr='';
+        for(var i=0;i<inpu.length;i++){
+//            console.log(inpu.eq(i).val());
+            arr+=inpu.eq(i).val()+',';
+        }
+        console.log(arr);
+    }
+</script>
+</html>

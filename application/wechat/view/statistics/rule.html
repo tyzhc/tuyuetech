@@ -1,0 +1,255 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<link href="_CSS_/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all" href="_CSS_/daterangepicker-bs3.css"/>
+<script type="text/javascript" src="_JS_/moment.js"></script>
+<script type="text/javascript" src="_JS_/daterangepicker.js"></script>
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>粉丝管理</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+<div class="col-md-12">
+    <!--用户列表按钮-->
+    <div class="col-md-12 mes_sign users_name center basicing">
+        <a class='col-md-1 radius bg white' href="javascript:;">
+            回复规则使用情况
+        </a>
+    </div>
+    <div class="col-md-12 border">
+        <div class="col-md-12 rep_shai">
+            <label>筛选</label>
+        </div>
+        <form action="{:url('rule')}" method="get" enctype="">
+        <div class="col-md-12 ans_mes">
+            <label class="col-md-2">规则类型</label>
+            <div class="col-md-6">
+                <div class="btn-group state rule_" role="group" aria-label="">
+                    <a href="{:url('rule',array('page'=>1,'type'=>'already','menu'=>$menu,'action'=>$action))}" type="button" class="btn btn-default {if condition="($type=='already') "}state_active{/if}">已触发规则</a>
+                    <a href="{:url('rule',array('page'=>1,'type'=>'noalready','menu'=>$menu,'action'=>$action))}" type="button" class="btn btn-default {if condition="($type=='noalready') "}state_active{/if}">未触发规则</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 ans_mes zhuangtai">
+            {if condition="($type=='already') "}
+            <label class="col-md-2">日期范围</label>
+            <div class="col-md-2">
+                <div id="reportrange2" class="radius li_H rep_names" style="display: inline-block; background: #fff; cursor: pointer; padding: 0px 10px; border: 1px solid #ccc">
+                    <span></span> <b class="caret"></b>
+                </div>
+                <input type="hidden" name="time">
+                <input type="hidden" name="type" value="{$type}">
+                <input type="hidden" name="action" value="{$action}">
+                <input type="hidden" name="menu" value="$menu">
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var str=new Date();
+                    {if condition="(!empty($form) && !empty($form.time))"}
+                    $('#reportrange2 span').html('{$form.time}');
+                    {else}
+                    $('#reportrange2 span').html(str.getFullYear()+'-'+(str.getMonth()+1)+'-'+str.getDate()+'&nbsp;至&nbsp;'+str.getFullYear()+'-'+(str.getMonth()+1)+'-'+str.getDate());
+                    {/if}
+                    $('#reportrange2').daterangepicker();
+                    $('.applyBtn').attr('onclick','date()');
+                });
+                function date(){
+                    $('#reportrange2 span').html($('input[name="daterangepicker_start"]').val()+'&nbsp;至&nbsp;'+$('input[name="daterangepicker_end"]').val());
+                    $('input[name=time]').val($('input[name="daterangepicker_start"]').val()+'~'+$('input[name="daterangepicker_end"]').val());
+                };
+            </script>
+            <div class="col-md-8 foll_sear">
+                <input type="submit" class="radius white bg data_sear" value="&nbsp;搜索&nbsp;">
+                <br><br>
+            </div>
+            {/if}
+        </div>
+        </form>
+        <!---->
+        <div class="col-md-12 xian"></div>
+        <div class="col-md-12 shai_lis display_block foll_lis rul_tab">
+            <!---->
+            <table class="col-md-12 foll_tab">
+                <tr>
+                    <th style="text-align: left">规则名称</th>
+                    <th>模块</th>
+                    {if condition="($type=='already') "}
+                    <th>命中次数</th>
+                    <th>最后触发</th>
+                    {/if}
+                    <th width="25%">操作</th>
+                </tr>
+                {volist name="find" id="vo" key="key"}
+                <tr>
+                    <td class="left">{$vo.title}</td>
+                    <td>{if condition="($vo.start==1)"}文字回复{elseif condition="($vo.start==2)"}图片回复{elseif condition="($vo.start==3)"}语音回复{elseif condition="($vo.start==4)"}图文回复{elseif condition="($vo.start==5)"}音乐回复{elseif condition="($vo.start==6)"}视频回复{/if}</td>
+                    {if condition="($type=='already') "}
+                    <td>{$vo.count}</td>
+                    <td>{$vo.date}</td>
+                    {/if}
+                    <td>
+                        <a href="{:url('statistics/data_chart',array('id'=>$vo.replyid,'menu'=>$menu,'action'=>$action))}" class="bg_color radius">使用率走势</a>
+                    </td>
+                </tr>
+                {/volist}
+                <tr>
+                    <td colspan="4">
+                    {$page}
+                    </td>
+                </tr>
+                <!---->
+            </table>
+        </div>
+        <!--<div class="col-md-12 shai_lis display_block foll_lis rul_tab hides">-->
+            <!--&lt;!&ndash;&ndash;&gt;-->
+            <!--<table class="col-md-12 foll_tab">-->
+                <!--<tr>-->
+                    <!--<th style="text-align: left">规则名称</th>-->
+                    <!--<th>模块</th>-->
+                    <!--<th width="25%">操作</th>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td class="left">个人中心入口设置</td>-->
+                    <!--<td>cover->mc</td>-->
+                    <!--<td>-->
+                        <!--<a href="javascript:;" class="bg_color radius">使用率走势</a>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td class="left">个人中心入口设置</td>-->
+                    <!--<td>cover->mc</td>-->
+                    <!--<td>-->
+                        <!--<a href="javascript:;" class="bg_color radius">使用率走势</a>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--&lt;!&ndash;&ndash;&gt;-->
+            <!--</table>-->
+        <!--</div>-->
+        <div class="col-md-12 xian"></div>
+        <br><br><br><br><br>
+    </div>
+    <div class="col-md-12 border hides">
+        <div class="col-md-12 rep_shai">
+            <label>分组管理</label>
+        </div>
+        <!---->
+        <div class="col-md-12 shai_lis display_block foll_lis">
+            <!---->
+            <table class="col-md-12 foll_tab">
+                <tr>
+                    <th>粉丝组名称</th>
+                    <th>粉丝组ID</th>
+                    <th>粉丝组标签</th>
+                    <th>组内粉丝数量</th>
+                    <th style="width:30%">操作</th>
+                </tr>
+                <tr>
+                    <td colspan="5" class="xian foll_zu"></td>
+                </tr>
+                <tr>
+                    <td>粉丝组名称</td>
+                    <td>SCJLDKJLDKJLDKJ</td>
+                    <td>无标签</td>
+                    <td>2342342342</td>
+                    <td>
+                        <a href="javascript:;" class="bg_color radius">编&nbsp;&nbsp;辑</a>
+                        <a href="javascript:;" class="yellow radius">添加标签</a>
+                        <a href="javascript:;" class="black radius">查看详情</a>
+                        <a href="javascript:;" class="red radius">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>粉丝组名称</td>
+                    <td>SCJLDKJLDKJLDKJ</td>
+                    <td>无标签</td>
+                    <td>2342342342</td>
+                    <td>
+                        <a href="javascript:;" class="bg_color radius">编&nbsp;&nbsp;辑</a>
+                        <a href="javascript:;" class="yellow radius">添加标签</a>
+                        <a href="javascript:;" class="black radius">查看详情</a>
+                        <a href="javascript:;" class="red radius">删除</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-12 rep_shai">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="javascript:;" class="bg_color" onclick="add_zu()">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-jia1"></use>
+                </svg>&nbsp;添加新分组
+            </a>
+        </div>
+        <br><br><br><br><br>
+    </div>
+</div>
+</div>
+</div>
+<!---->
+</div>
+<!--弹框-->
+<div class="rouping hides">
+</div>
+<div class="roupings hides">
+    <h3 class="bg white">
+        创建新粉丝组
+        <svg class="icon border_radius white dels foll_del" aria-hidden="true" onclick="del_zu()">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete2"></use>
+        </svg>
+    </h3>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="col-md-3">粉丝组名称</label>
+            <div class="col-md-8">
+                <input type="text" class="li_H radius" placeholder="请输入粉丝组名称" name="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-3 zhuangtai">粉丝组标签</label>
+            <div class="col-md-8 zhuangtai">
+                <input type="text" class="li_H radius" placeholder="请输入粉丝组标签" name="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-3 zhuangtai">粉丝组描述</label>
+            <div class="col-md-8 zhuangtai">
+                <textarea class="li_H radius" placeholder="请输入粉丝组描述"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12 center">
+            <input type="button" value="提交" class="bg white radius foll_tj" onclick="foll_tj()">
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    $('.rule_>a').click(function(){
+        $('.rul_tab').addClass('hides');
+     $(this).addClass('state_active').siblings().removeClass('state_active');
+        $('.rul_tab').eq($(this).index()).removeClass('hides');
+    });
+</script>
+</html>

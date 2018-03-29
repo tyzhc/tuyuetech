@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱选择ichoose</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+<h1>{$list.title}</h1>
+    {if($list.open=='1')}
+        <br>参与的小伙伴必须公开回答
+    {else}
+        <br>参与的小伙伴为匿名回答
+    {/if}
+<br>投票描述:{$list.con}
+<br>结束时间:{$list.endtime}
+<br>
+{if($ans_status=='no')}
+    {if($list.state=='1')}
+        {if($list.ans_type=='1')}
+            {foreach($option as $k=>$v)}
+                <br><img width="10%" src="/public/upload/ichoose_img/{$v.option}" alt=""><br><input type="radio" class="" name="{$list.id}" value="{$v.id}">{$v.con}
+            {/foreach}
+<script>
+	$('input:radio[name="{$list.id}"]').click(function(){
+		var val = $(this).val();
+		var url = "{:url('insert_radio_ajax',array('id'=>$list.id,'uid'=>$reply_uid))}";
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data: {val:val},
+			async: false,
+			success: function(data) {
+				console.log(data);
+				if(data==1){
+
+				}else{
+					alert('回答失败');
+				}
+			}
+		})
+	})
+</script>
+{else}
+<form id="form_checkbox">
+    {foreach($option as $k=>$v)}
+        <br><img width="10%" src="/public/upload/ichoose_img/{$v.option}" alt=""><br><input class="checkbox" type="checkbox" name="{$list.id}[]" value="{$v.id}">{$v.con}
+    {/foreach}
+    <br><input id="tijiao" type="button" value="提交">
+</form>
+<script>
+	$('#tijiao').click(function(){
+		var url = "{:url('insert_check_ajax',array('id'=>$list.id,'uid'=>$reply_uid,'add_type'=>$list.add_type))}";
+		console.log(url);
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data: $('#form_checkbox').serialize(),
+			async: false,
+			success: function(data) {
+				console.log(data);
+
+			}
+		})
+	})
+</script>
+{/if}
+{else}
+
+{/if}
+{else}
+{foreach($option as $k=>$v)}
+{if(is_array($self.reply))}
+<br><img width="10%" src="/public/upload/ichoose_img/{$v.option}" alt="">选中人数:{$ans_count[$v.id]}
+{foreach($self.reply as $k1=>$v1)}
+{if($v1==$v.id)}
+你选择的
+{/if}
+{/foreach}
+{else}
+{if($self.reply==$v.id)}
+<br><img width="10%" src="/public/upload/ichoose_img/{$v.option}" alt="">选中人数:{$ans_count[$v.id]} 逆选择的
+{else}
+<br><img width="10%" src="/public/upload/ichoose_img/{$v.option}" alt="">选中人数:{$ans_count[$v.id]}
+{/if}
+{/if}
+
+{/foreach}
+
+{/if}
+{if($list.open=='1')}
+<br>
+<div>
+    {if(is_array($ans_arr))}
+    {foreach $ans_arr as $ko=>$vo}
+    {if($vo.uid==$reply_uid)}
+    {else}
+    <br>{$vo.user}选择了{$vo.reply}
+    {/if}
+    {/foreach}
+    {/if}
+</div>
+{else}
+<div>
+
+</div>
+{/if}
+
+{if($attention=='no')}
+<div>
+    <h1>请关注公众号爱选择ichoose</h1>
+</div>
+{else}
+<div>
+
+</div>
+{/if}
+</body>
+</html>

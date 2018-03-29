@@ -1,0 +1,36 @@
+{layout name='layout'}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择发起类型页</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+</head>
+<body>
+    <div class="chose_type">
+        选择发起类型
+        <br><input type="radio" class="create_type" name="create_type" value="1">投票
+        <br><input type="radio" class="create_type" name="create_type" value="2">发送通知
+        <br><input type="radio" class="create_type" name="create_type" value="3">欢乐聚会
+    </div>
+</body>
+<script>
+    //选择发起类型事件跳转
+	$('.create_type').click(function(){
+        var create_type = $('input[name="create_type"]:checked').val();
+        if(create_type=='1'){
+			var url = '{:url("add/ch_type",array("create_type"=>"1"))}';
+			window.location.href = url;
+		}else if(create_type=='2'){
+			var url = '{:url("add/activity",array("create_type"=>"2"))}';
+			window.location.href = url;
+		}else if(create_type=='3'){
+			var url = '{:url("add/activity",array("create_type"=>"3"))}';
+			window.location.href = url;
+		}
+    })
+
+
+</script>
+</html>

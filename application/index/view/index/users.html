@@ -1,0 +1,122 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/users.html" class="white">
+            <span>用户管理</span>
+        </a>
+    </div>
+</div>
+<!--用户列表-->
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <!--用户列表按钮-->
+        <div class="col-md-12 mes_sign users_name center">
+            <a class="col-md-1 bg white radius" href="users.html">
+                用户管理
+            </a>
+            <a class="col-md-1 bg_color" href="add_users.html">
+                添加用户
+            </a>
+        </div>
+        <!--筛选-->
+        <div class="col-md-12 tab_box radius users_shai">
+            筛选
+        </div>
+        <div class="col-md-12 border">
+            <div class="col-md-12 shai_lis_name shai_lis_name_fir">
+                <label class="col-md-2 rights">状态</label>
+                <div class="btn-group state" role="group" aria-label="">
+                    <a href="javascript:;" type="button" class="btn btn-default state_active">不限</a>
+                    <a href="javascript:;" type="button" class="btn btn-default ">启用</a>
+                    <a href="javascript:;" type="button" class="btn btn-default ">禁用</a>
+                </div>
+            </div>
+            <div class="col-md-12 shai_lis_name">
+                <label class="col-md-2 rights">套餐结束时间</label>
+                <div class="btn-group state" role="group" aria-label="">
+                    <a href="javascript:;" type="button" class="btn btn-default state_active">不限</a>
+                    <a href="javascript:;" type="button" class="btn btn-default ">已到期</a>
+                    <a href="javascript:;" type="button" class="btn btn-default ">三天内</a>
+                    <a href="javascript:;" type="button" class="btn btn-default ">半月内</a>
+                    <a href="javascript:;" type="button" class="btn btn-default ">一月内</a>
+                    <a href="javascript:;" type="button" class="btn btn-default ">三月内</a>
+                </div>
+            </div>
+            <div class="col-md-12 shai_lis_name">
+                <label class="col-md-2 rights">用户组</label>
+                <div class="btn-group state" role="group" aria-label="">
+                    <a href="javascript:;" type="button" class="btn btn-default state_active">不限</a>
+                    <a href="javascript:;" type="button" class="btn btn-default ">体验用户组</a>
+                    <a href="javascript:;" type="button" class="btn btn-default ">白金用户组</a>
+                    <a href="javascript:;" type="button" class="btn btn-default ">黄金用户组</a>
+                </div>
+            </div>
+            <div class="col-md-12 shai_lis_name">
+                <label class="col-md-2 rights">用户名</label>
+                <input type="text" class="li_H radius" placeholder="" name="">
+                <a href="javascript:;" class="radius white bg shai_sear">
+                    <span class="glyphicon glyphicon-search"></span>&nbsp;搜索
+                </a>
+            </div>
+        </div>
+        <div class="col-md-12 radius tab_box users_tabs">
+        <table class="users_tab">
+            <tr>
+                <th>用户名</th>
+                <th>身份</th>
+                <th>状态</th>
+                <th>注册时间</th>
+                <th>服务开始时间 ~~ 结束时间</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td>admin</td>
+                <td><span class="greens white radius">管理员</span></td>
+                <td><span class="reds white radius">被禁止</span></td>
+                <td>2017-11-28 11:45:41</td>
+                <td>1970-01-01	~~ 永久有效</td>
+                <td>
+                    <a href="users_chang.html">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="users_saw.html">查看用户权限</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="users_chang.html">123</a>
+                </td>
+                <td><span class="blue white radius">白金用户组</span></td>
+                <td><span class="greens white radius">正常状态</span></td>
+                <td>2017-11-28 11:45:41</td>
+                <td>1970-01-01	~~ 永久有效</td>
+                <td>
+                    <a href="users_chang.html">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="users_saw.html">查看用户权限</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="javascript:;">禁止用户</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="javascript:;">删除用户</a>
+                </td>
+            </tr>
+        </table>
+            </div>
+    </div>
+</div>
+<!---->
+</div>
+</div>
+</body>
+</html>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+</script>

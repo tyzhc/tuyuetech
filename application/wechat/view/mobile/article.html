@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>{$article.title}</title>
+    <!--<link rel="stylesheet" type="text/css" href="_CSS_/users.css">-->
+    <link rel="stylesheet" type="text/css" href="_CSS_/mui.min.css">
+    <script src="_JS_/iconfont.js"></script>
+    <style>
+        body,.mui-content{
+            background:white;
+        }
+        .wz{
+            width:94%;
+            margin:0 3%;
+        }
+        .wx_name{
+            margin:30px 0 10px 0;
+        }
+        .rights{
+            text-align:right;
+        }
+        .centers{
+            text-align: center;
+        }
+        .size_12{
+            font-size:12px;
+        }
+        .icon{
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        .wz_wz_mes{
+            margin:10px 0;
+        }
+        .wz_saw{
+            margin-top:30px;
+        }
+        .wz_neirong img{
+            width:100% !important;
+        }
+    </style>
+    <script src="_JS_/mui.min.js"></script>
+</head>
+<body>
+<div class="mui-scroll-wrapper">
+    <div class="mui-scroll wz">
+        <h2 class="wx_name">{$article.title}</h2>
+        <div class="wz_wz_mes">
+            <span>{$article.date}</span>
+            <span>{$article.account_name}</span>
+            <span>{$article.author}</span>
+        </div>
+        <div class="wz_neirong">
+            {$article.count}
+            </div>
+        <div class="mui-content wz_wz_mes wz_saw">
+            <div class="mui-row">
+                <a href="{$article.link}" class="mui-col-sm-3 mui-col-xs-3">查看原文</a>
+                <div class="mui-col-sm-3 mui-col-xs-3 centers">
+                    阅读&nbsp;<span>{$article.read}</span>
+                </div>
+                <div class="mui-col-sm-3 mui-col-xs-3 centers">
+                    <svg class="icon size_12" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-zan"></use>
+                    </svg>
+                    <span>{$article.fabulous}</span>
+                </div>
+                <!--<a href="javascript:;" class="mui-col-sm-3 mui-col-xs-3 rights">反馈</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    mui('.mui-scroll-wrapper').scroll({
+        deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+    });
+</script>
+</body>
+</html>

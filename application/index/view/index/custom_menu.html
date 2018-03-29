@@ -1,0 +1,180 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/article_lis.html" class="white">
+            <span>高级功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>自定义菜单</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+<div class="col-md-12">
+    <!--用户列表按钮-->
+    <div class="col-md-12 mes_sign users_name center basicing">
+        <a class='col-md-1 radius bg white' href="{:url('wechat/reply/basic_lis')}">
+          自定义菜单
+        </a>
+    </div>
+    <div class="col-md-12 ans_mes reply_saw border cus_menu" ng-app="">
+        <div class="col-xs-6 col-sm-4 col-md-4 cus_menus">
+          <img src="__IMG__/phone_gong.png" width="100%">
+            <div class="cus_menu_lis">
+                <svg class="icon bg_color" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jianpan"></use>
+                </svg>
+                <div class="cus_menusing">
+                    <a class="cus_menu_active cue_menu_bg cu_menu_1" href="javascript:;" onclick="cus_menu_add(1)">
+                        <svg class="icon bg_color" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia"></use>
+                        </svg>&nbsp;添加菜单
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--右侧-->
+        <div class="col-xs-6 col-sm-8 col-md-8 reply_saw_right">
+            <div class="arrow-left arrow-lefts"></div>
+            <div class="rep-body radius row" style="">
+                <label class="col-xs-12 col-sm-12 col-md-12 cus_menu_ing">
+                    菜单名称
+                    <span class="bg_color">删除菜单</span>
+                </label>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    <label class="col-xs-12 col-sm-2 col-md-2 control-label">菜单名称</label>
+                    <div class="col-sm-10 col-xs-6 col-md-6">
+                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="添加图文消息的标题" ng-model="name">
+                        <span class="gray">字数不超过4个汉字或者8个字母</span>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    <label class="col-xs-12 col-sm-2 col-md-2 control-label">菜单内容</label>
+                    <div class="col-sm-10 col-xs-6 col-md-6 cus_menu_chang">
+                       <input type="radio" name="radio" value="1" checked>&nbsp;发送消息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="radio" value="2">&nbsp;跳转网页
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 cus_menu_changs">
+                        <label class="control-label cus_menu_chang_active">文字<span></span></label>
+                        <label class="control-label">图片<span></span></label>
+                        <label class="control-label">图文消息<span></span></label>
+                        <label class="control-label">语音<span></span></label>
+                        <label class="control-label">视频<span></span></label>
+                        <textarea class="radius" name="" style="width:80% ;margin:0 auto;display:block" rows="10"></textarea>
+                    </div>
+
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12 cus_menu_changing hides">
+                    <label class="col-xs-12 col-sm-2 col-md-2 control-label">页面地址</label>
+                    <div class="col-sm-12 col-xs-6 col-md-6">
+                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="添加图文消息的标题" ng-model="name">
+                        <span class="gray">订阅者点击该子菜单会跳到以上链接</span>
+                    </div>
+                    <div class="col-sm-12 col-xs-4 col-md-4 bg_color cus_menu_changs_tishi">
+                        从公众号图文消息中选择
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 cus_menu_paixu">
+            <br>
+            <a href="javascript:;" class="radius white grays">菜单排序</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!---->
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    var res=$('.cus_menus').height();
+    $('.rep-body').height(res-30);
+    $('.cus_menu_chang>input').bind('click',function(){
+        if ($(this).is(":checked")) {
+            $(this).attr("checked", true);
+            $(this).siblings().removeAttr('checked');
+            if($(this).val()==1){
+                $('.cus_menu_changs').show();
+                $('.cus_menu_changing').hide();
+            }else{
+                $('.cus_menu_changing').show();
+                $('.cus_menu_changs').hide();
+            }
+        }
+    })
+    function cus_menu_add(id){
+        $('.cus_menusing>a').remove();
+        $('.cus_menusing').children().removeClass('cus_menu_active');
+        var s=id+1;
+        var sing='';
+        var str='<div class=" cue_menu_bg cu_menu_'+s+' dian_'+id+'">'+
+                '<a href="javascript:;" onclick="dian('+id+')"><span>菜单名称</span></a>'+
+                '<div class="zi_menu zi_menu_'+id+'">'+
+                '<a class="zi_menu_add" href="javascript:;" onclick="cus_zimenu_add('+id+',1)">'+
+                '<svg class="icon bg_color" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia"></use></svg>'+
+                '</a>'+
+                '<div class="arrow_bott"></div>'+
+                '</div>'+
+                '</div>';
+        $('#cus_menu_add').before(str);
+        if(id>=3){
+            $('.cus_menusing').append(str);
+            $('.cus_menusing>div').removeClass('cu_menu_'+s).addClass('cu_menu_'+id);
+            $('#cus_menu_add').hide();
+        }else{
+            $('.cus_menusing>div').removeClass('cu_menu_'+id).addClass('cu_menu_'+s);
+            var strs='<a id="cus_menu_add" class="cu_menu_'+s+'" href="javascript:;" onclick="cus_menu_add('+s+')">'+
+                    '<svg class="icon bg_color" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia"></use></svg>'+
+                    '</a>';
+            $('.cus_menusing').append(str+strs);
+        }
+    $('.cus_menusing').children().eq(s-2).addClass('cus_menu_active');
+    }
+function dian(id){
+    $('.cue_menu_bg').removeClass('cus_menu_active');
+    $('.dian_'+id).addClass('cus_menu_active');
+}
+//    子菜單
+    function cus_zimenu_add(id,x){
+        console.log(id);
+        var str=$('.zi_menu_'+id+'>.cue_menu_bg').length;
+        if(str>=4){
+            $('.zi_menu_'+id+'>.zi_menu_add').hide();
+            var str='<div class=" cue_menu_bg dian_'+x+'" href="javascript:;">'+
+                    '<a href="javascript:;" onclick="zi_menus('+id+','+x+')"><span>子菜单名称</span></a>'+
+                    '</div>';
+            $('.zi_menu_'+id+'>.zi_menu_add').before(str);
+        }else{
+            var str='<div class=" cue_menu_bg dian_'+x+'" href="javascript:;">'+
+                    '<a href="javascript:;" onclick="zi_menus('+id+','+x+')"><span>子菜单名称</span></a>'+
+                    '</div>';
+            $('.zi_menu_'+id+'>.zi_menu_add').before(str);
+            var x=x+1;
+            $('.zi_menu_'+id+'>.zi_menu_add').attr('onclick','cus_zimenu_add('+id+','+x+')');
+        }
+
+    }
+    function zi_menus(id,x){
+        $('.zi_menu_'+id+'>.cue_menu_bg').removeClass('cus_menu_active');
+        $('.zi_menu_'+id+'>.dian_'+x).addClass('cus_menu_active');
+    }
+</script>
+</html>

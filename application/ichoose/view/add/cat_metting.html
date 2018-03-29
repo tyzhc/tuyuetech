@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱选择ichoose</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+    <style>
+        .boder{
+            border: 1px solid red;
+            width: 80%;
+            height: 90%;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <h4>{$list.title}</h4>
+    <p>发起人:{$creator.nickname}</p>
+    <p>会议时间:{$list.time}</p>
+    <p>会议地点:{$list.address}</p>
+    <p>会议简要内容:{$list.con}</p>
+    <p>邀请嘉宾:{$list.guests}</p>
+
+    {if($ans_status == 'no')}
+    <!--用户未确定是否参加的表单-->
+    <div>
+        <form id="party_form"  action="" method="post">
+            选择后无法更改
+            <input type="hidden" name="type" value="{$list.type}">
+            <br> 是否参加:<input type="radio" class="join_yes" name="join" value="yes">是
+            <input type="radio" name="join" class="join_no" value="no">否
+            <div class="join_y" >
+                <p>备注: <input type="" name="remark" placeholder="如不参加会议,请注明原因"></p>
+                <p>留言(待议):
+                <p><input class="join_tj" type="button" value="提交"></p>
+            </div>
+        </form>
+    </div>
+    {else}
+    <!--参加活动的人-->
+    <div>
+        您已填写过
+    </div>
+    {/if}
+    <!--发起者看见的谁确定参加-->
+    {if($creator.status == 'yes')}
+    <div>
+        此次活动的回复的结果:
+        {if(is_array($join_peo))}
+        {foreach($join_peo as $ko=>$vo)}
+        {if($vo.join=='确定参加')}
+        <p>{$vo.nickname}{$vo.join}此次会议,备注{$vo.remark}</p>
+        {else}
+        <p>{$vo.nickname}{$vo.join}此次会议,备注{$vo.remark}</p>
+        {/if}
+        {/foreach}
+        {else}
+        暂时无人回复
+        {/if}
+    </div>
+    {/if}
+    <!--是否关注过公众号的推荐内容-->
+    {if($attention=='no')}
+    <div>
+        <h1>请关注公众号爱选择ichoose</h1>
+    </div>
+    {else}
+    <div>
+
+    </div>
+    {/if}
+</center>
+</body>
+<script>
+
+	$('.join_tj').click(function(){
+		var url = "{:url('insert_join_ajax',array('id'=>$list.id,'uid'=>$reply_uid))}";
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data: $('#party_form').serialize(),
+			async: false,
+			success: function(data) {
+				//1-c成功 2-失败 3-已填写过
+				if(data=='1'){
+					var url1 = "{:url('cat_party',array('id'=>$list.id))}";
+					window.location.href = url1;
+				}else if(data=='2'){
+					alert('报名失败');
+				}
+			}
+		})
+	})
+</script>
+</html>

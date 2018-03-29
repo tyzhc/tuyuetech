@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加页面</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+
+</head>
+<body>
+<form id="add_form" action="{:url('insert',array('create_type'=>$create_type,'add_type'=>$add_type))}" method="post" enctype="multipart/form-data">
+    投票标题: <input type="text" name="title">
+    <br>投票描述：<input type="text" name="con">
+    <br>截止时间: <input type="text" name="end_time">
+    <br>投票类型: <input type="radio" name="type" value="1" checked="checked">单选 <input type="radio" name="type">多选
+
+
+    <br>选项内容:
+    <br><input type="file" name="opt[]" > <input type="text" class="opt" name="con[]" placeholder="图片描述">
+    <br><input type="file" name="opt[]" > <input type="text" class="opt" name="con[]" placeholder="图片描述">
+
+
+    <br><input type="button" class="add" value="添加选项">
+    <br>好友回答: <input type="radio" name="gongkai" value="0">匿名 <input type="radio" name="gongkai" value="1" checked="checked"> 公开
+    {//if($create_type=='4')}
+    <!--<br>征集投票内容: <input type="radio" name="state" value="2" >是 <input  type="radio" name="state" value="1" checked="checked">否 <span class="fou"></span>-->
+    <!--<br><input type="submit" value="提交"> <input type="reset" value="清除">-->
+    {//else}
+    <input type="hidden" name="state" value="1">
+    <br>其他<input type="checkbox" name="other" class="other" value="1">
+    <br><input type="submit" value="发布"> <input type="reset" value="清除">
+    {// /if}
+</form>
+</body>
+<script>
+	$('.add').click(function(){
+			var num = $('.opt').size();
+			var num = num+1;
+			var add_type = '{$add_type}';
+			console.log(add_type);
+			if(add_type=='1'){
+				var str = '<br><input type="text" class="opt" name="opt[]" placeholder="选项'+num+'">';
+			}else if(add_type=='4'){
+
+				var str = '<br><input type="file" class="opt" name="opt['+num+'][filename]" > <input type="text" class="opt" name="opt['+num+'][con]" placeholder="图片描述">'
+			}
+			$('.opt:last').after(str);
+		}
+	)
+	$('input:radio[name="state"]').click(function(){
+		var val = $(this).val();
+		if(val=='2'){
+			var str ='<span class="state_num"><br>每个人选项个数: <input type="text" name="state_num" ></span>';
+			$('.fou').after(str);
+		}else{
+			$('.state_num').remove();
+		}
+	})
+
+</script>
+</html>

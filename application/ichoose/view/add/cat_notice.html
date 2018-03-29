@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱选择ichoose</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <style>
+        .boder{
+            border: 1px solid red;
+            width: 80%;
+            height: 90%;
+        }
+    </style>
+    <script>
+		wx.config({
+			debug: false,
+			appId: '{$signPackage.appId}',
+			timestamp: '{$signPackage.timestamp}',
+			nonceStr: '{$signPackage.nonceStr}',
+			signature: '{$signPackage.signature}',
+			jsApiList: [
+				'checkJsApi',
+				'onMenuShareAppMessage',
+				'hideMenuItems',
+				'closeWindow',
+				'onMenuShareAppMessage'
+			]
+		});
+		wx.ready(function () {
+			// 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+
+			wx.onMenuShareAppMessage({
+				title: '{$list.title}', // 分享标题
+				desc: '朋友发送了投票,请点击查看', // 分享描述
+				link: "http://{:$_SERVER['HTTP_HOST']}{:url('ichoose/add/cat_activity',array('id'=>$list.id))}", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				imgUrl: '', // 分享图标
+				type: '', // 分享类型,music、video或link，不填默认为link
+				dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				success: function () {
+					// 用户确认分享后执行的回调函数
+					mui.toast('分享成功!');
+				},
+				cancel: function () {
+					// 用户取消分享后执行的回调函数
+					mui.toast('您取消了分享!');
+				}
+			});
+		})
+    </script>
+</head>
+<body>
+<center>
+    <h4>{$list.title}</h4>
+    <p>发起人:{$creator.nickname}</p>
+    <p>聚会时间:{$list.time}</p>
+    <p>聚会地点:{$list.address}</p>
+    <p>拟邀请好友:{$list.guests}</p>
+    <p>费用形式:{$list.cost_form}</p>
+    <p>聚会内容: <img src="/public/upload/ichoose_img/{$list.con}" width="30%" alt=""> <br>{$list.con}</p>
+    {if($ans_status == 'no')}
+    <!--用户未确定是否参加的表单-->
+    <div>
+        <form id="party_form"  action="" method="post">
+            选择后无法更改
+            <input type="hidden" name="type" value="{$list.type}">
+            <br> 是否参加:<input type="radio" class="join_yes" name="join" value="yes">是
+            <input type="radio" name="join" class="join_no" value="no">否
+            <div class="join_y" >
+                <p>备注: <input type="" name="remark" placeholder="参加人员是否有风俗习惯,可填写备注"></p>
+                <p>留言(待议):
+                <p><input class="join_tj" type="button" value="提交"></p>
+            </div>
+        </form>
+    </div>
+    {else}
+    <!--参加活动的人-->
+    <div>
+        您已填写过
+    </div>
+    {/if}
+    <!--发起者看见的谁确定参加-->
+    {if($creator.status == 'yes')}
+    <div>
+        此次活动的回复的结果:
+        {if(is_array($join_peo))}
+        {foreach($join_peo as $ko=>$vo)}
+        {if($vo.join=='确定参加')}
+        <p>{$vo.nickname}{$vo.join}此次活动,参加人数为{$vo.peo_num}人,备注{$vo.remark}</p>
+        {else}
+        <p>{$vo.nickname}{$vo.join}此次活动,备注{$vo.remark}</p>
+        {/if}
+        {/foreach}
+        {else}
+        暂时无人回复
+        {/if}
+    </div>
+    {/if}
+    <!--是否关注过公众号的推荐内容-->
+    {if($attention=='no')}
+    <div>
+        <h1>请关注公众号爱选择ichoose</h1>
+    </div>
+    {else}
+    <div>
+
+    </div>
+    {/if}
+</center>
+</body>
+<script>
+	$('.join_yes').click(function(){
+		var bring = '{$list.bring}';
+		var join_state='{$join_state}';
+		if(join_state=='yes'){
+			if(bring=='yes')
+			{
+				var num = $('.peo_num').size();
+				if(num=='0'){
+					var str = '<p class="peo_num">参加人数: <input type="text"  name="peo_num"></p>';
+				}else{
+					$('.peo_num').remove();
+					var str = '<p class="peo_num">参加人数: <input type="text"  name="peo_num"></p>';
+				}
+				$('.join_y').prepend(str);
+			}else{
+				var str = '<p style="display: none" class="peo_num">参加人数: <input type="text"  name="peo_num" value="1"></p>';
+				$('.join_y').prepend(str);
+			}
+		}else{
+			alert('很抱歉,参与人数已满,请您下次参与');
+		}
+
+	})
+
+	$('.join_no').click(function(){
+		$('.peo_num').remove();
+	})
+
+	$('.join_tj').click(function(){
+		var url = "{:url('insert_join_ajax',array('id'=>$list.id,'uid'=>$reply_uid))}";
+		$.ajax({
+			cache: true,
+			type: "POST",
+			url: url,
+			data: $('#party_form').serialize(),
+			async: false,
+			success: function(data) {
+				//1-c成功 2-失败 3-已填写过
+				if(data=='1'){
+					var url1 = "{:url('cat_activity',array('id'=>$list.id))}";
+					window.location.href = url1;
+				}else if(data=='2'){
+					alert('报名失败');
+				}
+			}
+		})
+	})
+
+</script>
+</html>

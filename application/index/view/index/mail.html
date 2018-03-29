@@ -1,0 +1,607 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<script src="_JS_/laydate.js"></script>
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/mail.html" class="white">
+            <span>通讯录</span>
+        </a>
+    </div>
+</div>
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <div class="col-md-12">
+            <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-tongxunlu"></use>
+            </svg>
+                &nbsp;&nbsp;通讯录
+            </div>
+            <div class="col-md-12">
+                <!--用户列表按钮-->
+                <div class="col-md-12 mes_sign users_name center basicing">
+                    <a class="col-md-1 bg white radius" href="javascript:;">
+                        全部联系人
+                    </a>
+                    <a class="col-md-1 bg_color radius" href="javascript:;">
+                        群组联系人
+                    </a>
+                </div>
+                <div class="col-md-12 border" style="overflow: hidden;">
+                    <div class="col-md-12 rep_shai mail cus_menu_ing">
+                        <div class="inline_block">
+                            <a href="javascript:;" class="weight black mail_shai">
+                                筛选
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-shangxiasanjiaoxing1"></use>
+                                </svg>
+                            </a>
+                            <div class=" radius col-md-12 mail_sear  white_bg hides">
+                                <label class="">姓名&nbsp;<span class="red">&nbsp;</span></label>
+                                <input type="text" class="li_H radius" name="" placeholder="请输入姓名">
+                                <label class="">手机&nbsp;<span class="red">&nbsp;</span></label>
+                                <input type="text" class="li_H radius" name="" placeholder="请输入手机号" maxlength="11"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                                <label class="">邮箱&nbsp;<span class="red">&nbsp;</span></label>
+                                <input type="text" class="li_H radius" name="" placeholder="请输入邮箱">
+                                <label class="">公司&nbsp;<span class="red">&nbsp;</span></label>
+                                <input type="text" class="li_H radius" name="" placeholder="请输入公司名称">
+                                <label class="">部门&nbsp;<span class="red">&nbsp;</span></label>
+                                <input type="text" class="li_H radius" name="" placeholder="">
+                                <label class="">标签&nbsp;<span class="red">&nbsp;</span></label>
+                                <input type="text" class="li_H radius" name="" placeholder="">
+                                <label class="">备注&nbsp;<span class="red">&nbsp;</span></label>
+                                <input type="text" class="li_H radius" name="" placeholder="">
+                                <div class="display_block rights mail_sears">
+                                    <a href="javascript:;" class="bg white radius mail_add">
+                                      搜索
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:;" class="bg white radius mail_add" onclick="add_lian()">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-jia"></use>
+                            </svg>
+                            &nbsp;&nbsp;添加
+                        </a>
+                        <div class="dao">
+                        <a href="javascript:;" class="bg_color radius mail_dao">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-daoru"></use>
+                            </svg>
+                            &nbsp;&nbsp;导入
+                        </a>
+                        <a href="javascript:;" class="bg_color radius mail_dao">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-daochu"></use>
+                            </svg>
+                            &nbsp;&nbsp;导出
+                        </a>
+                            </div>
+                    </div>
+                    <div class="col-md-12 display_block">
+                        <!---->
+                        <table class="col-md-12 foll_tab mail_tab">
+                            <tbody>
+                            <tr>
+                                <th style="width:4%;text-align: center"><input type="checkbox" name="" class="allcheck"></th>
+                                <th>姓名</th>
+                                <th>手机</th>
+                                <th>邮箱</th>
+                                <th>公司</th>
+                                <th>部门</th>
+                                <th>标签</th>
+                                <th>备注</th>
+                            </tr>
+                            <tr class="mail_tab_tstr" style="" >
+                                <td class="left mail_tab_ts" colspan="8" style="">
+                                    双击联系人，查看该联系人详细信息
+                                    <svg class="icon" aria-hidden="true" style="" onclick="mail_tab_ts()">
+                                        <use xlink:href="#icon-asmkticon0246"></use>
+                                    </svg>
+                                </td>
+                            </tr>
+                            <tr class="mail_tab_tstr">
+                                <td class="left mail_tab_tsbg" colspan="8" style="">
+                                    双击联系人，查看该联系人详细信息
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:4%;text-align: center"><input type="checkbox" name=""></td>
+                                <td><a href="javascript:;" onclick="saw_lian()">一二</a></td>
+                                <td>13888888888</td>
+                                <td>13888888888@126.com</td>
+                                <td>北京途阅科技有限公司</td>
+                                <td>技术部</td>
+                                <td>
+                                    <span class="mail_biaoqian">大技术</span>
+                                    <svg class="icon mail_biaoqians" aria-hidden="true">
+                                        <use xlink:href="#icon-tag"></use>
+                                    </svg>
+                                </td>
+                                <td>大神</td>
+                            </tr>
+                            <tr>
+                                <td style="width:4%;text-align: center"><input type="checkbox" name=""></td>
+                                <td><a href="javascript:;" onclick="saw_lian()">一二</a></td>
+                                <td>13888888888</td>
+                                <td>13888888888@126.com</td>
+                                <td>北京途阅科技有限公司</td>
+                                <td>技术部</td>
+                                <td>
+                                    <span class="mail_biaoqian yellow">技术&nbsp;<span class="mail_biaoqianing">。</span></span>
+                                    <svg class="icon mail_biaoqians" aria-hidden="true">
+                                        <use xlink:href="#icon-icon-test"></use>
+                                    </svg>
+
+                                </td>
+                                <td>大神</td>
+                            </tr>
+                            <!---->
+                            </tbody>
+                        </table>
+                        <div class="col-md-12 display_block mail_del">
+                            <br>
+                            <a href="javascript:;" class="reds white radius mail_add">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-huishouzhan"></use>
+                                </svg>
+                                &nbsp;&nbsp;删除
+                            </a>
+                            <br> <br> <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!---->
+<!--<div class="row">-->
+    <!--&lt;!&ndash;公众号信息&ndash;&gt;-->
+    <!--<div class="col-md-12 mes_sign">-->
+        <!--<svg class="icon bg_color mes" aria-hidden="true">-->
+            <!--<use xlink:href="#icon-weixingongzhonghao"></use>-->
+        <!--</svg>&nbsp;&nbsp;-->
+        <!--公众号信息-->
+    <!--</div>-->
+
+<!--</div>-->
+</div>
+</div>
+<!--弹框-->
+<div class="rouping hides">
+</div>
+<from action="">
+<!--创建新群组-->
+<div class="roupings mail_add mail_addzu hides">
+    <h3 class="bg white">
+        创建新群组
+        <svg class="icon border_radius white dels foll_del" aria-hidden="true" onclick="del_zu()">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete2"></use>
+        </svg>
+    </h3>
+    <div class="row">
+        <label class="col-md-12">群组类型<br><br></label>
+        <div class="col-md-3 radius mail_type mail_types mail_zu_active">
+            <svg class="icon center display_block bg_color" aria-hidden="true">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-kehu"></use>
+            </svg>
+            <p class="center">客户</p>
+        </div>
+        <div class="col-md-3 radius mail_type mail_types">
+            <svg class="icon center display_block blues" aria-hidden="true">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-hezuohuoban1"></use>
+            </svg>
+            <p class="center">合作伙伴</p>
+        </div>
+        <div class="col-md-3 radius mail_type mail_types">
+            <svg class="icon center display_block brown" aria-hidden="true">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-ai-briefcase"></use>
+            </svg>
+            <p class="center">同事</p>
+        </div>
+        <div class="col-md-3 radius mail_type">
+            <svg class="icon center display_block yellows" aria-hidden="true">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-iconfontcolor52"></use>
+            </svg>
+            <p class="center">普通</p>
+        </div>
+        <div class="col-md-12 mail_qunzu_name">
+            <label class="col-md-2 zhuangtai">群组名称</label>
+            <div class="col-md-8 zhuangtai">
+                <input type="text" class="li_H " placeholder="请输入群组名称" name="">
+                <input type="checkbox" name="">&nbsp;将此群组置顶
+            </div>
+        </div>
+        <div class="col-md-12 center">
+            <input type="button" value="保存" class="bg white radius foll_tj" onclick="mail_zu_cun()">
+        </div>
+
+    </div>
+</div>
+<!--添加联系人-->
+<div class="roupings mail_add hides mail_adds">
+    <p class="bg white mail_name ">
+        <img src="__IMG__/QR.jpg" width="120px" height="120px" class="border_radius col-md-3" style="width:120px;padding:0;">
+         <span class="col-md-1">
+            &nbsp;
+        </span>
+        <span class="col-md-8 mail_name_top rep_names">
+            <input type="text" placeholder="姓名" class="li_H mail_name_name">
+            <a href="javascript:;" class="inline_block">
+                <svg class="icon white" aria-hidden="true" onclick="beizhu()">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
+                </svg>
+            </a>
+            <span class="mail_beizhu">备注名</span>
+            <input type="text" placeholder="备注" class="li_H mail_name_name hides mail_beizhus">
+            <span class="col-md-12  mail_bot"></span>
+        </span>
+
+         <span class="col-md-1">
+            &nbsp;
+        </span>
+         <span class="col-md-8 rights chec">
+            <select class="black radius mail_name_lis">
+                <option value="">请选择</option>
+                <option value="0">男</option>
+                <option value="1">女</option>
+                <option value="3">保密</option>
+            </select>
+             <input type="text" placeholder="生日" class="li_H mail_name_lis black radius" onclick="laydate()">
+             <input type="text" placeholder="所在地" class="li_H mail_name_lis black radius">
+        </span>
+    </p>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="col-md-1">公司</label>
+            <div class="col-md-11">
+                <input type="text" class="li_H " placeholder="请输入公司名称" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2">部门</label>
+            <div class="col-md-10">
+                <input type="text" class="li_H " placeholder="请输入部门名称" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2">职位</label>
+            <div class="col-md-10 ">
+                <input type="text" class="li_H " placeholder="请输入职位" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2 ">手机</label>
+            <div class="col-md-10 ">
+                <input type="text" class="li_H " placeholder="请输入手机号" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2">邮箱</label>
+            <div class="col-md-10">
+                <input type="text" class="li_H" placeholder="请输入邮箱" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2 ">标签</label>
+            <div class="col-md-10 ">
+                <input type="text" class="li_H" placeholder="请输入标签" name="">
+            </div>
+        </div>
+        <label class="col-md-12 mail_mes">其他联系方式</label>
+        <div class="col-md-6">
+            <label class="col-md-2 ">座机</label>
+            <div class="col-md-10 ">
+                <input type="text" class="li_H " placeholder="请输入座机" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2 ">传真</label>
+            <div class="col-md-10 ">
+                <input type="text" class="li_H " placeholder="请输入传真" name="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-1">网址</label>
+            <div class="col-md-11">
+                <input type="text" class="li_H " placeholder="请输入网址" name="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-1">地址</label>
+            <div class="col-md-11">
+                <select class="black mail_mes_sel li_H">
+                    <option value="">请选择</option>
+                </select>
+                <select class="black mail_mes_sel li_H">
+                    <option value="">请选择</option>
+                </select>
+                <select class="black mail_mes_sel li_H">
+                    <option value="">请选择</option>
+                </select>
+                <input type="text" class="li_H mail_mes_sels" placeholder="请输入详细地址" name="">
+            </div>
+        </div>
+        <label class="col-md-12 mail_mes">即时通讯</label>
+        <div class="col-md-6">
+            <label class="col-md-2">微信</label>
+            <div class="col-md-10">
+                <input type="text" class="li_H " placeholder="请输入微信" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2 ">QQ</label>
+            <div class="col-md-10 ">
+                <input type="text" class="li_H " placeholder="请输入QQ号" name="">
+            </div>
+        </div>
+<!--添加到群组-->
+        <label class="col-md-12 mail_mes">
+            <span>添加到群组</span>
+            <a href="javascript:;" class="foll_del dels bg_color mail_add_zu" onclick="mail_add_zu()">
+            <svg class="icon border_radius  " aria-hidden="true" >
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia1"></use>
+            </svg>&nbsp;添加新群组
+                </a>
+        </label>
+        <div class="col-md-3">
+            <input type="radio" class="inline_block" placeholder="" name="radio">&nbsp;客户
+        </div>
+        <div class="col-md-3">
+            <input type="radio" class=" inline_block" placeholder="" name="radio">&nbsp;合作伙伴
+        </div>
+        <div class="col-md-3">
+            <input type="radio" class=" inline_block" placeholder="" name="radio">&nbsp;同事
+        </div>
+        <div class="col-md-3">
+            <input type="radio" class=" inline_block" placeholder="" name="radio">&nbsp;普通
+        </div>
+        <div class="col-md-2">
+            <input type="checkbox" class="inline_block" placeholder="" name="">&nbsp;组1
+        </div>
+        <div class="col-md-2">
+            <input type="checkbox" class="inline_block" placeholder="" name="">&nbsp;组1
+        </div>
+        <div class="col-md-2">
+            <input type="checkbox" class="inline_block" placeholder="" name="">&nbsp;组1
+        </div>
+        <div class="col-md-12 center">
+            <input type="button" value="提交" class="bg white radius foll_tj" onclick="mail_tj()">
+        </div>
+
+    </div>
+</div>
+<!--查看联系人-->
+<div class="roupings  mail_add hides saw_lians">
+    <p class="bg white mail_name ">
+        <img src="__IMG__/QR.jpg" width="120px" height="120px" class="border_radius col-md-3" style="width:120px;padding:0;">
+         <span class="col-md-1">
+            &nbsp;
+        </span>
+        <span class="col-md-8 mail_name_top rep_names">
+            <input type="text" placeholder="姓名" class="li_H mail_name_name">
+            <a href="javascript:;" class="inline_block">
+                <svg class="icon white" aria-hidden="true" onclick="beizhu()">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
+                </svg>
+            </a>
+            <span class="mail_beizhu">备注名</span>
+            <input type="text" placeholder="备注" class="li_H mail_name_name hides mail_beizhus">
+            <span class="col-md-12  mail_bot"></span>
+        </span>
+
+         <span class="col-md-1">
+            &nbsp;
+        </span>
+         <span class="col-md-8 rights chec">
+            <select class="black radius mail_name_lis">
+                <option value="">请选择</option>
+                <option value="0">男</option>
+                <option value="1">女</option>
+                <option value="3">保密</option>
+            </select>
+             <input type="text" placeholder="生日" class="li_H mail_name_lis black radius" onclick="laydate()">
+             <input type="text" placeholder="所在地" class="li_H mail_name_lis black radius">
+        </span>
+    </p>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="col-md-1">公司</label>
+            <div class="col-md-11">
+                <input type="text" class="li_H " placeholder="请输入公司名称" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2">部门</label>
+            <div class="col-md-10">
+                <input type="text" class="li_H " placeholder="请输入部门名称" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2">职位</label>
+            <div class="col-md-10">
+                <input type="text" class="li_H " placeholder="请输入职位" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2">手机</label>
+            <div class="col-md-10">
+                <input type="text" class="li_H " placeholder="请输入手机号" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2 ">邮箱</label>
+            <div class="col-md-10">
+                <input type="text" class="li_H" placeholder="请输入邮箱" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2">标签</label>
+            <div class="col-md-10">
+                <input type="text" class="li_H" placeholder="请输入标签" name="">
+            </div>
+        </div>
+        <label class="col-md-12 mail_mes">其他联系方式</label>
+        <div class="col-md-6">
+            <label class="col-md-2 ">座机</label>
+            <div class="col-md-10 ">
+                <input type="text" class="li_H " placeholder="请输入座机" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2 ">传真</label>
+            <div class="col-md-10 ">
+                <input type="text" class="li_H " placeholder="请输入传真" name="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-1">网址</label>
+            <div class="col-md-11">
+                <input type="text" class="li_H " placeholder="请输入网址" name="">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label class="col-md-1">地址</label>
+            <div class="col-md-11">
+                <select class="black mail_mes_sel li_H">
+                    <option value="">请选择</option>
+                </select>
+                <select class="black mail_mes_sel li_H">
+                    <option value="">请选择</option>
+                </select>
+                <select class="black mail_mes_sel li_H">
+                    <option value="">请选择</option>
+                </select>
+                <input type="text" class="li_H mail_mes_sels" placeholder="请输入详细地址" name="">
+            </div>
+        </div>
+        <label class="col-md-12 mail_mes">即时通讯</label>
+        <div class="col-md-6">
+            <label class="col-md-2">微信</label>
+            <div class="col-md-10">
+                <input type="text" class="li_H " placeholder="请输入微信" name="">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2 ">QQ</label>
+            <div class="col-md-10 ">
+                <input type="text" class="li_H " placeholder="请输入QQ号" name="">
+            </div>
+        </div>
+        <!--添加到群组-->
+        <label class="col-md-12 mail_mes">
+            <span>所属群组</span>
+            <a href="javascript:;" class="foll_del dels bg_color mail_add_zu" onclick="mail_add_zu()">
+                <svg class="icon border_radius  " aria-hidden="true" >
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia1"></use>
+                </svg>&nbsp;添加新群组
+            </a>
+        </label>
+        <div class="col-md-2">
+            &nbsp;
+        </div>
+        <div class="col-md-3">
+            客户
+        </div>
+        <div class="col-md-2">
+           组1
+        </div>
+
+        <div class="col-md-12 center">
+            <input type="button" value="保 &nbsp; &nbsp;存" class="bg white radius foll_tj" onclick="mail_bc()">
+            <input type="button" value="删 &nbsp; &nbsp;除" class="reds white radius foll_tj" onclick="mail_del()">
+        </div>
+
+    </div>
+</div>
+</from>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    //表格提示
+    function mail_tab_ts(){
+        $('.mail_tab_tstr').hide();
+    }
+    //    全选
+    $('.allcheck').click(function(){
+        var CheckBox=$('input[type=checkbox]');
+        if($(this).is(':checked') ){
+            for(i=0;i<CheckBox.length;i++){
+                CheckBox[i].checked=true;
+            };
+        }else{
+            for(i=0;i<CheckBox.length;i++){
+                CheckBox[i].checked=false;
+            };
+        }
+    });
+//    筛选
+    $(document).ready(function() {
+        $('.mail_shai').click(function() {
+            $(this).next().slideDown("fast");
+        })
+        $('.cus_menu_ing').hover(function() {}, function() {
+            $(this).children('div').eq(0).children('div').slideUp("slow")
+        })
+    });
+//    添加
+    function add_lian(){
+        $('.rouping').fadeIn('fast');
+        $(".mail_adds").slideDown('fast').animate({top:"6%",opacity:"1"});
+    }
+    function mail_tj(){
+        $('.rouping').hide();
+        $('.mail_adds').hide();
+    }
+//    查看
+    function mail_bc(){
+        $('.rouping').hide();
+        $('.saw_lians').hide();
+    }
+    function mail_del(){
+        $('.rouping').hide();
+        $('.saw_lians').hide();
+    }
+    function saw_lian(){
+        $('.rouping').fadeIn('fast');
+        $(".saw_lians").slideDown('fast').animate({top:"6%",opacity:"1"});
+    }
+//    添加群组
+    function mail_add_zu(){
+        $('.rouping').fadeIn('fast');
+        $(".mail_addzu").slideDown('fast').animate({top:"6%",opacity:"1"});
+        $('.mail_adds').hide();
+        $('.saw_lians').hide();
+    }
+    function mail_zu_cun(){
+        $('.rouping').hide();
+        $('.mail_addzu').hide();
+    }
+    function  del_zu(){
+        $('.rouping').hide();
+        $('.mail_addzu').hide();
+    }
+//    备注修改
+    function beizhu(){
+        $('.mail_beizhu').hide();
+        $('.mail_beizhus').show();
+    }
+//function mail_shai(){
+//    $('.mail_sear').show();
+//}
+//function mail_shais(){
+//    $('.mail_sear').hide();
+//}
+</script>
+</html>

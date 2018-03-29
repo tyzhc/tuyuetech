@@ -1,0 +1,132 @@
+{include file="./public/public/custom_menus.html"/}
+<div class="col-md-12 border">
+    <div class="col-md-12 rep_shai">
+        <a href="{:url('senior/custom_menus')}" class="bg add  white radius inline_block custom_add_menu_ge">
+            <svg class="icon" aria-hidden="true">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-jia"></use>
+            </svg>
+            添加个性化菜单
+        </a>
+    </div>
+    <!--<div class="col-md-12 rep_shai">-->
+        <!--<label>筛选</label>-->
+    <!--</div>-->
+    <div class="col-md-12 shai_lis display_block">
+        <!--<div class="col-md-3">-->
+            <!--<label>状态</label>-->
+            <!--<div class="btn-group state" role="group" aria-label="">-->
+                <!--<a href="javascript:;" type="button" class="btn btn-default state_active">所有</a>-->
+                <!--<a href="javascript:;" type="button" class="btn btn-default ">启用</a>-->
+                <!--<a href="javascript:;" type="button" class="btn btn-default ">禁用</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-5">-->
+            <!--<label>关键字</label>-->
+            <!--<div class="input-group search">-->
+                <!--<input type="text" class="form-control" id="text" name="">-->
+                              <!--<span class="input-group-btn">-->
+                                <!--<button href="" class="btn btn-default" type="button" id="count">-->
+                                    <!--<span class="glyphicon glyphicon-search bg_color"></span>-->
+                                <!--</button>-->
+                              <!--</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!---->
+        <table class="col-md-12">
+            <tr>
+                <th>标题</th>
+                <th>匹配规则</th>
+                <th>创建时间</th>
+                <th>是否生效</th>
+                <th>操作</th>
+            </tr>
+            {volist name="menu" id="vo"}
+            <tr>
+                <td>{$vo.title}</td>
+                <!--<td> <span class="radius greens white">默认菜单</span></td>-->
+                <td>所有粉丝</td>
+                <td>{$vo.addtime}</td>
+                <td>
+                    {if condition="($vo.take == 1)"}
+                    <span class="radius greens white">已在微信端生效</span>
+                    {else}
+                    <span class="radius reds white">未同步在微信端</span>
+                    {/if}
+                </td>
+                <td>
+                    <a href="{:url('senior/custom_menus',array('id'=>$vo.id))}" class="bg_color radius">编辑</a>
+                    <a href="" class="red radius" onclick="del({$vo.id})">删除</a>
+                    {if condition="($vo.take == 1)"}
+                    <button href="{:url('senior/custom_menus',array('id'=>$vo.id))}" class=" radius white tongbu" disabled>
+                        同步到微信端
+                    </button>
+                    {else}
+                    <button href="{:url('senior/custom_menus',array('id'=>$vo.id))}" class="bg radius white tongbu" onclick="ts({$vo.id})">
+                        同步到微信端
+                    </button>
+                    {/if}
+                </td>
+            </tr>
+            {/volist}
+            <tr>
+                <td colspan="6">{$page}</td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+    </div>
+    <script>
+    </script>
+    </div>
+    </div>
+    <!---->
+    </div>
+    </body>
+    <script src="_JS_/bootstrap.min.js"></script>
+    </html>
+    <script>
+        function ts(id){
+            if(confirm("确定要推送到微信端么？"))
+            {
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: '{:url('wechat_menu')}',
+                    data: {id:id},
+                    async: false,
+                    success: function (data) {
+                        res = JSON.parse(data);
+                        if(res['type']==1){
+                            alert(res['success']);
+                            location.reload();
+                        }else{
+                            alert(res['errcode']);
+                        }
+                    }
+                });
+            }
+        }
+
+        function del(id){
+            if(confirm("确定要删除么？"))
+            {
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: '{:url('menu_del')}',
+                    data: {id:id},
+                    async: false,
+                    success: function (data) {
+                        res = JSON.parse(data);
+                        if(res['type']==1){
+                            alert(res['success']);
+                            location.reload();
+                        }else{
+                            alert(res['errcode']);
+                        }
+                    }
+                });
+            }
+        }
+    </script>

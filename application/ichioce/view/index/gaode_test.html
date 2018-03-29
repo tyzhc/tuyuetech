@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>关键字查询-使用默认皮肤</title>
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main.css"/>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+    <script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=1.4.2&key=040ec7d698956fc77b60eafbe03c976e"></script>
+    <style type="text/css">
+        #panel {
+            position: absolute;
+            background-color: white;
+            max-height: 90%;
+            overflow-y: auto;
+            top: 10px;
+            right: 10px;
+            width: 280px;
+        }
+    </style>
+</head>
+<body>
+<div  id="bb" style="display: none">
+    <input type="text" id="aa">
+</div>
+
+<!--<div id="mapContainer"></div>-->
+<div id="panel">
+    <input type="text" id="search"> <!--<input type="button" value="搜索" id="search_button">-->
+</div>
+
+<script type="text/javascript">
+	var map = new AMap.Map("mapContainer", {
+		resizeEnable: true
+	});
+	AMap.plugin(['AMap.Autocomplete'],function(){
+		var autoOptions = {
+			city: "北京", //城市，默认全国
+			input: "search"//使用联想输入的input的id
+		};
+		autocomplete= new AMap.Autocomplete(autoOptions);
+		AMap.event.addListener(autocomplete, "select", function(e){
+			//TODO 针对选中的poi实现自己的功能
+
+
+		});
+
+	});
+</script>
+<script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+</body>
+</html>

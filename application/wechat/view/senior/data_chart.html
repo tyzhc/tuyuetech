@@ -1,0 +1,122 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<link href="_CSS_/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all" href="_CSS_/daterangepicker-bs3.css"/>
+<script type="text/javascript" src="_JS_/moment.js"></script>
+<script type="text/javascript" src="_JS_/daterangepicker.js"></script>
+<!--<script type="text/javascript" src="_JS_/jquery.min.js"></script>-->
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/basic_lis.html" class="white">
+            <span>基本功能</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="" class="white">
+            <span>关键指标详解</span>
+        </a>
+    </div>
+</div>
+{include file="./public/public/basic_setup.html"/}
+<div class="col-md-12">
+    <!--用户列表按钮-->
+    <div class="col-md-12 mes_sign users_name center basicing">
+        <a class='col-md-1 radius bg white' href="follower.html">
+            关键指标详解
+        </a>
+    </div>
+    <div class="col-md-12 border">
+        <form action="" method="post" enctype="">
+            <div class="col-md-12 ans_mes zhuangtai data_chart">
+                <label class="col-md-1 left">筛选时间范围</label>
+                <div class="col-md-2">
+                    <div id="reportrange2" class="radius li_H rep_names" style="display: inline-block; background: #fff; cursor: pointer; padding: 0px 10px; border: 1px solid #ccc">
+                        <span></span> <b class="caret"></b>
+                    </div>
+                    <input type="hidden" name="time">
+
+                </div>
+                <div class="col-md-8 ">
+                    <input type="submit" class="radius white bg data_sear" value="&nbsp;搜索&nbsp;">
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        var str=new Date();
+                        {if condition="(!empty($form) && !empty($form.time))"}
+                        $('#reportrange2 span').html('{$form.time}');
+                        {else}
+                        $('#reportrange2 span').html(str.getFullYear()+'-'+(str.getMonth()+1)+'-'+str.getDate()+'&nbsp;至&nbsp;'+str.getFullYear()+'-'+(str.getMonth()+1)+'-'+str.getDate());
+                        {/if}
+                        $('#reportrange2').daterangepicker();
+                        $('.applyBtn').attr('onclick','date()');
+                    });
+                    function date(){
+                        $('#reportrange2 span').html($('input[name="daterangepicker_start"]').val()+'&nbsp;至&nbsp;'+$('input[name="daterangepicker_end"]').val());
+                        $('input[name=time]').val($('input[name="daterangepicker_start"]').val()+'~'+$('input[name="daterangepicker_end"]').val());
+                    };
+                </script>
+                <div class="col-md-12"></div>
+                <div id="main" class="col-md-12" style="height:460px"></div>
+
+            </div>
+        </form>
+        <br><br><br><br><br>
+    </div>
+</div>
+</div>
+</div>
+<!---->
+</div>
+</body>
+<!--<script src="_JS_/bootstrap.min.js"></script>-->
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+    option = {
+        title: {
+            text:'规则使用趋势图'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['1','2','3','4','5']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一','周二','周三','周四','周五','周六','周日']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'搜索引擎',
+                type:'line',
+                stack: '总量',
+                data:[820, 932, 901, 934, 1290, 1330, 1320]
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+</html>

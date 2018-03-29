@@ -1,0 +1,186 @@
+{include file="./public/public/article.html"/}
+<script src="_JS_/laydate.js"></script>
+<script src="_JS_/angular.min.js"></script>
+<div class="col-md-12 ans_mes reply_saw border cus_menu" ng-app="myApp" ng-controller="costCtrl">
+    <div class="col-xs-6 col-sm-4 col-md-4 cus_menus">
+        <img src="__IMG__/phone.png" width="100%">
+        <div class="wz">
+            <div class="wz_names white">{{name}}</div>
+            <h2>{{name}}</h2>
+            <div class="wz_wz_mes">
+                <span>{{shijian}}</span>
+                <span>{{zuozhe}}</span>
+                <span>{{gongname}}</span>
+            </div>
+            <div class="wz_neirong">
+             {if condition='(!empty($article))'}{$article.count}{/if}
+            </div>
+            <div class="wz_mesing">
+                <a href="javascript:;" class="lefts">查看原文</a>
+                <span class="gray">阅读&nbsp;<span>{{yuedu | limitTo :5+'+'}}</span></span>
+                <span class="gray">
+                      <svg class="icon" aria-hidden="true">
+                          <use xlink:href="#icon-zan"></use>
+                      </svg>
+                    <span>{{dianzan | limitTo :5+'+'}}</span>
+                </span>
+                <a href="javascript:;" class="rights gray">反馈</a>
+            </div>
+        </div>
+    </div>
+    <!--右侧-->
+    <div class="col-xs-6 col-sm-8 col-md-8 reply_saw_right">
+        <div class="arrow-left arrow-lefting"></div>
+        <form action="{:url('article_add')}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{if condition='(!empty($id))'}{$article.id}{/if}">
+        <div id="wrap" class="rep-body radius row">
+                <div id="tit">
+                    <a href="javascript:;" class="select">基本内容</a>
+                    <a href="javascript:;">文章内容</a>
+                </div>
+                <ul id="con">
+                    <li class="show row shows">
+                        <label class="col-md-2">文章标题&nbsp;<span class="red">*</span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="li_H radius" name="title" placeholder="请输入文章标题" ng-model="name">
+                            <input type="text" class="li_H radius wz_mes" name="account_name" placeholder="公众号名称" ng-model="gongname" value="41212121">
+                            <input type="text" class="li_H radius wz_mes" name="author" placeholder="作者信息" ng-model="zuozhe">
+                            <input type="hidden" id="date" name="date" value="">
+                            <!--<input type="text" class="li_H radius wz_mes" name="" placeholder="时间（抓取当前时间）" onclick="laydate();">-->
+                            <button type="button" class="bg white radius wz_mes li_H" onclick="zhua()">抓取当前时间</button>
+                        </div>
+                        <label class="col-md-2">阅读全文&nbsp;<span class="red">&nbsp;</span></label>
+                        <div class="col-md-9">
+                            <input type="text" class="li_H radius" name="link" placeholder="阅读全文链接，如果不填写则不显示阅读全文" value="{if condition='(!empty($article))'}{$article.link}{/if}">
+                        </div>
+                        <!--<div class="col-md-6">-->
+                            <label class="col-md-2">虚拟阅读数&nbsp;<span class="red">&nbsp;</span></label>
+                            <div class="col-md-3">
+                                <input type="text" class="li_H radius" name="read" placeholder="" ng-model="yuedu">
+                            </div>
+                        <div class="col-md-1">
+                            &nbsp;
+                        </div>
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <label class="col-md-2">虚拟点赞数&nbsp;<span class="red">&nbsp;</span></label>
+                            <div class="col-md-3">
+                                <input type="text" class="li_H radius" name="fabulous" placeholder="" ng-model="dianzan">
+                            </div>
+                        <!--</div>-->
+                        <label class="col-md-2">分享设置</label>
+                        <div class="col-md-9 chec">
+                            <input type="checkbox" class="" name="no_link" value="1" {if condition='(!empty($article) && $article.no_link==1)'}checked{/if}>&nbsp;禁止复制链接&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" class="" name="no_circle" value="1" {if condition='(!empty($article) && $article.no_circle==1)'}checked{/if}>&nbsp;禁止分享至朋友圈&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" class="" name="no_friends" value="1" {if condition='(!empty($article) && $article.no_friends==1)'}checked{/if}>&nbsp;禁止分享给好友&nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <label class="col-md-2">状态&nbsp;<span class="red">&nbsp;</span></label>
+                        <div class="col-md-9 chec">
+                            <input type="radio" class="" name="state" value="0" {if condition='(!empty($article) && $article.no_friends==0)'}checked{/if}>&nbsp;启用&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" class="" name="state" value="1" {if condition='(!empty($article) && $article.no_friends==1)'}checked{/if}>&nbsp;禁用
+                        </div>
+                        <!--<label class="col-md-12 she">平台回复设置&nbsp;<span class="red">&nbsp;</span></label>-->
+                        <!--<label class="col-md-2">回复关键词&nbsp;<span class="red">&nbsp;</span></label>-->
+                        <!--<div class="col-md-9 chec">-->
+                            <!--<input type="text" class="li_H radius" name="" placeholder="阅读全文链接，如果不填写则不显示阅读全文">-->
+                        <!--</div>-->
+                        <!--<label class="col-md-2">文章描述&nbsp;<span class="red">&nbsp;</span></label>-->
+                        <!--<div class="col-md-9 chec">-->
+                           <!--<textarea class="li_H radius" rows="4" style="height:auto"></textarea>-->
+                        <!--</div>-->
+                        <!--<label class="col-md-2">封面图片&nbsp;<span class="red">&nbsp;</span></label>-->
+                        <!--<div class="col-md-9 pic_aning">-->
+                            <!--<div class="input-group">-->
+                                <!--<input type="text" class="form-control li_H radius " id="text" name="" >-->
+                                <!--<span class="input-group-btn">-->
+                                    <!--<button href="" class="btn btn-default" type="button" id="count">-->
+                                        <!--选择图片-->
+                                    <!--</button>-->
+                                <!--</span>-->
+                            <!--</div>-->
+                            <!--<img src="" id="pic_ans" class="radius" width="160px"  height="120px">-->
+                            <!--<span class="gray">请上传触发关键字时所要回复的图片</span>-->
+                            <!--<input type="file" id="" class="pic_an" name="">-->
+                        <!--</div>-->
+                    </li>
+                    <li>
+                        <textarea name="count" id="xiangqing" style="width:100%;max-width: 100%;" rows="10"></textarea>
+                        <input type="button" class="bg white tijiao radius" value="同步预览" name="" onclick="tongbu()">
+                    </li>
+                </ul>
+        </div>
+        </from>
+    </div>
+    <div class="col-md-12">
+        <input type="submit" class="bg white tijiao radius" value="保存文章" name="">
+        <br><br>
+    </div>
+</div>
+</div>
+<!---->
+</div>
+</div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('costCtrl', function($scope) {
+        $scope.name = "{if condition='(!empty($article))'}{$article.title}{/if}";
+        $scope.zuozhe = "{if condition='(!empty($article))'}{$article.author}{/if}";
+        $scope.gongname="{if condition='(!empty($article))'}{$article.account_name}{/if}";
+        $scope.yuedu="{if condition='(!empty($article))'}{$article.read}{/if}";
+        $scope.dianzan="{if condition='(!empty($article))'}{$article.fabulous}{/if}";
+        $scope.shijian="{if condition='(!empty($article))'}{$article.date}{else}{:date('Y-m-d',time())}{/if}";
+    });
+    $('#xiangqing').val($('.wz_neirong').html())
+    $('#tit a').click(function() {
+        var i = $(this).index();
+        $('#con li').removeClass('show');
+        $(this).addClass('select').siblings().removeClass('select');
+        $('#con li').eq(i).show().siblings().hide();
+        $('#con li').eq(i).addClass('show');
+    });
+//    图片预览
+    $(document).ready(function() {
+        $(".pic_an").change(function() {
+            var fil = this.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(fil);
+            reader.onload = function() {
+                document.getElementById("pic_ans").src= reader.result;
+            };
+        });
+    });
+    $('.pic_an').change(function(){
+        $('#text').val($('.pic_an').val());
+    });
+    //编辑器js
+    KindEditor.ready(function(K) {
+        var editor1 = K.create('textarea[name="count"]', {
+            allowFileManager: true,
+            afterCreate: function() {
+                var self = this;
+                K.ctrl(document, 13, function() {
+                    self.sync();
+                    K('form[name=example]')[0].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function() {
+                    self.sync();
+                    K('form[name=example]')[0].submit();
+                });
+            },
+            afterBlur: function(){this.sync();}
+        });
+    });
+//    文章同步预览
+    function tongbu(){
+        $('.wz_neirong').html($('#xiangqing').val());
+    }
+//    抓取当前时间
+    function zhua(){
+        var str=new Date()
+        $('.wz_wz_mes>span:first').html(str.getFullYear()+'-'+(str.getMonth()+1)+'-'+str.getDate());
+        $('#date').val(str.getFullYear()+'-'+(str.getMonth()+1)+'-'+str.getDate());
+    }
+</script>
+</html>

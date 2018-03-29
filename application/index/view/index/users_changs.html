@@ -1,0 +1,129 @@
+{include file="./public/public/header.html"/}
+<link rel="stylesheet" type="text/css" href="_CSS_/users.css">
+<script src="_JS_/laydate.js"></script>
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+        <a href="/platform/index.php/index/index/index.html" class="white">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-home"></use>
+            </svg>
+            <span>首页</span>
+        </a>
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-arrRight-fill"></use>
+        </svg>
+        <a href="/platform/index.php/index/index/users.html" class="white">
+            <span>用户管理</span>
+        </a>
+    </div>
+</div>
+<!--用户列表-->
+<div class="col-md-12 sign  main-padding">
+    <div class="white_bg radius sign-main row">
+        <!--用户列表按钮-->
+        <div class="col-md-12 mes_sign users_name center">
+            <a class="col-md-1 bg_color" href="users.html">
+                用户管理
+            </a>
+            <a class="col-md-1 bg_color" href="add_users.html">
+                添加用户
+            </a>
+            <a class="col-md-1 bg white radius " href="users_changs.html">
+                编辑用户组
+            </a>
+        </div>
+        <!--添加新用户-->
+        <div class="col-md-12  addusers_name">
+            用户组管理
+        </div>
+        <div class="col-md-12 tab_box radius users_shai users_saw">
+            基本信息
+        </div>
+        <div class="col-md-12  border users_saw_tab">
+            <div class="col-md-12 add_use_lis">
+                <label class="col-md-2 rights">名称</label>
+                <div class="col-md-9">
+                    <input type="text" class="li_H radius add_user_name" placeholder="" name="" maxlength="15" value="黄金用户组">
+                </div>
+            </div>
+            <div class="col-md-12 add_use_lis">
+                <label class="col-md-2 rights">公众号数量</label>
+                <div class="col-md-9">
+                    <input type="text" class="li_H radius add_user_name" placeholder="" name="" maxlength="15" value="3">
+                    <span class="gray">限制公众号的数量，为0则不允许添加。</span>
+                </div>
+            </div>
+            <div class="col-md-12 add_use_lis">
+                <label class="col-md-2 rights">有效期限</label>
+                <div class="col-md-9 qixian">
+                    <div class=" input-group search ">
+                        <input type="text" class="form-control li_H" id="text" placeholder="0">
+                  <span class="input-group-btn">
+                    <button href="" class="btn btn-default" type="button" id="count">
+                        天
+                    </button>
+                  </span>
+                    </div>
+                    <span class="gray">设置用户组的有效期限。0为不限制期限。到期后，该用户下的所有公众号只能使用 "基础服务"</span>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <div class="col-md-12 tab_box radius users_shai users_saw">
+            可使用的公众服务套餐
+        </div>
+        <div class="col-md-12 border users_saw_tab">
+            <table class="users_tab">
+                <tr>
+                    <th width="5%">选择</th>
+                    <th width="10%">
+                        公众服务套餐
+                    </th>
+                    <th>
+                        模块权限
+                    </th>
+                    <th>
+                        模板权限
+                    </th>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="" ></td>
+                    <td>
+                        体验套餐服务
+                    </td>
+                    <td>
+                        <span class="greens white radius">系统模块</span>
+                    </td>
+                    <td>
+                        <span class="greens white radius">系统默认模板</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="" ></td>
+                    <td>
+                        所有服务
+                    </td>
+                    <td>
+                        <span class="reds white radius">系统所有模块</span>
+                    </td>
+                    <td>
+                        <span class="reds white radius">系统所有模板</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <a class="btn bg white users_saw_anniu col-md-1" href="">提交</a>
+    </div>
+</div>
+<!---->
+</div>
+</div>
+</body>
+</html>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+
+</script>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加商品</title>
+    <script type="text/javascript" src="/public/static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/js/jquery.js"></script>
+</head>
+<body>
+
+<form action='{:url('insert',array('create_type'=>$create_type,'add_type'=>$add_type))}' method="post">
+投票标题: <input type="text" name="title">
+<br>投票描述：<input type="text" name="con">
+<br>截止时间: <input type="text" name="end_time">
+<br>投票类型: <input type="radio" name="type" value="1" checked="checked">单选 <input type="radio" name="type">多选
+<br>选项内容:
+<br> <input class="opt" id="good_1" type="text" placeholder="商品链接网址" onchange="good_code(1)">
+<br> <input class="opt" id="good_2" type="text" placeholder="商品链接网址" onchange="good_code(2)">
+<br><input type="button" class="add" value="添加选项">
+<!--<input type="text" name="scenic" placeholder="景点关键词"><input type="submit">-->
+<br>好友回答: <input type="radio" name="gongkai" value="0">匿名 <input type="radio" name="gongkai" value="1" checked="checked"> 公开
+{if($create_type=='4')}
+<br>征集投票内容: <input type="radio" name="state" value="2" >是 <input  type="radio" name="state" value="1" checked="checked">否 <span class="fou"></span>
+
+<br><input type="submit" value="提交"> <input type="reset" value="清除">
+{else}
+<input type="hidden" name="state" value="1">
+<br>其他<input type="checkbox" name="other" class="other" value="1">
+<br><input type="submit" value="发布"> <input type="reset" value="清除">
+{/if}
+</form>
+</body>
+<script>
+    //征集选项内容的选项个数
+	$('input:radio[name="state"]').click(function(){
+		var val = $(this).val();
+
+		if(val=='2'){
+			var str ='<span class="state_num"><br>每个人选项个数: <input type="text" name="state_num" ></span>';
+			$('.fou').after(str);
+		}else{
+			$('.state_num').remove();
+		}
+	})
+
+	//添加选项
+	$('.add').click(function(){
+			var num = $('.opt').size();
+			var num = num+1;
+			var add_type = '{$add_type}';
+			if(add_type=='1'){
+				var str = '<br><input type="text" class="opt" name="opt[]" placeholder="选项'+num+'">';
+			}else if(add_type=='4'){
+				var str = '<br><input type="file" class="opt" name="opt[]" placeholder="选项'+num+'">';
+			}else if(add_type=='3'){
+				var number = num+1;
+				var str = '<br> <input type="text" id="scenic_'+number+'" name="opt['+num+'][option]" readonly> <input type="button" class="opt" onclick="ch_scenic('+number+')" value="选择景点">';
+			}else if(add_type=='5'){
+				var number = num+1;
+				var str = '<br> <input class="opt" id="good_'+number+'" type="text" placeholder="商品链接网址" onchange="good_code('+number+')">';
+			}
+			$('.opt:last').after(str);
+		}
+	)
+    //填写完商品url的
+    function good_code(num){
+		var pattern = /^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/;
+		var str = $('#good_'+num).val();
+		var res = pattern.test(str);
+		if (res){
+			if(str.indexOf("jd.com") != -1){
+				//京东商品
+				var patt1=/\/{1}[0-9A-Za-z]+\.html/g;
+				var patt2=/[0-9A-Za-z]+/g;
+				if(patt1.test(str)){
+					var obja=str.match(patt1)[0];
+					var objb=obja.match(patt2);
+					var code=objb[0];
+					var url = "{:url('cx_jdcode_ajax')}";
+					$.ajax({
+						cache: true,
+						type: "POST",
+						url: url,
+						data:{'code':code},
+						async: false,
+						success: function(data) {
+							if($('#span_'+num).size()<1){
+								$('#span_'+num).remove();
+							}
+							var opt = "<span id='span_"+num+"'><br><a href='"+data['url']+"'> <img width='50%' src='"+data['imagePath']+"' alt=''><input type='radio'>"+data['name']+"</a><input type='hidden' name='opt["+num+"][good_id]' value='"+code+"'><input type='hidden' name='opt["+num+"][option]' value='"+data['name']+"'><input type='hidden' name='opt["+num+"][merchant]' value='jd'><input type='hidden' name='opt["+num+"][pic_url]' value='"+data['imagePath']+"'><input type='hidden' name='opt["+num+"][url]' value='"+data['url']+"'></span>"
+							$('#good_'+num).after(opt);
+						}
+					})
+				}else{
+					alert('输入不符合规则,请重新输入,无商品编码');
+				}
+			}else{
+                //淘宝商品
+
+            }
+
+		}else{
+			alert('输入不符合规则,请重新输入,不是url');
+        }
+    }
+</script>
+</html>

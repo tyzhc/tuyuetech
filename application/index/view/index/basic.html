@@ -1,0 +1,270 @@
+{include file="./public/public/header.html"/}
+<!--头部-->
+<div class="col-md-12 name bg main-padding">
+    途阅综合管理平台
+    <a class="white menu_two_name" href="javascript:;" >公众号列表</a>
+    <div>
+    <a href="/platform/index.php/index/index/index.html" class="white">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-home"></use>
+        </svg>
+        <span>首页</span>
+    </a>
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-arrRight-fill"></use>
+    </svg>
+    <a href="/platform/index.php/index/index/basic.html" class="white">
+        <span>基础设置</span>
+    </a>
+</div>
+</div>
+{include file="public/basic_setup" /}
+        <!---->
+        <div class="row">
+            <!--公众号信息-->
+            <div class="col-md-12 mes_sign">
+                <svg class="icon bg_color mes" aria-hidden="true">
+                    <use xlink:href="#icon-weixingongzhonghao"></use>
+                </svg>&nbsp;&nbsp;
+                公众号信息
+            </div>
+            <div class="col-md-9 mes-signs">
+              <div class="col-md-12 ">
+                  <b>（公众号名称）</b>
+                <span class="bg white radius num_type">账号类型</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                  {if condition="($ == 1) OR ($name > 100) "}
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-asmkticon0246"></use>
+                </svg>
+                &nbsp;<span class="red">未接入</span>
+                  {else}
+                  {/if}
+              </div>
+                <div class="col-md-12">
+                    <label class="col-md-1 next_menu mes-signs-lis">接口地址：</label>
+                    <div class="col-md-11">http://127.0.0.1/platform/index/index/basic.html</div>
+                </div>
+                <div class="col-md-12">
+                    <label class="col-md-1 next_menu mes-signs-lis">Token：</label>
+                    <div class="col-md-11">http://127.0.0.1/platform/index/index/basic.html</div>
+                </div>
+            </div>
+            <div class="col-md-3 mes-signs-pic">
+                <img class="radius" src="__IMG__/logo (2).png" width="50px">
+                <img class="radius" src="__IMG__/logo (2).png" width="50px">
+            </div>
+            <!---->
+            <!--今日关键指标-->
+            <div class="col-md-6 today-target radius">
+                <label class="col-md-12">今日关键指标</label>
+                <div class="col-md-12 ">
+                    <div class="col-md-3 right">
+                        <p>今日新关注</p>
+                        <b>0</b>
+                    </div>
+                    <div class="col-md-3 right">
+                        <p>今日取消关注</p>
+                        <b>0</b>
+                    </div>
+                    <div class="col-md-3 right">
+                        <p>今日净增关注</p>
+                        <b>0</b>
+                    </div>
+                    <div class="col-md-3">
+                        <p>累计关注</p>
+                        <b>0</b>
+                    </div>
+                </div>
+            </div>
+            <!--昨日关键指标-->
+            <div class="col-md-6 today-target radius yesterday-target">
+                <label class="col-md-12">昨日关键指标</label>
+                <div class="col-md-12 ">
+                    <div class="col-md-3 right">
+                        <p>昨日新关注</p>
+                        <b>0</b>
+                    </div>
+                    <div class="col-md-3 right">
+                        <p>昨日取消关注</p>
+                        <b>0</b>
+                    </div>
+                    <div class="col-md-3 right">
+                        <p>昨日净增关注</p>
+                        <b>0</b>
+                    </div>
+                    <div class="col-md-3">
+                        <p>累计关注</p>
+                        <b>0</b>
+                    </div>
+            </div>
+        </div>
+            <!--关键指标详解-->
+            <div class="col-md-12 echar radius">
+                <label class="col-md-8">关键指标详解</label>
+                <div class="col-md-4">
+                    <span class="col-md-3">
+                        <input type="checkbox" name="">&nbsp;新关注人数
+                    </span>
+                    <span class="col-md-3">
+                        <input type="checkbox" name="">&nbsp;取消关注人数
+                    </span>
+                    <span class="col-md-3">
+                        <input type="checkbox" name="">&nbsp;新关注人数
+                    </span>
+                    <span class="col-md-3">
+                        <input type="checkbox" name="">&nbsp;新关注人数
+                    </span>
+                </div>
+                <div id="main" class="col-md-12" style="height:400px;">
+
+                </div>
+            </div>
+            <!--基本回复情况统计-->
+            <div class="col-md-12 mes_sign">
+                <svg class="icon bg_color mes tongji_color" aria-hidden="true">
+                    <use xlink:href="#icon-huifu"></use>
+                </svg>&nbsp;&nbsp;
+                基本回复情况统计
+            </div>
+            <div class="col-md-12 chart">
+               模块命中次数趋势图
+                <span class="chart_active radius"><a href="javascript:;">文字回复</a></span>
+                <span class="radius"><a href="javascript:;">图文回复</a></span>
+                <span class="radius"><a href="javascript:;">图片回复</a></span>
+                <span class="radius"><a href="javascript:;">语音回复</a></span>
+                <span class="radius"><a href="javascript:;">音乐回复</a></span>
+                <span class="radius"><a href="javascript:;">视频回复</a></span>
+            </div>
+            <div class="col-md-12 charts">
+                <div class="col-md-3 right">
+                    <p>总回复规则数</p>
+                    <b>0</b>
+                </div>
+                <div class="col-md-3 right">
+                    <p>今日命中次数</p>
+                    <b>0</b>
+                </div>
+                <div class="col-md-3 right">
+                    <p>本月命中次数</p>
+                    <b>0</b>
+                </div>
+                <div class="col-md-3 chart_chang">
+                    <a class="display_block" href="javascript:;">
+                        <svg class="icon bg_color mes tongji_color" aria-hidden="true">
+                            <use xlink:href="#icon-sousuo1"></use>
+                        </svg>&nbsp;&nbsp;
+                        查看回复规则
+                    </a>
+                    <a class="display_block" href="basic_chang.html">
+                        <svg class="icon bg_color mes tongji_color" aria-hidden="true">
+                            <use xlink:href="#icon-jia"></use>
+                        </svg>&nbsp;&nbsp;
+                        新增回复规则
+                    </a>
+                </div>
+                <div id="mains" class="col-md-12" style="height:400px;">
+            </div>
+</div>
+</div>
+        </div>
+    </div>
+</body>
+<script src="_JS_/bootstrap.min.js"></script>
+<script>
+//关键指标详解
+    var myChart = echarts.init(document.getElementById('main'));
+    option = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ['11.27','11.28','11.29','11.30','12.01','12.03','12.4']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'关键指标详解',
+                type:'line',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                areaStyle: {normal: {}},
+                data:[0.1, 0.7, 0.4, 0.1,0.9, 0.5, 0.4]
+            }
+        ]
+    };
+    myChart.setOption(option);
+//
+    var myChart = echarts.init(document.getElementById('mains'));
+    option = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ['11.27','11.28','11.29','11.30','12.01','12.03','12.4','11.27','11.28','11.29','11.30','12.01','12.03','12.4','11.27','11.28','11.29','11.30','12.01','12.03','12.4','11.27','11.28']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'关键指标详解',
+                type:'line',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                areaStyle: {normal: {}},
+                data:[0.1, 0.7, 0.4, 0.1,0.9, 0.5, 0.4,0.1, 0.7, 0.4, 0.1,0.9, 0.5, 0.4,0.1, 0.7, 0.4, 0.1,0.9, 0.5, 0.4,0.1, 0.7, 0.4, 0.1,0.9, 0.5, 0.4,0.1, 0.7]
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+</html>
